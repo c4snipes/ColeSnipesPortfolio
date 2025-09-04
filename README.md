@@ -3,6 +3,7 @@
 Welcome to my personal developer portfolio!  
 This site highlights my projects, skills, and experience as a Computer Science student at the University of Indianapolis (graduating 2026). It’s designed to be clean, responsive, and easy to navigate — a hub for anyone interested in my work.
 
+
 ---
 
 ## Features
@@ -29,6 +30,8 @@ This site highlights my projects, skills, and experience as a Computer Science s
 - **Collaboration:** GitHub for code hosting and collaboration
 - **Testing:** Basic unit testing with Jest (for JavaScript components)
 - **CI/CD:** GitHub Actions for automated deployment workflows
+
+
 ---
 
 ## Projects Highlighted
@@ -41,10 +44,6 @@ This site highlights my projects, skills, and experience as a Computer Science s
 
 Each project is linked directly from the site with repo access for code and context.
 
----
-
-## Preview
-*(Add a screenshot of your portfolio here once deployed, e.g. `assets/preview.png`)*  
 
 ---
 
@@ -52,6 +51,7 @@ Each project is linked directly from the site with repo access for code and cont
 - Email: [cole.snipes@icloud.com](mailto:cole.snipes@icloud.com)  
 - LinkedIn: [linkedin.com/in/cole-snipes](https://www.linkedin.com/in/cole-snipes/)  
 - GitHub: [github.com/c4snipes](https://github.com/c4snipes)
+
 
 ---
 
