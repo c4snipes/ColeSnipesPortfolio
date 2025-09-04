@@ -4,18 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cole Snipes • Portfolio</title>
-<meta name="description" content="Computer Science student focused on software engineering and data science. Projects, skills, and contact.">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta name="description" content="Cole Snipes — Computer Science @ UIndy ’26. Projects, skills, experience, and contact.">
+<meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta property="og:title" content="Cole Snipes • Portfolio">
+<meta property="og:description" content="Projects, skills, experience, and contact.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/og.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="favicon.ico">
 </head>
 <body>
+<a class="skip" href="#projects">Skip to projects</a>
+
 <header class="site-header">
   <a class="brand" href="#top">Cole Snipes</a>
   <nav class="nav">
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#coursework">Coursework</a>
     <a href="#about">About</a>
     <a class="btn" href="#contact">Contact</a>
     <button id="themeToggle" aria-label="Toggle color theme">☾</button>
@@ -30,6 +39,7 @@
       <div class="cta">
         <a class="btn primary" href="https://github.com/c4snipes" target="_blank" rel="noopener">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/in/cole-snipes/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn outline" href="assets/Cole_Snipes_Resume.pdf" target="_blank" rel="noopener">Resume</a>
         <a class="btn outline" href="#projects">See Projects</a>
       </div>
     </div>
@@ -38,73 +48,68 @@
   <section id="projects" class="section">
     <div class="section-head">
       <h2>Projects</h2>
-      <p>Selected work with code and brief context.</p>
+      <p>Search, filter, and sort.</p>
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search projects…">
+        <select id="sort">
+          <option value="recent">Sort: Most recent</option>
+          <option value="alpha">Sort: A–Z</option>
+        </select>
+      </div>
+      <div id="tagBar" class="chips selectable"></div>
     </div>
+    <div id="projectStats" class="muted"></div>
+    <div id="projectGrid" class="grid projects"></div>
+    <div id="emptyState" class="empty hidden">No projects match your filters.</div>
+  </section>
 
-    <div class="grid projects">
-      <article class="card">
-        <h3>Bluetooth Attendance Application</h3>
-        <p>Python app for reliable attendance via Bluetooth scanning with export tools and a focused UI.</p>
-        <ul class="meta">
-          <li>Python</li><li>Threads</li><li>CSV Export</li>
+  <section id="skills" class="section">
+  <div class="section-head">
+    <h2>Skills</h2>
+    <p>Tools I use and enjoy.</p>
+  </div>
+  <div id="skillsWrap" class="skills"></div>
+  </section>
+
+
+  <section id="experience" class="section">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <p>Work that shaped how I build and ship.</p>
+    </div>
+    <div class="timeline">
+      <article class="titem">
+        <div class="tmeta"><span class="trole">Team Member Utility Worker</span><span class="torg">Meijer</span></div>
+        <div class="tdetail">Jan 2024 – Present • Indianapolis, IN</div>
+        <ul class="tbullets">
+          <li>Operational support and customer assistance in a fast-moving environment</li>
+          <li>Reliability, safety focus, and coordination across teams</li>
         </ul>
-        <a class="btn small" href="https://github.com/c4snipes/BluetoothAttendanceApplication" target="_blank" rel="noopener">Repo</a>
       </article>
-
-      <article class="card">
-        <h3>Budget Manager</h3>
-        <p>CLI budgeting tool written in Rust with clear data models and fast workflows.</p>
-        <ul class="meta">
-          <li>Rust</li><li>CLI</li><li>Serde</li>
+      <article class="titem">
+        <div class="tmeta"><span class="trole">Crew Member/Cashier</span><span class="torg">Chipotle</span></div>
+        <div class="tdetail">Mar 2021 – Jan 2024 • Indianapolis, IN</div>
+        <ul class="tbullets">
+          <li>High-volume service with quality and timing standards</li>
+          <li>Team communication and customer experience</li>
         </ul>
-        <a class="btn small" href="https://github.com/c4snipes/budget_manager" target="_blank" rel="noopener">Repo</a>
-      </article>
-
-      <article class="card">
-        <h3>Obesity Risk Prediction</h3>
-        <p>ML models predicting obesity levels using lifestyle features with clear EDA and evaluation.</p>
-        <ul class="meta">
-          <li>Python</li><li>Pandas</li><li>LogReg • RF</li>
-        </ul>
-        <a class="btn small" href="https://github.com/c4snipes?tab=repositories" target="_blank" rel="noopener">Code</a>
-      </article>
-
-      <article class="card">
-        <h3>Password Manager (Testing)</h3>
-        <p>Selenium suite for a course password manager project with automatic test coverage.</p>
-        <ul class="meta">
-          <li>Python</li><li>Selenium</li><li>CI Ready</li>
-        </ul>
-        <a class="btn small" href="https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting" target="_blank" rel="noopener">Repo</a>
-      </article>
-
-      <article class="card">
-        <h3>Spring Boot Showcase</h3>
-        <p>Learning repo for building REST APIs with minimal config and clean structure.</p>
-        <ul class="meta">
-          <li>Java</li><li>Spring Boot</li><li>REST</li>
-        </ul>
-        <a class="btn small" href="https://github.com/c4snipes/gs-spring-boot" target="_blank" rel="noopener">Repo</a>
-      </article>
-
-      <article class="card">
-        <h3>Portfolio Site</h3>
-        <p>This site. Lightweight, accessible, and fast. Built with semantic HTML and modern CSS.</p>
-        <ul class="meta">
-          <li>HTML</li><li>CSS</li><li>Responsive</li>
-        </ul>
-        <a class="btn small" href="https://github.com/c4snipes/ColeSnipesPortfolio" target="_blank" rel="noopener">Repo</a>
       </article>
     </div>
   </section>
 
-  <section id="skills" class="section">
+  <section id="coursework" class="section">
     <div class="section-head">
-      <h2>Skills</h2>
-      <p>Tools I use and enjoy.</p>
+      <h2>Coursework</h2>
+      <p>Classes that inform my projects.</p>
     </div>
     <ul class="chips">
-      <li>C/C++</li><li>Python</li><li>Java</li><li>JavaScript</li><li>Rust</li><li>Spring Boot</li><li>Django</li><li>REST APIs</li><li>SQL</li><li>Docker</li><li>Pandas</li><li>NumPy</li><li>Testing</li><li>Git</li>
+      <li>Data Structures & Algorithms</li>
+      <li>Computer Algorithms</li>
+      <li>Computer Architecture & Parallel Computing</li>
+      <li>Software Testing and Validation</li>
+      <li>Database Systems</li>
+      <li>Big Data Mining</li>
+      <li>Intro to OOP</li>
     </ul>
   </section>
 
@@ -113,12 +118,25 @@
       <h2>About</h2>
     </div>
     <div class="about">
-      <p>I’m a CS student focused on shipping useful software. My projects span ML, data analysis, and full-stack work. I care about clear code, thoughtful UX, and tests that keep refactors calm.</p>
+      <p>I ship useful software across ML, data analysis, and full-stack work. I care about clear code, thoughtful UX, and tests that keep refactors calm. I like projects where measurable impact and reliability matter.</p>
       <div class="quick">
         <div><strong>Education</strong><span>University of Indianapolis, B.S. Computer Science ’26</span></div>
         <div><strong>Interests</strong><span>ML, systems, analytics, developer tooling</span></div>
       </div>
     </div>
+  </section>
+
+  <section id="achievements" class="section">
+    <div class="section-head">
+      <h2>Achievements</h2>
+      <p>Academic and volunteer highlights.</p>
+    </div>
+    <ul class="ach">
+      <li>Richard Lugar Academic Scholarship</li>
+      <li>Outstanding Achievement Award, HS Class of 2022</li>
+      <li>Honor Roll 2022–2023</li>
+      <li>Volunteer, 5K Hound Hustle</li>
+    </ul>
   </section>
 
   <section id="contact" class="section">
@@ -127,10 +145,12 @@
       <p>Reach out for collaborations, internships, or ideas.</p>
     </div>
     <div class="contact">
-      <a class="btn primary" href="mailto:cole.snipes@icloud.com">cole.snipes@icloud.com</a>
+      <a class="btn primary" href="mailto:cole.snipes@icloud.com" id="emailBtn">cole.snipes@icloud.com</a>
       <a class="btn outline" target="_blank" rel="noopener" href="https://www.linkedin.com/in/cole-snipes/">LinkedIn</a>
       <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/c4snipes">GitHub</a>
+      <button class="btn" id="copyEmail" aria-label="Copy email">Copy Email</button>
     </div>
+    <div id="copyToast" class="toast hidden">Email copied</div>
   </section>
 </main>
 
@@ -138,19 +158,17 @@
   <p>© <span id="year"></span> Cole Snipes</p>
 </footer>
 
-<script>
-const t = document.getElementById('themeToggle')
-const k = 'prefers-dark'
-const set = v => document.documentElement.dataset.theme = v ? 'dark' : 'light'
-const saved = localStorage.getItem(k)
-if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) set(true)
-else set(false)
-t.addEventListener('click', () => {
-  const dark = document.documentElement.dataset.theme !== 'dark'
-  set(dark)
-  localStorage.setItem(k, dark ? 'dark' : 'light')
-})
-document.getElementById('year').textContent = new Date().getFullYear()
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Cole Snipes",
+  "url": "https://c4snipes.github.io",
+  "sameAs": ["https://github.com/c4snipes","https://www.linkedin.com/in/cole-snipes/"],
+  "jobTitle": "Computer Science Student",
+  "knowsAbout": ["Software Engineering","Data Science","Machine Learning","Algorithms","Web Development"]
+}
 </script>
+<script src="script.js"></script>
 </body>
 </html>
