@@ -1,7 +1,7 @@
 # Cole Snipes Portfolio
 
 Welcome to my personal developer portfolio!  
-This site highlights my projects, skills, and experience as a Computer Science student at the University of Indianapolis (graduating 2026). It’s designed to be clean, responsive, and easy to navigate — a hub for anyone interested in my work.
+This site highlights my projects, skills, and experience as a Computer Science student at the University of Indianapolis (graduating 2026). It’s designed to be clean and responsive.
 
 
 ---
