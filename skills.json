@@ -1,0 +1,115 @@
+[
+  {
+    "category": "Programming Languages",
+    "items": [
+      { "name": "C/C++", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["STL", "OOP", "memory", "pointers"], "projects": ["Algorithms coursework", "Knights Tour Solver", "Sudoku Solver"] },
+      { "name": "Python", "level": 5, "since": "2022", "last_used": "2025", "keywords": ["Pandas", "NumPy", "scikit-learn", "Selenium"], "projects": ["Obesity Risk Prediction", "Password Manager Testing", "Bluetooth Attendance Application"] },
+      { "name": "Java", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["OOP", "Spring Boot"], "projects": ["Spring Boot Showcase"] },
+      { "name": "JavaScript", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["DOM", "fetch", "modules"], "projects": ["Portfolio Site"] },
+      { "name": "Rust", "level": 2, "since": "2024", "last_used": "2025", "keywords": ["ownership", "borrowing", "cargo"], "projects": ["Budget Manager"] },
+      { "name": "SQL", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["joins", "indexes", "normalization"], "projects": ["RateMyProfessor-style app", "Coursework"] },
+      { "name": "Bash", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["scripts", "automation"], "projects": ["Local tooling"] }
+    ]
+  },
+  {
+    "category": "Frameworks & Libraries",
+    "items": [
+      { "name": "Spring Boot", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["REST", "controllers", "JPA"], "projects": ["Spring Boot Showcase"] },
+      { "name": "Django", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["ORM", "templates", "auth"], "projects": ["Learning repos"] },
+      { "name": "Pandas", "level": 5, "since": "2022", "last_used": "2025", "keywords": ["EDA", "wrangling", "merge", "groupby"], "projects": ["Obesity Risk Prediction", "Gun Violence Analysis"] },
+      { "name": "NumPy", "level": 4, "since": "2022", "last_used": "2025", "keywords": ["arrays", "vectorization"], "projects": ["ML pipelines"] }
+    ]
+  },
+  {
+    "category": "Data Science & ML",
+    "items": [
+      { "name": "scikit-learn", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["LogReg", "RandomForest", "train/test", "metrics"], "projects": ["Obesity Risk Prediction"] },
+      { "name": "Matplotlib", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["plots", "visualization"], "projects": ["Analysis notebooks"] },
+      { "name": "Feature Engineering", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["encoding", "scaling", "selection"], "projects": ["ML pipelines"] },
+      { "name": "Statistical Interpretation", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["correlation", "R²", "significance"], "projects": ["Gun Violence Analysis"] }
+    ]
+  },
+  {
+    "category": "Web & Backend",
+    "items": [
+      { "name": "REST APIs", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["HTTP", "JSON", "routing"], "projects": ["Spring Boot Showcase", "Portfolio Site"] },
+      { "name": "Auth Tokens", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["JWT", "sessions"], "projects": ["Coursework"] },
+      { "name": "HTTP", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["status codes", "headers"], "projects": ["APIs", "testing"] },
+      { "name": "JSON", "level": 5, "since": "2022", "last_used": "2025", "keywords": ["schema", "parsing"], "projects": ["Projects data", "APIs"] },
+      { "name": "WebSockets", "level": 2, "since": "2024", "last_used": "2024", "keywords": ["real-time"], "projects": ["Experiments"] }
+    ]
+  },
+  {
+    "category": "Databases",
+    "items": [
+      { "name": "MySQL", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["DDL", "DML", "indexes"], "projects": ["RateMyProfessor-style app", "Coursework"] },
+      { "name": "SQLite", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["embedded", "migrations"], "projects": ["Utilities"] },
+      { "name": "MongoDB", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["documents", "aggregation"], "projects": ["RMP migration"] },
+      { "name": "phpMyAdmin", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["admin", "queries"], "projects": ["Coursework"] }
+    ]
+  },
+  {
+    "category": "Testing & QA",
+    "items": [
+      { "name": "Unit Testing", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["TDD", "fixtures"], "projects": ["Multiple repos"] },
+      { "name": "Integration Testing", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["services", "I/O"], "projects": ["Coursework"] },
+      { "name": "System Testing", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["end-to-end"], "projects": ["Coursework"] },
+      { "name": "Automation", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["scripts", "CI"], "projects": ["Testing project"] },
+      { "name": "pytest", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["parametrize", "mocks"], "projects": ["Python repos"] },
+      { "name": "JUnit", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["assertions"], "projects": ["Spring Boot Showcase"] },
+      { "name": "Selenium", "level": 3, "since": "2024", "last_used": "2024", "keywords": ["browser", "selectors"], "projects": ["Password Manager Testing"] }
+    ]
+  },
+  {
+    "category": "DevOps & Tools",
+    "items": [
+      { "name": "Git", "level": 4, "since": "2022", "last_used": "2025", "keywords": ["branching", "PRs", "rebases"], "projects": ["All"] },
+      { "name": "Docker", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["images", "compose"], "projects": ["Local dev"] },
+      { "name": "GitHub Actions", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["CI", "workflows"], "projects": ["Automation"] },
+      { "name": "VS Code", "level": 5, "since": "2020", "last_used": "2025", "keywords": ["extensions", "tasks"], "projects": ["All"] },
+      { "name": "Replit", "level": 4, "since": "2022", "last_used": "2024", "keywords": ["quick protos"], "projects": ["Prototypes"] },
+      { "name": "Google Colab", "level": 4, "since": "2022", "last_used": "2025", "keywords": ["notebooks", "GPU"], "projects": ["ML notebooks"] }
+    ]
+  },
+  {
+    "category": "Systems & OS",
+    "items": [
+      { "name": "Linux", "level": 4, "since": "2022", "last_used": "2025", "keywords": ["shell", "processes"], "projects": ["Daily dev"] },
+      { "name": "Threads & Concurrency", "level": 3, "since": "2024", "last_used": "2025", "keywords": ["locks", "queues"], "projects": ["Bluetooth Attendance Application"] },
+      { "name": "Operating Systems", "level": 3, "since": "2023", "last_used": "2024", "keywords": ["scheduling", "memory"], "projects": ["Coursework"] },
+      { "name": "Parallel Computing", "level": 2, "since": "2024", "last_used": "2024", "keywords": ["architecture"], "projects": ["Coursework"] }
+    ]
+  },
+  {
+    "category": "UI/UX & Frontend",
+    "items": [
+      { "name": "HTML5", "level": 4, "since": "2021", "last_used": "2025", "keywords": ["semantic", "a11y"], "projects": ["Portfolio Site"] },
+      { "name": "CSS3", "level": 4, "since": "2021", "last_used": "2025", "keywords": ["responsive", "grid", "flex"], "projects": ["Portfolio Site"] },
+      { "name": "Responsive Design", "level": 4, "since": "2022", "last_used": "2025", "keywords": ["mobile-first"], "projects": ["Portfolio Site"] },
+      { "name": "Accessibility", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["contrast", "keyboard"], "projects": ["Portfolio Site"] }
+    ]
+  },
+  {
+    "category": "Core CS Topics",
+    "items": [
+      { "name": "Data Structures & Algorithms", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["trees", "graphs", "heaps"], "projects": ["C++ projects", "Coursework"] },
+      { "name": "Complexity Analysis", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["Big-O", "proofs"], "projects": ["Algorithms"] },
+      { "name": "Object-Oriented Design", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["encapsulation", "patterns"], "projects": ["Java/C++ work"] },
+      { "name": "Database Systems", "level": 3, "since": "2023", "last_used": "2025", "keywords": ["ERD", "normal forms"], "projects": ["RMP app"] },
+      { "name": "Software Testing", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["coverage", "assertions"], "projects": ["Testing repos"] },
+      { "name": "Big Data Mining", "level": 2, "since": "2024", "last_used": "2024", "keywords": ["pipelines"], "projects": ["Coursework"] }
+    ]
+  },
+  {
+    "category": "Soft Skills",
+    "items": [
+      { "name": "Collaboration", "level": 5, "since": "2020", "last_used": "2025", "keywords": ["cross-functional", "teamwork"], "projects": ["Team projects"] },
+      { "name": "Communication", "level": 4, "since": "2020", "last_used": "2025", "keywords": ["written", "verbal"], "projects": ["Docs", "presentations"] },
+      { "name": "Time Management", "level": 4, "since": "2020", "last_used": "2025", "keywords": ["prioritization"], "projects": ["Course + work balance"] },
+      { "name": "Documentation", "level": 4, "since": "2021", "last_used": "2025", "keywords": ["readme", "specs"], "projects": ["Repos"] },
+      { "name": "Problem Solving", "level": 5, "since": "2020", "last_used": "2025", "keywords": ["analysis", "troubleshooting"], "projects": ["All"] },
+      { "name": "Root Cause Analysis", "level": 4, "since": "2023", "last_used": "2025", "keywords": ["debugging"], "projects": ["Testing", "automation"] },
+      { "name": "Leadership", "level": 3, "since": "2021", "last_used": "2024", "keywords": ["mentoring"], "projects": ["Team assignments"] }
+    ]
+  }
+]
