@@ -1,0 +1,27 @@
+[
+  { "course": "Introduction to Programming", "code": "CSCI 155", "term": "Semester I 2022-2023", "type": "Core", "topics": ["Python basics", "control flow", "functions"], "when": "2022-08-24" },
+  { "course": "Object-Oriented Programming", "code": "CSCI 156", "term": "Semester II 2022-2023", "type": "Core", "topics": ["classes", "inheritance", "encapsulation"], "when": "2023-01-19" },
+
+  { "course": "Calculus & Analytic Geometry I", "code": "MATH 190", "term": "Semester I 2022-2023", "type": "Math", "topics": ["limits", "derivatives", "integrals"], "when": "2022-08-24" },
+  { "course": "Calculus & Analytic Geometry II", "code": "MATH 191", "term": "Semester II 2022-2023", "type": "Math", "topics": ["series", "parametric", "polar"], "when": "2023-01-19" },
+
+  { "course": "Data Structures & Algorithms", "code": "CSCI 240", "term": "Semester I 2023-2024", "type": "Core", "topics": ["trees", "graphs", "sorting", "Big-O"], "when": "2023-09-01" },
+  { "course": "Computer Architecture & Parallel Computing", "code": "CSCI 230", "term": "Semester I 2023-2024", "type": "Core", "topics": ["pipelines", "caches", "threads", "SIMD"], "when": "2023-09-01" },
+  { "course": "Discrete Mathematics", "code": "MATH 195", "term": "Semester I 2023-2024", "type": "Math", "topics": ["logic", "sets", "combinatorics"], "when": "2023-09-01" },
+  { "course": "Software Engineering I", "code": "SWEN 200", "term": "Semester I 2023-2024", "type": "Core", "topics": ["requirements", "design", "testing"], "when": "2023-09-01" },
+
+  { "course": "Software Validation & Testing", "code": "SWEN 320", "term": "Semester II 2023-2024", "type": "Core", "topics": ["unit/integration/system tests", "coverage", "Selenium"], "when": "2024-01-13" },
+  { "course": "Big Data Mining", "code": "CSCI 424", "term": "Semester II 2023-2024", "type": "Elective", "topics": ["feature engineering", "evaluation", "pipelines"], "when": "2024-01-13" },
+  { "course": "Linear Algebra", "code": "MATH 280", "term": "Semester II 2023-2024", "type": "Math", "topics": ["matrices", "eigenvalues", "vector spaces"], "when": "2024-01-13" },
+
+  { "course": "Operating Systems", "code": "SWEN 310", "term": "Semester I 2024-2025", "type": "Core", "topics": ["scheduling", "processes", "memory", "filesystems"], "when": "2024-08-23" },
+  { "course": "Programming Languages", "code": "CSCI 350", "term": "Semester I 2024-2025", "type": "Core", "topics": ["parsing", "typing", "semantics"], "when": "2024-08-23" },
+  { "course": "General Physics I (Calc-Based)", "code": "PHYS 153", "term": "Semester I 2024-2025", "type": "Science", "topics": ["kinematics", "forces", "energy"], "when": "2024-08-23" },
+
+  { "course": "Computer Algorithms", "code": "CSCI 340", "term": "Semester II 2024-2025", "type": "Core", "topics": ["greedy", "divide & conquer", "dynamic programming"], "when": "2025-01-15" },
+  { "course": "Database Systems", "code": "CSCI 370", "term": "Semester II 2024-2025", "type": "Core", "topics": ["SQL", "transactions", "ER design"], "when": "2025-01-15" },
+
+  { "course": "Networks & Distributed Computing", "code": "CSCI 420", "term": "Semester I 2025-2026", "type": "Core", "topics": ["sockets", "protocols", "RPC"], "when": "2025-08-25" },
+  { "course": "GUI & Game Programming", "code": "CSCI 310", "term": "Semester I 2025-2026", "type": "Elective", "topics": ["graphics", "event loop", "input"], "when": "2025-08-25" },
+  { "course": "CS Capstone I (Lab)", "code": "CSCI 496", "term": "Semester I 2025-2026", "type": "Capstone", "topics": ["scoping", "MVP", "milestones"], "when": "2025-08-25" }
+]

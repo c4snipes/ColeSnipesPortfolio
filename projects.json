@@ -1,44 +1,51 @@
 [
   {
+    "title": "WebVPython WASM Runner",
+    "desc": "A WebVPython runner using Pyodide and WASM to serve interactive Python in the browser. Focused on iframe messaging, dynamic imports, and validation.",
+    "tags": ["JavaScript", "WASM", "Pyodide", "Docker"],
+    "link": "https://github.com/vpython/wmWVPRunner",
+    "date": "2023-12-04"
+  },
+  {
     "title": "Bluetooth Attendance Application",
-    "desc": "Reliable attendance via Bluetooth scanning with export tools and a focused UI.",
+    "desc": "Python-based tool for automated attendance tracking via Bluetooth MAC detection with export features.",
     "tags": ["Python", "Threads", "CSV"],
     "link": "https://github.com/c4snipes/BluetoothAttendanceApplication",
     "date": "2025-06-01"
   },
   {
     "title": "Budget Manager",
-    "desc": "CLI budgeting tool in Rust with clear data models and fast workflows.",
-    "tags": ["Rust", "CLI", "Serde"],
+    "desc": "Rust CLI tool for managing expenses and income with structured data and efficient parsing.",
+    "tags": ["Rust", "CLI"],
     "link": "https://github.com/c4snipes/budget_manager",
     "date": "2025-05-20"
   },
   {
     "title": "Obesity Risk Prediction",
-    "desc": "ML models predicting obesity levels using lifestyle features with EDA and evaluation.",
+    "desc": "Applied ML models to predict obesity categories based on lifestyle features. Includes data preprocessing and visualization.",
     "tags": ["Python", "Pandas", "ML"],
     "link": "https://github.com/c4snipes?tab=repositories",
     "date": "2024-11-10"
   },
   {
-    "title": "Password Manager (Testing)",
-    "desc": "Selenium suite for a course password manager project with automatic test coverage.",
+    "title": "Password Manager Testing",
+    "desc": "Automated testing suite with Selenium for a collaborative password manager project.",
     "tags": ["Python", "Selenium", "CI"],
     "link": "https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting",
     "date": "2024-04-15"
   },
   {
     "title": "Spring Boot Showcase",
-    "desc": "REST API experiments with minimal config and clean structure.",
+    "desc": "REST API learning project using Spring Boot, focusing on endpoints and minimal configuration.",
     "tags": ["Java", "Spring Boot", "REST"],
     "link": "https://github.com/c4snipes/gs-spring-boot",
     "date": "2024-03-01"
   },
   {
-    "title": "Portfolio Site",
-    "desc": "This site. Lightweight, accessible, and fast. Built with semantic HTML and modern CSS.",
-    "tags": ["HTML", "CSS", "Responsive"],
+    "title": "Portfolio Website",
+    "desc": "This website. Built from scratch with responsive design, dynamic data loading, and dark/light theming.",
+    "tags": ["HTML", "CSS", "JavaScript"],
     "link": "https://github.com/c4snipes/ColeSnipesPortfolio",
-    "date": "2025-09-04"
+    "date": "2025-09-05"
   }
 ]

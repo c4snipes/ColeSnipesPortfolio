@@ -1,174 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cole Snipes • Portfolio</title>
-<meta name="description" content="Cole Snipes — Computer Science @ UIndy ’26. Projects, skills, experience, and contact.">
-<meta name="theme-color" content="#0b0c0f" media="(prefers-color-scheme: dark)">
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-<meta property="og:title" content="Cole Snipes • Portfolio">
-<meta property="og:description" content="Projects, skills, experience, and contact.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="assets/og.png">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cole Snipes • Portfolio</title>
+  <meta name="description" content="Cole Snipes — CS @ UIndy ’26. Projects, skills, coursework, and achievements." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<a class="skip" href="#projects">Skip to projects</a>
+  <header class="site-header">
+    <a class="brand" href="#top">Cole Snipes</a>
+    <nav class="nav">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#coursework">Coursework</a>
+      <a href="#achievements">Achievements</a>
+      <a class="btn" href="#contact">Contact</a>
+      <button id="themeToggle" aria-label="Toggle theme">☾</button>
+    </nav>
+  </header>
 
-<header class="site-header">
-  <a class="brand" href="#top">Cole Snipes</a>
-  <nav class="nav">
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#experience">Experience</a>
-    <a href="#coursework">Coursework</a>
-    <a href="#about">About</a>
-    <a class="btn" href="#contact">Contact</a>
-    <button id="themeToggle" aria-label="Toggle color theme">☾</button>
-  </nav>
-</header>
-
-<main id="top">
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Building practical software with data-driven thinking</h1>
-      <p>Computer Science @ University of Indianapolis ’26. Software Engineering and Data Science. I like turning ideas into reliable, usable systems.</p>
-      <div class="cta">
-        <a class="btn primary" href="https://github.com/c4snipes" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/cole-snipes/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn outline" href="assets/Cole_Snipes_Resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <a class="btn outline" href="#projects">See Projects</a>
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <h1>Turning concepts into reliable, usable software</h1>
+        <p>CS @ University of Indianapolis ’26 • interests in systems, algorithms, data, and developer tooling.</p>
+        <div class="cta">
+          <a class="btn primary" href="https://github.com/c4snipes" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/cole-snipes/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn outline" href="#projects">See Projects</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="projects" class="section">
-    <div class="section-head">
-      <h2>Projects</h2>
-      <p>Search, filter, and sort.</p>
-      <div class="toolbar">
-        <input id="search" type="search" placeholder="Search projects…">
-        <select id="sort">
-          <option value="recent">Sort: Most recent</option>
-          <option value="alpha">Sort: A–Z</option>
-        </select>
+    <!-- PROJECTS -->
+    <section id="projects" class="section">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <p>Filter and explore.</p>
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search projects…" />
+          <select id="sort">
+            <option value="recent">Sort: Most recent</option>
+            <option value="alpha">Sort: A–Z</option>
+          </select>
+        </div>
+        <div id="tagBar" class="chips selectable"></div>
+        <div id="projectStats" class="muted"></div>
       </div>
-      <div id="tagBar" class="chips selectable"></div>
-    </div>
-    <div id="projectStats" class="muted"></div>
-    <div id="projectGrid" class="grid projects"></div>
-    <div id="emptyState" class="empty hidden">No projects match your filters.</div>
-  </section>
+      <div id="projectGrid" class="grid projects"></div>
+      <div id="emptyState" class="empty hidden">No projects match your filters.</div>
+    </section>
 
-  <section id="skills" class="section">
-  <div class="section-head">
-    <h2>Skills</h2>
-    <p>Tools I use and enjoy.</p>
-  </div>
-  <div id="skillsWrap" class="skills"></div>
-  </section>
-
-
-  <section id="experience" class="section">
-    <div class="section-head">
-      <h2>Experience</h2>
-      <p>Work that shaped how I build and ship.</p>
-    </div>
-    <div class="timeline">
-      <article class="titem">
-        <div class="tmeta"><span class="trole">Team Member Utility Worker</span><span class="torg">Meijer</span></div>
-        <div class="tdetail">Jan 2024 – Present • Indianapolis, IN</div>
-        <ul class="tbullets">
-          <li>Operational support and customer assistance in a fast-moving environment</li>
-          <li>Reliability, safety focus, and coordination across teams</li>
-        </ul>
-      </article>
-      <article class="titem">
-        <div class="tmeta"><span class="trole">Crew Member/Cashier</span><span class="torg">Chipotle</span></div>
-        <div class="tdetail">Mar 2021 – Jan 2024 • Indianapolis, IN</div>
-        <ul class="tbullets">
-          <li>High-volume service with quality and timing standards</li>
-          <li>Team communication and customer experience</li>
-        </ul>
-      </article>
-    </div>
-  </section>
-
-  <section id="coursework" class="section">
-    <div class="section-head">
-      <h2>Coursework</h2>
-      <p>Classes that inform my projects.</p>
-    </div>
-    <ul class="chips">
-      <li>Data Structures & Algorithms</li>
-      <li>Computer Algorithms</li>
-      <li>Computer Architecture & Parallel Computing</li>
-      <li>Software Testing and Validation</li>
-      <li>Database Systems</li>
-      <li>Big Data Mining</li>
-      <li>Intro to OOP</li>
-    </ul>
-  </section>
-
-  <section id="about" class="section">
-    <div class="section-head">
-      <h2>About</h2>
-    </div>
-    <div class="about">
-      <p>I ship useful software across ML, data analysis, and full-stack work. I care about clear code, thoughtful UX, and tests that keep refactors calm. I like projects where measurable impact and reliability matter.</p>
-      <div class="quick">
-        <div><strong>Education</strong><span>University of Indianapolis, B.S. Computer Science ’26</span></div>
-        <div><strong>Interests</strong><span>ML, systems, analytics, developer tooling</span></div>
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <p>Level estimates (1–5) + keywords I actually use.</p>
       </div>
-    </div>
-  </section>
+      <div id="skillsWrap" class="skills"></div>
+    </section>
 
-  <section id="achievements" class="section">
-    <div class="section-head">
-      <h2>Achievements</h2>
-      <p>Academic and volunteer highlights.</p>
-    </div>
-    <ul class="ach">
-      <li>Richard Lugar Academic Scholarship</li>
-      <li>Outstanding Achievement Award, HS Class of 2022</li>
-      <li>Honor Roll 2022–2023</li>
-      <li>Volunteer, 5K Hound Hustle</li>
-    </ul>
-  </section>
+    <!-- COURSEWORK -->
+    <section id="coursework" class="section">
+      <div class="section-head">
+        <h2>Coursework</h2>
+        <p>Core CS and adjacent math/systems courses. Toggle between a quick overview and a chronological timeline.</p>
+        <div class="toolbar">
+          <div class="btn-group" role="tablist" aria-label="Coursework views">
+            <button class="btn small" id="courseToggleOverview" aria-selected="true">Overview</button>
+            <button class="btn small outline" id="courseToggleTimeline" aria-selected="false">Timeline</button>
+          </div>
+        </div>
+      </div>
 
-  <section id="contact" class="section">
-    <div class="section-head">
-      <h2>Contact</h2>
-      <p>Reach out for collaborations, internships, or ideas.</p>
-    </div>
-    <div class="contact">
-      <a class="btn primary" href="mailto:cole.snipes@icloud.com" id="emailBtn">cole.snipes@icloud.com</a>
-      <a class="btn outline" target="_blank" rel="noopener" href="https://www.linkedin.com/in/cole-snipes/">LinkedIn</a>
-      <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/c4snipes">GitHub</a>
-      <button class="btn" id="copyEmail" aria-label="Copy email">Copy Email</button>
-    </div>
-    <div id="copyToast" class="toast hidden">Email copied</div>
-  </section>
-</main>
+      <!-- Overview chips -->
+      <ul id="courseworkChips" class="chips" role="tabpanel" aria-labelledby="courseToggleOverview"></ul>
 
-<footer class="site-footer">
-  <p>© <span id="year"></span> Cole Snipes</p>
-</footer>
+      <!-- Timeline (hidden by default; toggled by JS) -->
+      <div id="courseTimeline" class="timeline hidden" role="tabpanel" aria-labelledby="courseToggleTimeline"></div>
+    </section>
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Cole Snipes",
-  "url": "https://c4snipes.github.io",
-  "sameAs": ["https://github.com/c4snipes","https://www.linkedin.com/in/cole-snipes/"],
-  "jobTitle": "Computer Science Student",
-  "knowsAbout": ["Software Engineering","Data Science","Machine Learning","Algorithms","Web Development"]
-}
-</script>
-<script src="script.js"></script>
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="section">
+      <div class="section-head">
+        <h2>Achievements</h2>
+        <p>Awards and recognition.</p>
+      </div>
+      <ul id="achievementList" class="ach"></ul>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Reach out for internships, collaborations, or ideas.</p>
+      </div>
+      <div class="contact">
+        <a class="btn primary" href="mailto:cole.snipes@icloud.com" id="emailBtn">cole.snipes@icloud.com</a>
+        <a class="btn outline" target="_blank" rel="noopener" href="https://www.linkedin.com/in/cole-snipes/">LinkedIn</a>
+        <a class="btn outline" target="_blank" rel="noopener" href="https://github.com/c4snipes">GitHub</a>
+        <button class="btn" id="copyEmail" aria-label="Copy email">Copy Email</button>
+      </div>
+      <div id="copyToast" class="toast hidden">Email copied</div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Cole Snipes</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
