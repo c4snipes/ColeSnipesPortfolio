@@ -1,5 +1,5 @@
 [
-  { "course": "Introduction to Programming", "code": "CSCI 155", "term": "Semester I 2022-2023", "type": "Core", "topics": ["Python basics", "control flow", "functions"], "when": "2022-08-24" },
+  { "course": "Introduction to Programming", "code": "CSCI 155", "term": "Semester I 2022-2023", "type": "Core", "topics": ["C basics", "control flow", "functions", "Replit"], "when": "2022-08-24" },
   { "course": "Object-Oriented Programming", "code": "CSCI 156", "term": "Semester II 2022-2023", "type": "Core", "topics": ["classes", "inheritance", "encapsulation"], "when": "2023-01-19" },
 
   { "course": "Calculus & Analytic Geometry I", "code": "MATH 190", "term": "Semester I 2022-2023", "type": "Math", "topics": ["limits", "derivatives", "integrals"], "when": "2022-08-24" },
