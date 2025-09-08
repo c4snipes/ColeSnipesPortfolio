@@ -22,7 +22,8 @@ $(async function () {
       const text = `${row.course} ${row.code} ${(row.topics||[]).join(" ")} ${row.term} ${row.when}`.toLowerCase();
       if (q && !text.includes(q)) return;
       const key = `${row.term} • ${row.when}`;
-      (groups[key] ||= []).push(row);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(row);
     });
 
     $out.empty();

@@ -10,12 +10,14 @@ $(async function () {
 
   const $grid = $("#skillsGrid").empty();
 
-  data.forEach(cat => {
-    const $card = $('<article class="card show"/>').append(
-      `<h3>${cat.category}</h3>`
+  (Array.isArray(data) ? data : []).forEach(cat => {
+    const $card = $('<article>').addClass('card show').append(
+      $('<h3>').text(cat && cat.category ? cat.category : '')
     );
-    const $meta = $('<div class="meta"/>');
-    (cat.items || []).forEach(s => $meta.append(`<span class="badge">${s}</span>`));
+    const $meta = $('<div>').addClass('meta');
+    (cat && Array.isArray(cat.items) ? cat.items : []).forEach(s =>
+      $meta.append($('<span>').addClass('badge').text(s))
+    );
     $card.append($meta);
     $grid.append($card);
   });

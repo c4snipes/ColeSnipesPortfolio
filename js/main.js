@@ -4,7 +4,7 @@ $(function () {
   $("#year").text(new Date().getFullYear());
 
   // Auto-activate current nav link
-  const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const page = (window.location.pathname.split("/").pop() || "index.html").toLowerCase();
   const isIndex = page === "" || page === "index.html";
 
   $(".top-nav a").each(function () {
