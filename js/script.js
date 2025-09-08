@@ -2,8 +2,9 @@
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
-<script>window.DATA_ROOT = "data/";</script>
-const DATA_ROOT = window.DATA_ROOT || "";
+// If you ever move JSON into /data elsewhere, set this in HTML first:
+// <script>window.DATA_ROOT = "../data/";</script>
+const DATA_ROOT = window.DATA_ROOT || "../data/";
 
 const root = document.documentElement;
 const THEME_KEY = "prefers-dark";
@@ -40,6 +41,33 @@ $("#copyEmail")?.addEventListener("click", async () => {
   } catch {}
 });
 
+/* ---------- Robust resume link resolver ---------- */
+(async () => {
+  const a = document.getElementById('resumeLink');
+  if (!a) return;
+
+  const candidates = [
+    '../assets/Cole_Snipes_Resume.pdf',
+    './assets/Cole_Snipes_Resume.pdf',
+    '../assets/resume.pdf',
+    './assets/resume.pdf'
+  ];
+
+  for (const p of candidates) {
+    try {
+      const r = await fetch(p, { method: 'HEAD', cache: 'no-store' });
+      if (r.ok) {
+        a.href = p;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        return;
+      }
+    } catch {}
+  }
+  // Fallback if not found
+  a.href = 'mailto:cole.snipes@icloud.com?subject=Resume%20Request';
+})();
+
 /* ===================== Tabs (menu controls sections) ===================== */
 const TABS = ["projects","skills","coursework","achievements","about","contact"];
 function showTab(id) {
@@ -47,7 +75,6 @@ function showTab(id) {
     const el = document.getElementById(t);
     if (el) el.classList.toggle("hidden", t !== id);
   });
-  // active link state
   $$('.nav a[href^="#"]').forEach(a => {
     const match = a.getAttribute("href").slice(1) === id;
     a.classList.toggle("active", match);
@@ -82,7 +109,7 @@ const P = {
   items: []
 };
 
-// --- highlight search terms in strings ---
+// Highlight search terms
 function highlight(text) {
   const q = (P.search?.value || '').trim();
   if (!q) return text;
@@ -90,7 +117,7 @@ function highlight(text) {
   return text.replace(re, '<mark>$1</mark>');
 }
 
-// Expand/collapse details per card
+// Expand/collapse details
 function attachExpanders(container) {
   container.querySelectorAll('[data-expand]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -102,7 +129,7 @@ function attachExpanders(container) {
   });
 }
 
-// Minimal modal viewer for project screenshots
+// Modal image viewer
 const modal = (() => {
   const overlay = document.createElement('div');
   overlay.className = 'modal hidden';
@@ -307,7 +334,6 @@ function renderCourseworkOverview(data) {
 function renderCourseworkTimeline(data) {
   courseTimeline.innerHTML = "";
 
-  // group by term, in chronological order using "when"
   const chronological = [...data].sort((a,b) => new Date(a.when) - new Date(b.when));
   const groups = chronological.reduce((acc, cur) => {
     acc[cur.term] = acc[cur.term] || [];
@@ -347,8 +373,6 @@ async function loadCoursework() {
   const data = await j(`${DATA_ROOT}coursework.json`, []);
   renderCourseworkOverview(data);
   renderCourseworkTimeline(data);
-
-  // default view: Overview
   showOverview();
   toggleOverview?.addEventListener("click", showOverview);
   toggleTimeline?.addEventListener("click", showTimeline);
@@ -360,9 +384,9 @@ async function loadAchievements() {
   const items = await j(`${DATA_ROOT}achievements.json`, []);
   el.innerHTML = "";
   items.forEach(a => {
-    const li = document.createElement("li");
     const right = [a.issuer, a.year].filter(Boolean).join(" • ");
     const details = a.details ? ` — ${a.details}` : "";
+    const li = document.createElement("li");
     li.innerHTML = `<strong>${a.title}</strong>${right ? ` <span class="muted">(${right})</span>` : ""}${details}`;
     el.appendChild(li);
   });
