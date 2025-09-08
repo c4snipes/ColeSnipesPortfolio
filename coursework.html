@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coursework • Cole Snipes</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><h1>Coursework</h1></div>
+      <nav class="top-nav" aria-label="Primary">
+        <a href="index.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="coursework.html" class="active">Coursework</a>
+        <a href="achievements.html">Achievements</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="controls">
+      <input id="cwSearch" class="input" type="search" placeholder="Search courses, topics, or code…" aria-label="Search coursework" />
+      <select id="cwType" class="input" aria-label="Filter by type">
+        <option value="">All types</option>
+        <option value="core">Core</option>
+        <option value="elective">Elective</option>
+      </select>
+    </div>
+
+    <div id="cwTimeline" class="timeline"></div>
+
+    <section id="cwError" class="error hide" role="alert" aria-live="polite">
+      Could not load <code>data/coursework.json</code>.
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <small>&copy; <span id="year"></span> Cole Snipes</small>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/coursework.js" defer></script>
+</body>
+</html>
