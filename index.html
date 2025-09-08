@@ -1,96 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Cole Snipes — Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Portfolio of Cole Snipes: projects, skills, coursework, and achievements." />
-  <link rel="preload" as="style" href="style.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <a class="skip-link" href="#projects">Skip to content</a>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cole Snipes — Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Cole Snipes: projects, skills, coursework, and achievements."
+    />
+    <link rel="preload" as="style" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%230A84FF%22/><text x=%2250%22 y=%2258%22 text-anchor=%22middle%22 font-family=%22system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif%22 font-size=%2256%22 fill=%22white%22>CS</text></svg>"
+    />
+    <meta name="theme-color" content="#0b0f1a" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" role="banner">
-    <div class="container header-inner">
-      <div class="brand">
-        <span class="brand-mark" aria-hidden="true">CS</span>
-        <div class="brand-text">
-          <h1 class="brand-name">Cole Snipes</h1>
-          <p class="brand-sub">Portfolio</p>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <span class="avatar" aria-hidden="true">CS</span>
+          <div class="brand-text">
+            <h1 class="name">Cole Snipes</h1>
+            <p class="tag">Portfolio</p>
+          </div>
         </div>
+
+        <nav class="site-nav" aria-label="Primary">
+          <button
+            id="navToggle"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="navList"
+            title="Toggle menu"
+          >
+            <span class="bar"></span><span class="bar"></span
+            ><span class="bar"></span>
+          </button>
+          <ul id="navList" class="nav-list">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#coursework">Coursework</a></li>
+            <li><a href="#achievements">Achievements</a></li>
+            <li>
+              <button
+                id="themeToggle"
+                class="ghost-btn"
+                title="Toggle dark mode"
+                aria-pressed="false"
+              >
+                🌓
+              </button>
+            </li>
+          </ul>
+        </nav>
       </div>
+    </header>
 
-      <nav class="site-nav" aria-label="Primary">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
-        <ul id="nav-menu">
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#coursework">Coursework</a></li>
-          <li><a href="#achievements">Achievements</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <main id="main" class="container flow">
+      <!-- Projects -->
+      <section id="projects" class="section">
+        <header class="section-header">
+          <h2>Projects</h2>
+          <p>Built with real technologies; filter by tag or search.</p>
+        </header>
 
-  <main id="main" class="container" tabindex="-1">
-    <!-- Projects -->
-    <section id="projects" class="section">
-      <header class="section-head">
-        <h2>Projects</h2>
-        <p class="section-sub">Built with real technologies; filter by tag or search.</p>
-      </header>
+        <div class="toolbar">
+          <input
+            id="projectSearch"
+            class="input"
+            type="search"
+            placeholder="Search projects (title, description, tags)…"
+            aria-label="Search projects"
+          />
+          <select id="projectSort" class="select" aria-label="Sort projects">
+            <option value="newest">Newest</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+            <option value="tags">Most tags</option>
+          </select>
+          <span id="projectCount" class="muted"></span>
+        </div>
 
-      <div class="filters">
-        <input id="project-search" class="input" type="search" placeholder="Search projects (title, description, tags)…" aria-label="Search projects" />
-        <div id="project-tags" class="tag-row" role="listbox" aria-label="Filter by tag"></div>
-      </div>
+        <div
+          id="projectTags"
+          class="chip-row"
+          role="group"
+          aria-label="Filter by tag"
+        ></div>
+        <div id="projectsGrid" class="grid"></div>
 
-      <div id="projects-grid" class="grid"></div>
-      <div id="projects-empty" class="empty hidden" role="status">No projects match your filters.</div>
-    </section>
+        <template id="projectCardTpl">
+          <article class="card project" tabindex="0">
+            <div class="card-body">
+              <div class="card-header">
+                <h3 class="card-title"></h3>
+                <time class="card-meta" datetime=""></time>
+              </div>
+              <p class="card-desc"></p>
+              <div class="chip-row tags"></div>
+            </div>
+            <footer class="card-footer">
+              <a class="btn" target="_blank" rel="noopener" href="">Open</a>
+              <button class="ghost-btn copy-btn" title="Copy link">
+                Copy link
+              </button>
+              <button
+                class="ghost-btn expand-btn"
+                aria-expanded="false"
+                title="Show details"
+              >
+                Details
+              </button>
+            </footer>
+            <div class="details" hidden>
+              <p class="muted small">
+                Keywords matched in search are highlighted.
+              </p>
+            </div>
+          </article>
+        </template>
 
-    <!-- Skills -->
-    <section id="skills" class="section">
-      <header class="section-head">
-        <h2>Skills</h2>
-        <p class="section-sub">Grouped by category as defined in <code>data/skills.json</code>.</p>
-      </header>
-      <div id="skills-grid" class="grid skills-grid"></div>
-    </section>
+        <p id="projectsError" class="error" hidden></p>
+      </section>
 
-    <!-- Coursework -->
-    <section id="coursework" class="section">
-      <header class="section-head">
-        <h2>Coursework</h2>
-        <p class="section-sub">Chronological view, newest first.</p>
-      </header>
-      <ol id="course-list" class="timeline" aria-live="polite"></ol>
-    </section>
+      <!-- Skills -->
+      <section id="skills" class="section">
+        <header class="section-header">
+          <h2>Skills</h2>
+          <p>Grouped by category from <code>data/skills.json</code>.</p>
+        </header>
 
-    <!-- Achievements -->
-    <section id="achievements" class="section">
-      <header class="section-head">
-        <h2>Achievements</h2>
-        <p class="section-sub">Awards, certifications, and notable milestones.</p>
-      </header>
-      <ul id="achievements-list" class="list"></ul>
-    </section>
-  </main>
+        <div class="toolbar">
+          <button id="skillsExpandAll" class="ghost-btn">Expand all</button>
+          <button id="skillsCollapseAll" class="ghost-btn">Collapse all</button>
+        </div>
 
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> Cole Snipes</p>
-      <a class="top-link" href="#top" aria-label="Back to top">Back to top ↑</a>
-    </div>
-  </footer>
+        <div id="skillsList" class="stack"></div>
+        <p id="skillsError" class="error" hidden></p>
+      </section>
 
-  <noscript>
-    <div class="noscript container">
-      This site loads content from JSON files. Please enable JavaScript to view Projects, Skills, Coursework, and Achievements.
-    </div>
-  </noscript>
+      <!-- Coursework -->
+      <section id="coursework" class="section">
+        <header class="section-header">
+          <h2>Coursework</h2>
+          <p>Chronological view, newest first.</p>
+        </header>
 
-  <script src="script.js" defer></script>
-</body>
+        <div class="toolbar">
+          <input
+            id="courseSearch"
+            class="input"
+            type="search"
+            placeholder="Search courses (code, title)…"
+            aria-label="Search courses"
+          />
+        </div>
+
+        <div id="courseTimeline" class="timeline"></div>
+        <p id="courseError" class="error" hidden></p>
+      </section>
+
+      <!-- Achievements -->
+      <section id="achievements" class="section">
+        <header class="section-header">
+          <h2>Achievements</h2>
+        </header>
+
+        <div id="achievementsGrid" class="grid"></div>
+        <p id="achievementsError" class="error" hidden></p>
+      </section>
+    </main>
+
+    <footer class="site-footer container">
+      <p class="muted small">
+        © <span id="year"></span> Cole Snipes. All rights reserved.
+      </p>
+    </footer>
+  </body>
 </html>
