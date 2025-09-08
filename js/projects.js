@@ -1,199 +1,192 @@
-/* global $ */
-$(async function () {
-  const $grid  = $("#projectGrid");
-  const $tagBar = $("#tagBar");
-  const $search = $("#search");
-  const $sort   = $("#sort");
-  const $clear  = $("#clearFilters");
+// /js/projects.js
+// Loads projects from data/projects.json and wires up search, tag filters, and sorting.
+// No frameworks, just modern DOM APIs.
 
-  // Load JSON
-  let projects = [];
-  try {
-    projects = await $.getJSON("data/projects.json");
-  } catch (e) {
-    $("#dataError").removeClass("hide");
+(function () {
+  "use strict";
+
+  // ---------- DOM lookups with safe fallbacks ----------
+  const $ = (sel) => document.querySelector(sel);
+  const grid =
+    document.getElementById("projectsGrid") ||
+    $('[data-projects-grid]');
+  const searchInput =
+    document.getElementById("projectsSearch") ||
+    $('[data-projects-search]');
+  const sortSelect =
+    document.getElementById("projectsSort") ||
+    $('[data-projects-sort]');
+  const clearBtn =
+    document.getElementById("projectsClear") ||
+    $('[data-projects-clear]');
+  const tagsBar =
+    document.getElementById("projectsTags") ||
+    $('[data-projects-tags]');
+
+  if (!grid) {
+    console.warn("projects.js: #projectsGrid (or [data-projects-grid]) not found.");
     return;
   }
 
-  // Normalize dates (support bare years like "2023") and make defensive defaults
-  projects = projects.map(p => ({
-    ...p,
-    // ensure date string exists, support bare years, and fall back to epoch on invalid dates
-    _date: (() => {
-      const raw = p && p.date != null ? String(p.date) : "";
-      if (raw && raw.length <= 4) return new Date(`${raw}-12-31`);
-      const dt = new Date(p && p.date != null ? p.date : 0);
-      return isNaN(dt) ? new Date(0) : dt;
-    })(),
-    // ensure title/desc are at least empty strings so callers don't crash
-    title: p && p.title != null ? p.title : "",
-    desc: p && p.desc != null ? p.desc : "",
-    tags: Array.isArray(p && p.tags) ? p.tags : (p && p.tags ? [p.tags] : [])
-  }));
+  // ---------- State ----------
+  let all = [];
+  let activeTags = new Set();
 
-  // Build tag list
-  const allTags = [...new Set(projects.flatMap(p => p.tags || []))]
-    .sort((a, b) => String(a).localeCompare(String(b)));
-  const activeTags = new Set();
+  // ---------- Fetch & init ----------
+  fetch("data/projects.json")
+    .then((r) => {
+      if (!r.ok) throw new Error(r.status + " " + r.statusText);
+      return r.json();
+    })
+    .then((rows) => {
+      // Normalize and keep only fields we actually use.
+      all = rows.map((p, i) => ({
+        id: i,
+        title: p.title || "",
+        desc: p.desc || p.description || "",
+        date: p.date || "",
+        link: p.link || p.url || "#",
+        repo: p.repo || "",
+        tags: Array.isArray(p.tags) ? p.tags : [],
+        image: p.image || p.img || ""
+      }));
 
-  function renderTags() {
-    $tagBar.empty();
-    allTags.forEach(tag => {
-      const $b = $('<button/>', {
-        class: `tag${activeTags.has(tag) ? " active" : ""}`,
-        text: tag
-      }).on("click", () => {
-        activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
-        render(); renderTags();
-      });
-      $tagBar.append($b);
+      buildTags(all);
+      render(all);
+      wire();
+    })
+    .catch((err) => {
+      showEmpty("Could not load projects. Make sure <code>data/projects.json</code> exists and is being served from the same origin.");
+      console.error(err);
+    });
+
+  // ---------- UI builders ----------
+  function buildTags(list) {
+    if (!tagsBar) return;
+    const uniques = [...new Set(list.flatMap((p) => p.tags))].sort(
+      (a, b) => a.localeCompare(b)
+    );
+    tagsBar.innerHTML = "";
+    uniques.forEach((tag) => {
+      const chip = document.createElement("button");
+      chip.className = "chip";
+      chip.type = "button";
+      chip.textContent = tag;
+      chip.setAttribute("data-tag", tag);
+      tagsBar.appendChild(chip);
     });
   }
 
-  function sortItems(list) {
-    const v = $sort.val();
-    if (v === "date-desc") list.sort((a,b)=> +b._date - +a._date);
-    else if (v === "date-asc") list.sort((a,b)=> +a._date - +b._date);
-    else if (v === "title-asc") list.sort((a,b)=> String(a.title || "").localeCompare(String(b.title || "")));
-    else if (v === "title-desc") list.sort((a,b)=> String(b.title || "").localeCompare(String(a.title || "")));
-    return list;
-  }
+  function render(list) {
+    grid.innerHTML = "";
 
-  const hl = (text, q) => {
-    const safeText = text == null ? "" : String(text);
-    if (!q) return safeText;
-    const esc = q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return safeText.replace(new RegExp(`(${esc})`,"ig"), "<mark>$1</mark>");
-  };
-
-  function render() {
-    const q = ($search.val() || "").trim();
-    const needle = q.toLowerCase();
-
-    let list = projects.filter(p => {
-      const title = String(p.title || "");
-      const desc = String(p.desc || "");
-      const tags = Array.isArray(p.tags) ? p.tags : [];
-
-      const matchesQ =
-        !needle ||
-        title.toLowerCase().includes(needle) ||
-        desc.toLowerCase().includes(needle) ||
-        tags.some(t => String(t || "").toLowerCase().includes(needle));
-      const matchesTags =
-        activeTags.size === 0 || tags.some(t => activeTags.has(t));
-      return matchesQ && matchesTags;
-    });
-
-    sortItems(list);
-    $grid.empty();
-
-    list.forEach(p => {
-      const $card = $('<article class="card"/>');
-      $card.append(`<h3>${hl(p.title || "", q)}</h3>`);
-      $card.append(`<p class="muted">${hl(p.desc || "", q)}</p>`);
-
-      const $meta = $('<div class="meta"/>');
-      (p.tags||[]).forEach(t => $meta.append(`<span class="badge">${hl(t || "", q)}</span>`));
-      $meta.append(`<span class="badge">${p.date ?? ""}</span>`);
-      $card.append($meta);
-
-      const $footer = $("<footer/>");
-      // guard link attribute output
-      const safeLink = p.link ? String(p.link) : "#";
-      $footer.append(`<a class="btn" href="${safeLink}" target="_blank" rel="noopener">Open</a>`);
-      const $more = $('<button type="button" class="btn btn-outline">Details</button>')
-        .on("click", () => openModal(p));
-      $footer.append($more);
-      $card.append($footer);
-
-      $grid.append($card);
-    });
-
-    // Reveal animation (feature-check IntersectionObserver)
-    if (typeof IntersectionObserver !== "undefined") {
-      const io = new IntersectionObserver((ents) => {
-        ents.forEach(ent => {
-          if (ent.isIntersecting) {
-            ent.target.classList.add("show");
-            io.unobserve(ent.target);
-          }
-        });
-      }, { threshold: .12, rootMargin: "0px 0px -10% 0px" });
-
-      document.querySelectorAll("#projectGrid .card").forEach(n => io.observe(n));
-    } else {
-      // fallback: just show all cards immediately
-      document.querySelectorAll("#projectGrid .card").forEach(n => n.classList.add("show"));
-    }
-  }
-
-  function openModal(p) {
-    const dlg = document.getElementById("projectModal");
-    // If there's no dialog in DOM, gracefully fallback to an alert
-    if (!dlg) {
-      const tags = (p.tags||[]).join(", ");
-      alert(`${p.title || ""}\n\n${p.desc || ""}\n\nTags: ${tags}\nDate: ${p.date || ""}\nLink: ${p.link || ""}`);
+    if (!list.length) {
+      showEmpty("No projects match your filters.");
       return;
     }
 
-    $("#modalTitle").text(p.title || "");
-    $("#modalBody").html(`
-      <p>${p.desc || ""}</p>
-      ${(p.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}
-      <p class="muted" style="margin-top:8px">Date: ${p.date || ""}</p>
-    `);
-
-    const $link = $("#modalLink");
-    if (p.link) { $link.attr("href", p.link).text("Open Project").show(); }
-    else       { $link.attr("href", "#").text("No link").hide(); }
-
-    $("#copyLink").off("click").on("click", async () => {
-      try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          await navigator.clipboard.writeText(p.link || "");
-        } else {
-          // fallback copy for older browsers: use textarea + legacy exec method via bracket access
-          const ta = document.createElement("textarea");
-          ta.value = p.link || "";
-          document.body.appendChild(ta);
-          ta.select();
-          try {
-            // Access execCommand via bracket to avoid deprecated API signature warnings in type-checkers
-            if (document['execCommand']) document['execCommand']('copy');
-          } catch (e) {
-            // ignore
-          }
-          document.body.removeChild(ta);
-        }
-        alert("Link copied!");
-      } catch {
-        alert("Could not copy link.");
-      }
+    const frag = document.createDocumentFragment();
+    list.forEach((p) => {
+      const card = document.createElement("article");
+      card.className = "card project-card";
+      card.innerHTML = `
+        <div class="card-body">
+          <header class="card-title">${escapeHTML(p.title)}</header>
+          <p class="card-desc">${escapeHTML(p.desc)}</p>
+          ${p.tags && p.tags.length ? `<div class="tags">${p.tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("")}</div>` : ""}
+          <div class="card-actions">
+            ${p.link ? `<a class="btn" href="${encodeURI(p.link)}" target="_blank" rel="noopener">Live</a>` : ""}
+            ${p.repo ? `<a class="btn secondary" href="${encodeURI(p.repo)}" target="_blank" rel="noopener">Code</a>` : ""}
+          </div>
+        </div>
+      `;
+      frag.appendChild(card);
     });
+    grid.appendChild(frag);
+  }
 
-    $("#closeModal").off("click").on("click", () => {
-      try { dlg.close(); } catch (e) { /* ignore */ }
-    });
+  function showEmpty(message) {
+    grid.innerHTML = `<div class="empty">${message}</div>`;
+  }
 
-    try {
-      if (typeof dlg.showModal === "function") dlg.showModal();
-      else dlg.style.display = "block";
-    } catch (e) {
-      // ignore if showModal fails
-      dlg.style.display = "block";
+  // ---------- Interactions ----------
+  function wire() {
+    // Search
+    if (searchInput) {
+      const handler = () => update();
+      searchInput.addEventListener("input", handler);
+    }
+
+    // Sort
+    if (sortSelect) {
+      sortSelect.addEventListener("change", update);
+    }
+
+    // Clear
+    if (clearBtn) {
+      clearBtn.addEventListener("click", () => {
+        activeTags.clear();
+        if (tagsBar) tagsBar.querySelectorAll(".chip.active").forEach((b) => b.classList.remove("active"));
+        if (searchInput) searchInput.value = "";
+        if (sortSelect) sortSelect.value = "dateDesc";
+        render(sorted(all));
+      });
+    }
+
+    // Tag chips
+    if (tagsBar) {
+      tagsBar.addEventListener("click", (e) => {
+        const btn = e.target.closest("button.chip");
+        if (!btn) return;
+        const tag = btn.getAttribute("data-tag");
+        if (btn.classList.toggle("active")) activeTags.add(tag);
+        else activeTags.delete(tag);
+        update();
+      });
     }
   }
 
-  $search.on("input", render);
-  $sort.on("change", render);
-  $clear.on("click", () => {
-    $search.val("");
-    activeTags.clear();
-    $sort.val("date-desc");
-    renderTags(); render();
-  });
+  function update() {
+    const q = (searchInput && searchInput.value.trim().toLowerCase()) || "";
+    const base = all.filter((p) => {
+      const inTags = !activeTags.size || p.tags.some((t) => activeTags.has(t));
+      if (!inTags) return false;
+      if (!q) return true;
+      return (
+        p.title.toLowerCase().includes(q) ||
+        p.desc.toLowerCase().includes(q) ||
+        p.tags.join(" ").toLowerCase().includes(q)
+      );
+    });
+    render(sorted(base));
+  }
 
-  renderTags();
-  render();
-});
+  function sorted(list) {
+    const mode = (sortSelect && sortSelect.value) || "dateDesc";
+    const copy = list.slice();
+    switch (mode) {
+      case "dateAsc":
+        copy.sort((a, b) => (a.date > b.date ? 1 : a.date < b.date ? -1 : 0));
+        break;
+      case "titleAsc":
+        copy.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case "titleDesc":
+        copy.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      default: // "dateDesc"
+        copy.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+    }
+    return copy;
+  }
+
+  // ---------- utils ----------
+  function escapeHTML(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+})();
