@@ -4,7 +4,6 @@
 
 /* ---------- Design tokens ---------- */
 :root {
-  /* Base */
   --bg: #0b0c0f;
   --surface: #12141a;
   --text: #e8eaf2;
@@ -16,7 +15,6 @@
   --shadow: 0 8px 24px rgba(0,0,0,.35);
   --success: #29cc7a;
 
-  /* Fancy extras */
   --accent: #58ffdd;
   --ring: rgba(91, 140, 255, .35);
   --ring-strong: rgba(91, 140, 255, .55);
@@ -63,18 +61,18 @@ img { max-width: 100%; display: block; }
 :focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; border-radius: 10px; }
 a:focus-visible, button:focus-visible { box-shadow: 0 0 0 4px var(--ring); }
 
-/* Custom scrollbars (webkit) */
+/* Scrollbar (webkit) */
 *::-webkit-scrollbar { width: 10px; height: 10px; }
 *::-webkit-scrollbar-thumb { background: var(--outline); border-radius: 999px; border: 2px solid transparent; background-clip: padding-box; }
 *::-webkit-scrollbar-thumb:hover { background: color-mix(in srgb, var(--outline) 80%, var(--text) 20%); }
 *::-webkit-scrollbar-track { background: transparent; }
 
-/* Utility */
+/* Utils */
 .hidden { display: none !important; }
 .muted { color: var(--muted); }
 mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inherit; padding: 0 2px; border-radius: 3px; }
 
-/* ---------- Skip link ---------- */
+/* Skip link */
 .skip {
   position: absolute; left: -9999px; top: auto;
   background: var(--primary); color: #fff;
@@ -82,7 +80,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 }
 .skip:focus { left: 10px; top: 10px; z-index: 50; }
 
-/* ---------- Header / nav ---------- */
+/* Header / nav */
 .site-header {
   position: sticky; top: 0; z-index: 20;
   display: flex; justify-content: space-between; align-items: center;
@@ -110,7 +108,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
   border-radius: 10px; cursor: pointer;
 }
 
-/* ---------- Hero ---------- */
+/* Hero */
 .hero {
   display: grid; place-items: center;
   padding: 96px 20px 48px;
@@ -136,7 +134,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 @keyframes drift1 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(2.5%) } }
 @keyframes drift2 { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-2.5%) } }
 
-/* ---------- Buttons ---------- */
+/* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center;
   border: 1px solid var(--outline); background: var(--surface); color: var(--text);
@@ -152,14 +150,14 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,.28); }
 .btn:active { transform: translateY(0); }
 
-/* ---------- Sections & utilities ---------- */
+/* Sections */
 .section { padding: 56px 20px; max-width: 1100px; margin: 0 auto; }
 .section-head h2 { font-size: 28px; margin: 0 0 6px; }
 .section-head p { margin: 0 0 22px; color: var(--muted); }
 .toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0 6px; }
 .toolbar input, .toolbar select { background: var(--surface); color: var(--text); border: 1px solid var(--outline); border-radius: 12px; padding: 10px 12px; min-width: 220px; }
 
-/* ---------- Projects grid ---------- */
+/* Projects */
 .grid.projects { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 18px; }
 .card {
   background: linear-gradient(180deg, color-mix(in srgb, var(--card) 90%, #fff 10%), var(--card));
@@ -174,7 +172,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 .card .row { display: flex; gap: 8px; flex-wrap: wrap; }
 .card-more { margin-top: 8px; }
 
-/* Tags inside cards */
+/* Tags */
 .meta { list-style: none; padding: 0; margin: 0; display: flex; gap: 8px; flex-wrap: wrap; }
 .meta li {
   font-size: 12px; padding: 6px 10px; background: var(--chip);
@@ -183,7 +181,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 }
 .meta li:hover { transform: translateY(-1px) scale(1.02); border-color: color-mix(in srgb, var(--outline) 60%, var(--primary) 40%); }
 
-/* ---------- Filter chips ---------- */
+/* Chips */
 .chips { list-style: none; padding: 0; margin: 0; display: flex; gap: 10px; flex-wrap: wrap; }
 .chips li {
   padding: 8px 12px; background: var(--chip); border: 1px solid var(--outline);
@@ -198,7 +196,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 }
 .chips.selectable { margin-top: 8px; }
 
-/* ---------- Skills ---------- */
+/* Skills */
 .skills { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 18px; }
 .skill-card {
   background: var(--card); border: 1px solid var(--outline);
@@ -224,53 +222,118 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 .skill-level { color: var(--muted); font-size: 12px; justify-self: end; margin-top: -2px; }
 @keyframes sheen { 0% { transform: translateX(-100%) } 100% { transform: translateX(100%) } }
 
-/* ---------- Coursework timeline (matches JS) ---------- */
+/* ===================== Coursework timeline ===================== */
+/* Default (mobile-first): vertical stack */
 .timeline { position: relative; display: grid; gap: 16px; }
+
 .t-section {
-  position: relative; padding: 16px 16px 16px 28px;
-  border: 1px solid var(--outline); border-radius: 16px; background: var(--surface);
+  position: relative;
+  padding: 16px 16px 16px 28px;
+  border: 1px solid var(--outline);
+  border-radius: 16px;
+  background: var(--surface);
   animation: fadeUp .32s ease both;
 }
+
+/* Vertical rail at mobile sizes */
 .t-section::before {
-  content: ""; position: absolute; left: 12px; top: 18px; bottom: 18px;
-  width: 2px; border-radius: 2px; background: color-mix(in srgb, var(--outline) 70%, var(--primary) 30%);
+  content: "";
+  position: absolute;
+  left: 12px; top: 18px; bottom: 18px;
+  width: 2px; border-radius: 2px;
+  background: color-mix(in srgb, var(--outline) 70%, var(--primary) 30%);
 }
+
 .t-term { margin: 0 0 10px; font-size: 18px; letter-spacing: .2px; color: var(--text); }
 .t-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
 .t-item {
-  position: relative; border: 1px solid var(--outline); border-radius: 12px;
-  background: var(--card); padding: 12px 12px 12px 16px; box-shadow: var(--shadow);
+  position: relative;
+  border: 1px solid var(--outline);
+  border-radius: 12px;
+  background: var(--card);
+  padding: 12px 12px 12px 16px;
+  box-shadow: var(--shadow);
   animation: fadeUp .32s ease both;
 }
+
 .t-item::before {
-  content: ""; position: absolute; left: -20px; top: 18px;
+  content: "";
+  position: absolute; left: -20px; top: 18px;
   width: 12px; height: 12px; border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #fff 0 20%, var(--primary) 30% 100%);
   box-shadow: 0 0 0 3px var(--ring);
 }
+
 .t-head { display: flex; flex-wrap: wrap; gap: 10px 12px; align-items: baseline; }
 .chip {
   padding: 2px 8px; border: 1px solid var(--outline); background: var(--chip);
   border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--text);
 }
 
-/* ---------- Achievements & contact ---------- */
+/* ---------- Horizontal mode (≥ 900px) ---------- */
+@media (min-width: 900px) {
+  /* Turn the whole timeline into a horizontal rail with snap */
+  .timeline {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding: 8px 8px 12px;
+    scroll-snap-type: x proximity;
+    /* soft edges fade so the scroll feels nice */
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+
+  /* Each term becomes a “card” on the rail */
+  .t-section {
+    min-width: clamp(320px, 36vw, 460px);
+    padding: 16px;                 /* remove left padding used for the vertical rail */
+    scroll-snap-align: start;
+  }
+
+  /* Hide the vertical rail in horizontal mode */
+  .t-section::before { display: none; }
+
+  /* Bring the dot bullets inside the card nicely */
+  .t-item { padding-left: 28px; }
+  .t-item::before { left: 10px; }
+
+ /* Make the term header look more chippy in horizontal mode */
+  .t-term {
+    display: inline-block;
+    padding: 4px 10px;
+    border: 1px solid var(--outline);
+    background: var(--chip);
+    border-radius: 999px;
+    margin-bottom: 12px;
+    font-size: 16px;
+  }
+  
+  .timeline::-webkit-scrollbar { height: 12px; }
+  .timeline::-webkit-scrollbar-thumb { background: var(--outline); border-radius: 999px; }
+
+  /* A touch bigger targets on desktop */
+  .btn.tiny { padding: 5px 10px; }
+}
+
+/* Achievements & contact */
 .ach { list-style: disc; padding-left: 22px; display: grid; gap: 6px; }
 .contact { display: flex; gap: 12px; flex-wrap: wrap; }
 .toast { margin-top: 12px; font-weight: 700; color: var(--success); }
 .toast.hidden { display: none; }
 
-/* ---------- Footer ---------- */
+/* Footer */
 .site-footer {
   padding: 28px 20px; border-top: 1px solid var(--outline); color: var(--muted); text-align: center;
   background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 86%, var(--primary) 14%), var(--surface));
 }
 
-/* ---------- Empty state ---------- */
+/* Empty state */
 .empty { text-align: center; color: var(--muted); padding: 18px 0 0; opacity: .85; animation: emptyPulse 2.4s ease-in-out infinite; }
 @keyframes emptyPulse { 0%,100%{opacity:.75;transform:translateY(0)} 50%{opacity:1;transform:translateY(-2px)} }
 
-/* ---------- Reveal on scroll ---------- */
+/* Reveal on scroll */
 @keyframes fadeUp { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: translateY(0) } }
 .grid.projects > .card:nth-child(1) { animation-delay: .02s }
 .grid.projects > .card:nth-child(2) { animation-delay: .05s }
@@ -278,13 +341,13 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
 .grid.projects > .card:nth-child(4) { animation-delay: .11s }
 .grid.projects > .card:nth-child(5) { animation-delay: .14s }
 
-/* ---------- Modal viewer ---------- */
+/* Modal viewer */
 .modal { position: fixed; inset: 0; background: rgba(0,0,0,.6); display: grid; place-items: center; z-index: 1000; }
 .modal.hidden { display: none; }
 .modal-box { background: var(--surface); padding: 16px; border-radius: 14px; border: 1px solid var(--outline); box-shadow: var(--shadow); max-width: min(92vw, 980px); }
 .modal-box img { width: 100%; height: auto; display: block; border-radius: 12px; }
 
-/* ---------- Responsive ---------- */
+/* Responsive */
 .desktop-only { display: block; }
 .mobile-only { display: none; }
 @media (max-width: 840px) {
@@ -295,7 +358,7 @@ mark { background: color-mix(in srgb, var(--primary) 25%, #fff 75%); color: inhe
   .mobile-only { display: block; }
 }
 
-/* ---------- Reduced motion ---------- */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
 }

@@ -2,146 +2,154 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cole Snipes • Portfolio</title>
-  <meta name="description" content="Cole Snipes — CS @ UIndy ’26. Projects, skills, coursework, achievements, and contact." />
-  <meta name="theme-color" content="#0b0c0f" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cole Snipes — Portfolio</title>
+  <meta name="description" content="Cole Snipes — CS portfolio with projects, skills, coursework, and achievements." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
 <body>
-  <a class="skip" href="#projects">Skip to main</a>
+  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <a class="brand" href="#projects">Cole Snipes</a>
-    <nav class="nav" role="tablist" aria-label="Site sections">
-      <a href="#projects" role="tab" aria-controls="projects">Projects</a>
-      <a href="#skills" role="tab" aria-controls="skills">Skills</a>
-      <a href="#coursework" role="tab" aria-controls="coursework">Coursework</a>
-      <a href="#achievements" role="tab" aria-controls="achievements">Achievements</a>
-      <a href="#about" role="tab" aria-controls="about">About</a>
-      <a href="#contact" role="tab" aria-controls="contact">Contact</a>
-      <button id="themeToggle" aria-label="Toggle theme">☾</button>
+  <!-- Header / Navigation -->
+  <header class="site-header" role="banner">
+    <div class="brand">Cole Snipes</div>
+    <nav class="nav" role="navigation" aria-label="Primary">
+      <a href="#projects" aria-selected="true">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#coursework">Coursework</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" class="btn small outline" type="button" aria-label="Toggle theme">Theme</button>
     </nav>
   </header>
 
-  <main id="top">
-    <!-- HERO (always visible) -->
-    <section class="hero" aria-label="Intro">
-      <div class="hero-inner">
-        <h1>Turning concepts into reliable, usable software</h1>
-        <p class="desktop-only">CS @ University of Indianapolis ’26 • Interests in systems, algorithms, data, and developer tooling.</p>
-        <p class="mobile-only">CS @ UIndy — systems & ML.</p>
-
-        <picture class="hero-art">
-          <source media="(max-width: 640px)" srcset="img/hero-mobile.jpg" />
-          <img src="img/hero-desktop.jpg" alt="Cole coding at a laptop" />
-        </picture>
-
-        <div class="cta" style="margin-top:16px">
-          <a class="btn primary" href="https://github.com/c4snipes" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/cole-snipes/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a class="btn outline" href="#projects">See Projects</a>
-        </div>
+  <!-- Hero / Intro -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <h1>CS Student • Builder • Problem Solver</h1>
+      <p>
+        I’m Cole Snipes, a Computer Science major who enjoys building useful tools,
+        learning systems fundamentals, and turning ideas into working software.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See Projects</a>
+        <!-- Robust resume link resolved by JS -->
+        <a id="resumeLink" class="btn outline" role="link" aria-label="Open resume">Resume</a>
       </div>
+
+      <!-- Desktop/Mobile images for the two-layout requirement -->
+      <figure class="hero-art desktop-only" aria-label="code collage">
+        <img src="../img/hero-desktop.jpg" alt="Abstract code collage (desktop)" />
+      </figure>
+      <figure class="hero-art mobile-only" aria-label="code collage">
+        <img src="../img/hero-mobile.jpg" alt="Abstract code collage (mobile)" />
+      </figure>
+    </div>
+  </section>
+
+  <main id="main" tabindex="-1">
+    <!-- Projects (tab with 5+ dynamic effects) -->
+    <section id="projects" class="section" aria-labelledby="projects-h2">
+      <header class="section-head">
+        <h2 id="projects-h2">Projects</h2>
+        <p class="muted">Search, filter by tags, sort, view screenshots, and expand details.</p>
+      </header>
+
+      <div class="toolbar" role="group" aria-label="Project tools">
+        <input id="search" type="search" placeholder="Search projects…" aria-label="Search projects" />
+        <select id="sort" aria-label="Sort projects">
+          <option value="recent">Sort: Most recent</option>
+          <option value="alpha">Sort: A–Z</option>
+        </select>
+      </div>
+
+      <ul id="tagBar" class="chips selectable" aria-label="Filter by tag"></ul>
+      <div id="projectGrid" class="grid projects" aria-live="polite"></div>
+      <p id="emptyState" class="empty hidden">No projects match your filters.</p>
+      <p id="projectStats" class="muted"></p>
     </section>
 
-    <!-- PROJECTS (tab) -->
-    <section id="projects" class="section" tabindex="-1">
-      <div class="section-head">
-        <h2>Projects</h2>
-        <p>Filter, sort, preview, and expand details.</p>
-        <div class="toolbar">
-          <input id="search" type="search" placeholder="Search projects…" aria-label="Search projects" />
-          <select id="sort" aria-label="Sort projects">
-            <option value="recent">Sort: Most recent</option>
-            <option value="alpha">Sort: A–Z</option>
-          </select>
-        </div>
-        <ul id="tagBar" class="chips selectable" aria-label="Project tags"></ul>
-        <div id="projectStats" class="muted"></div>
-      </div>
-      <div id="projectGrid" class="grid projects"></div>
-      <div id="emptyState" class="empty hidden">No projects match your filters.</div>
-    </section>
-
-    <!-- SKILLS (tab) -->
-    <section id="skills" class="section hidden" tabindex="-1">
-      <div class="section-head">
-        <h2>Skills</h2>
-        <p>Level estimates (1–5) + keywords I actually use.</p>
-      </div>
+    <!-- Skills (from skills.json only) -->
+    <section id="skills" class="section hidden" aria-labelledby="skills-h2">
+      <header class="section-head">
+        <h2 id="skills-h2">Skills</h2>
+        <p class="muted">Grouped by domain with levels, keywords, and where I used them.</p>
+      </header>
       <div id="skillsWrap" class="skills"></div>
     </section>
 
-    <!-- COURSEWORK (tab) -->
-    <section id="coursework" class="section hidden" tabindex="-1">
-      <div class="section-head">
-        <h2>Coursework</h2>
-        <p>Core CS and adjacent math/systems courses. Toggle between a quick overview and a chronological timeline.</p>
-        <div class="toolbar">
-          <div class="btn-group" role="tablist" aria-label="Coursework views">
-            <button class="btn small" id="courseToggleOverview" aria-selected="true">Overview</button>
-            <button class="btn small outline" id="courseToggleTimeline" aria-selected="false">Timeline</button>
-          </div>
+    <!-- Coursework -->
+    <section id="coursework" class="section hidden" aria-labelledby="coursework-h2">
+      <header class="section-head">
+        <h2 id="coursework-h2">Coursework</h2>
+        <p class="muted">Overview of courses + a timeline view grouped by term.</p>
+        <div class="cta">
+          <button id="courseToggleOverview" class="btn small" type="button" aria-selected="true">Overview</button>
+          <button id="courseToggleTimeline" class="btn small outline" type="button" aria-selected="false">Timeline</button>
         </div>
-      </div>
-      <!-- Overview chips -->
-      <ul id="courseworkChips" class="chips" role="tabpanel" aria-labelledby="courseToggleOverview"></ul>
-      <!-- Timeline -->
-      <div id="courseTimeline" class="timeline hidden" role="tabpanel" aria-labelledby="courseToggleTimeline"></div>
+      </header>
+      <ul id="courseworkChips" class="chips"></ul>
+      <div id="courseTimeline" class="timeline hidden" aria-label="Course timeline"></div>
     </section>
 
-    <!-- ACHIEVEMENTS (tab) -->
-    <section id="achievements" class="section hidden" tabindex="-1">
-      <div class="section-head">
-        <h2>Achievements</h2>
-        <p>Awards and recognition.</p>
-      </div>
+    <!-- Achievements -->
+    <section id="achievements" class="section hidden" aria-labelledby="achievements-h2">
+      <header class="section-head">
+        <h2 id="achievements-h2">Achievements & Service</h2>
+        <p class="muted">Scholarships, awards, and volunteer work.</p>
+      </header>
       <ul id="achievementList" class="ach"></ul>
     </section>
 
-    <!-- ABOUT (tab) -->
-    <section id="about" class="section hidden" tabindex="-1">
-      <div class="section-head">
-        <h2>About</h2>
-        <p>What I want you to know.</p>
-      </div>
-      <div class="about-grid" style="display:grid;grid-template-columns:1.2fr .8fr;gap:24px;">
-        <div>
-          <p>I like building practical tools with clean code and clear UX. Interests: algorithms, operating systems, and applied ML. I value reliability over hype.</p>
-          <p class="desktop-only">Outside class: bouldering, chess tactics, and volunteering for tech setup at community events.</p>
-          <p class="mobile-only">Outside class: climbing, chess, and volunteering.</p>
-        </div>
-        <figure style="margin:0">
-          <img src="img/headshot.jpg" alt="Cole Snipes headshot" style="border-radius:16px;border:1px solid var(--outline);box-shadow:var(--shadow);" />
-          <figcaption class="muted">Hi! 👋</figcaption>
-        </figure>
+    <!-- About -->
+    <section id="about" class="section hidden" aria-labelledby="about-h2">
+      <header class="section-head">
+        <h2 id="about-h2">About Me</h2>
+        <p class="muted">Personal info, interests, and quick facts.</p>
+      </header>
+      <div class="about-grid" style="display:grid;grid-template-columns:1.2fr .8fr;gap:18px;">
+        <article>
+          <p>
+            CS student in Indianapolis focusing on systems, software engineering, and practical tooling.
+            I like projects that mix fundamentals (data structures, OS, networks) with real-world utility.
+          </p>
+          <p>
+            Outside class, I tinker with Python automation, learn Rust, and keep sharpening my C++/Java
+            foundations. Hobbies include running, casual gaming, and volunteering at campus events.
+          </p>
+        </article>
+        <aside class="quick" aria-label="Quick facts">
+          <div><strong>Location</strong><span>Indianapolis, IN</span></div>
+          <div><strong>School</strong><span>University of Indianapolis</span></div>
+          <div><strong>Major</strong><span>Computer Science</span></div>
+          <div><strong>Interests</strong><span>Systems, Testing, Data</span></div>
+        </aside>
       </div>
     </section>
 
-    <!-- CONTACT (tab) -->
-    <section id="contact" class="section hidden" tabindex="-1">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p>Reach out for internships, collaborations, or ideas.</p>
-      </div>
+    <!-- Contact -->
+    <section id="contact" class="section hidden" aria-labelledby="contact-h2">
+      <header class="section-head">
+        <h2 id="contact-h2">Contact</h2>
+        <p class="muted">Reach out or follow my work.</p>
+      </header>
       <div class="contact">
-        <a class="btn primary" href="mailto:cole.snipes@icloud.com" id="emailBtn">cole.snipes@icloud.com</a>
-        <a class="btn outline" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/cole-snipes/">LinkedIn</a>
-        <a class="btn outline" target="_blank" rel="noopener noreferrer" href="https://github.com/c4snipes">GitHub</a>
-        <button class="btn" id="copyEmail" aria-label="Copy email">Copy Email</button>
+        <button id="copyEmail" class="btn" type="button">Copy Email</button>
+        <a class="btn outline" href="https://www.linkedin.com/in/cole-snipes/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn outline" href="https://github.com/c4snipes" target="_blank" rel="noopener">GitHub</a>
       </div>
-      <div id="copyToast" class="toast hidden" aria-live="polite">Email copied</div>
+      <div id="copyToast" class="toast hidden">Email copied ✓</div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>© <span id="year"></span> Cole Snipes • Built with HTML, CSS, and JavaScript</p>
+    <small>&copy; <span id="year"></span> Cole Snipes. Built with HTML/CSS/JS and hosted on GitHub Pages.</small>
   </footer>
 
-  
-  <script>window.DATA_ROOT = "data/";</script> 
-  <script defer src="script.js"></script>
+  <!-- Data root relative to /html/ -->
+  <script>window.DATA_ROOT = "../data/";</script>
+  <script src="../js/script.js" defer></script>
 </body>
 </html>
