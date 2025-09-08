@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Skills • Cole Snipes</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand"><h1>Skills</h1></div>
+      <nav class="top-nav" aria-label="Primary">
+        <a href="index.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html" class="active">Skills</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="achievements.html">Achievements</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="lead">Grouped by category as defined in <code>data/skills.json</code>.</p>
+    <div id="skillsGrid" class="grid grid-2"></div>
+
+    <section id="skillsError" class="error hide" role="alert" aria-live="polite">
+      Could not load <code>data/skills.json</code>.
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <small>&copy; <span id="year"></span> Cole Snipes</small>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/skills.js" defer></script>
+</body>
+</html>
