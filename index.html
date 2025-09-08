@@ -2,16 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="refresh" content="0; url=./html/index.html" />
+  <title>Cole Snipes — Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Redirecting…</title>
-  <link rel="canonical" href="./html/index.html" />
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;padding:24px}
-  </style>
+  <meta name="description" content="Portfolio of Cole Snipes: projects, skills, coursework, and achievements." />
+  <link rel="preload" as="style" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <p>Redirecting to <a href="./html/index.html">/html/index.html</a>…</p>
-  <script>location.replace("./html/index.html");</script>
+  <a class="skip-link" href="#projects">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">CS</span>
+        <div class="brand-text">
+          <h1 class="brand-name">Cole Snipes</h1>
+          <p class="brand-sub">Portfolio</p>
+        </div>
+      </div>
+
+      <nav class="site-nav" aria-label="Primary">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu">Menu</button>
+        <ul id="nav-menu">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#coursework">Coursework</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="container" tabindex="-1">
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <header class="section-head">
+        <h2>Projects</h2>
+        <p class="section-sub">Built with real technologies; filter by tag or search.</p>
+      </header>
+
+      <div class="filters">
+        <input id="project-search" class="input" type="search" placeholder="Search projects (title, description, tags)…" aria-label="Search projects" />
+        <div id="project-tags" class="tag-row" role="listbox" aria-label="Filter by tag"></div>
+      </div>
+
+      <div id="projects-grid" class="grid"></div>
+      <div id="projects-empty" class="empty hidden" role="status">No projects match your filters.</div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+      <header class="section-head">
+        <h2>Skills</h2>
+        <p class="section-sub">Grouped by category as defined in <code>data/skills.json</code>.</p>
+      </header>
+      <div id="skills-grid" class="grid skills-grid"></div>
+    </section>
+
+    <!-- Coursework -->
+    <section id="coursework" class="section">
+      <header class="section-head">
+        <h2>Coursework</h2>
+        <p class="section-sub">Chronological view, newest first.</p>
+      </header>
+      <ol id="course-list" class="timeline" aria-live="polite"></ol>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="section">
+      <header class="section-head">
+        <h2>Achievements</h2>
+        <p class="section-sub">Awards, certifications, and notable milestones.</p>
+      </header>
+      <ul id="achievements-list" class="list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Cole Snipes</p>
+      <a class="top-link" href="#top" aria-label="Back to top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript container">
+      This site loads content from JSON files. Please enable JavaScript to view Projects, Skills, Coursework, and Achievements.
+    </div>
+  </noscript>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
