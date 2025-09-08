@@ -1,6 +1,3 @@
-// Portfolio script (no frameworks).
-// Loads JSON from *relative* paths under `data/` and renders Projects, Skills, Coursework, Achievements.
-// Implements dynamic UI: live search, tag filters, sort, intersection reveal, details toggle, theme toggle, copy-to-clipboard, responsive nav.
 
 /** --------- CONFIG --------- */
 const PATHS = {
