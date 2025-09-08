@@ -2,8 +2,7 @@
 const $  = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 
-// If you ever move JSON into /data elsewhere, set this in HTML first:
-// <script>window.DATA_ROOT = "../data/";</script>
+<script>window.DATA_ROOT = "../data/";</script>
 const DATA_ROOT = window.DATA_ROOT || "../data/";
 
 const root = document.documentElement;
@@ -64,8 +63,6 @@ $("#copyEmail")?.addEventListener("click", async () => {
       }
     } catch {}
   }
-  // Fallback if not found
-  a.href = 'mailto:cole.snipes@icloud.com?subject=Resume%20Request';
 })();
 
 /* ===================== Tabs (menu controls sections) ===================== */
