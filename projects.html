@@ -4,64 +4,36 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects • Cole Snipes</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand"><h1>Projects</h1></div>
-      <nav class="top-nav" aria-label="Primary">
-        <a href="index.html">About</a>
-        <a href="projects.html" class="active">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="coursework.html">Coursework</a>
-        <a href="achievements.html">Achievements</a>
-      </nav>
-    </div>
-  </header>
 
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a class="" href="index.html">About</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a class="" href="skills.html">Skills</a>
+      <a class="" href="coursework.html">Coursework</a>
+      <a class="" href="achievements.html">Achievements</a>
+    </nav>
   <main class="container">
+  <section class="header">
+    <h1 class="h1">Projects</h1>
     <p class="lead">Built with real technologies; filter by tag, search, or sort.</p>
-
-    <div class="controls">
-      <input id="search" class="input" type="search" placeholder="Search title, description, or tags…" aria-label="Search projects" />
-      <select id="sort" class="input" aria-label="Sort projects">
-        <option value="date-desc">Sort by date (newest)</option>
-        <option value="date-asc">Sort by date (oldest)</option>
-        <option value="title-asc">Sort by title (A–Z)</option>
-        <option value="title-desc">Sort by title (Z–A)</option>
+    <div class="tools">
+      <input id="q" class="input" placeholder="Search title, description, or tags…" />
+      <select id="sort" class="select">
+        <option value="newest">Sort by date (newest)</option>
+        <option value="oldest">Sort by date (oldest)</option>
+        <option value="title">Sort by title (A–Z)</option>
       </select>
-      <button id="clearFilters" class="btn btn-outline" type="button">Clear filters</button>
+      <button id="clear" class="button secondary">Clear filters</button>
     </div>
-
-    <div id="tagBar" class="tag-bar" aria-label="Filter by tag"></div>
-
-    <div id="projectGrid" class="grid"></div>
-
-    <section id="dataError" class="error hide" role="alert" aria-live="polite">
-      Could not load <code>data/projects.json</code>. Ensure the JSON file exists at that relative path.
-    </section>
+    <div id="tags" class="chips"></div>
+  </section>
+  <section id="projectGrid" class="grid" aria-live="polite"></section>
   </main>
-
-  <!-- Modal -->
-  <dialog id="projectModal" class="modal">
-    <article>
-      <header>
-        <h3 id="modalTitle"></h3>
-        <button class="icon-btn" id="closeModal" aria-label="Close">&times;</button>
-      </header>
-      <div id="modalBody"></div>
-      <footer class="modal-footer">
-        <a id="modalLink" class="btn" target="_blank" rel="noopener">Open Project</a>
-        <button id="copyLink" class="btn btn-outline" type="button">Copy link</button>
-      </footer>
-    </article>
-  </dialog>
-
-  <footer class="site-footer container">
-    <small>&copy; <span id="year"></span> Cole Snipes</small>
-  </footer>
-
+  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script src="js/main.js" defer></script>
   <script src="js/projects.js" defer></script>
 </body>

@@ -1,103 +1,46 @@
-// /js/coursework.js
-// Loads courses from data/coursework.json and supports search + type filter.
+import { byId, fetchJSON, chip } from './main.js';
 
-(function () {
-  "use strict";
-  const $ = (sel) => document.querySelector(sel);
+const STATE = { q:'', type:'all', items:[] };
 
-  const list =
-    document.getElementById("courseworkList") ||
-    $('[data-coursework-list]');
-  const searchInput =
-    document.getElementById("courseworkSearch") ||
-    $('[data-coursework-search]');
-  const typeSelect =
-    document.getElementById("courseworkType") ||
-    $('[data-coursework-type]');
+function card(c){
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <h3>${c.code}: ${c.title}</h3>
+    <div class="meta"><span>${c.term||c.year||''}</span><span class="dot"></span><span>${c.type||''}</span></div>
+    <p>${c.desc||''}</p>
+    ${c.topics?.length ? `<div class="chips">${c.topics.map(t=>`<span class='chip'>${t}</span>`).join('')}</div>` : ''}
+  `;
+  return el;
+}
 
-  if (!list) {
-    console.warn("coursework.js: #courseworkList (or [data-coursework-list]) not found.");
-    return;
+function matches(c){
+  const q = STATE.q.toLowerCase();
+  const okType = STATE.type==='all' || (c.type||'').toLowerCase()===STATE.type.toLowerCase();
+  const inText = !q || [c.code, c.title, c.desc, ...(c.topics||[]), c.type||'', c.term||''].join(' ').toLowerCase().includes(q);
+  return okType && inText;
+}
+
+function draw(){
+  const grid = byId('cwGrid');
+  const items = STATE.items.filter(matches);
+  grid.innerHTML = '';
+  if (!items.length){
+    const empty = document.createElement('div');
+    empty.className = 'card';
+    empty.innerHTML = `<p>No courses found.</p>`;
+    grid.appendChild(empty);
+  }else{
+    items.forEach(c => grid.appendChild(card(c)));
   }
+}
 
-  let all = [];
-
-  fetch("data/coursework.json")
-    .then((r) => {
-      if (!r.ok) throw new Error(r.status + " " + r.statusText);
-      return r.json();
-    })
-    .then((rows) => {
-      all = rows.map((c) => ({
-        code: c.code || "",
-        title: c.title || "",
-        type: c.type || "course",
-        year: c.year || "",
-        desc: c.desc || c.description || "",
-        topics: Array.isArray(c.topics) ? c.topics : []
-      }));
-      render(all);
-      wire();
-    })
-    .catch((err) => {
-      list.innerHTML = `<div class="empty">Could not load coursework. Check <code>data/coursework.json</code>.</div>`;
-      console.error(err);
-    });
-
-  function render(rows) {
-    list.innerHTML = "";
-    if (!rows.length) {
-      list.innerHTML = `<div class="empty">No courses match your filters.</div>`;
-      return;
-    }
-    const frag = document.createDocumentFragment();
-    rows.forEach((c) => {
-      const el = document.createElement("article");
-      el.className = "card";
-      el.innerHTML = `
-        <div class="card-body">
-          <header class="card-title">
-            ${escapeHTML(c.code)} · ${escapeHTML(c.title)}
-            <span class="pill">${escapeHTML(c.type)}</span>
-          </header>
-          <p class="card-desc">${escapeHTML(c.desc)}</p>
-          ${c.topics?.length ? `<div class="tags">${c.topics.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("")}</div>` : ""}
-        </div>
-      `;
-      frag.appendChild(el);
-    });
-    list.appendChild(frag);
-  }
-
-  function wire() {
-    const update = () => {
-      const q = (searchInput && searchInput.value.trim().toLowerCase()) || "";
-      const type = (typeSelect && typeSelect.value) || "all";
-
-      const filtered = all.filter((c) => {
-        const inType = type === "all" || c.type === type;
-        if (!inType) return false;
-        if (!q) return true;
-        return (
-          c.code.toLowerCase().includes(q) ||
-          c.title.toLowerCase().includes(q) ||
-          c.desc.toLowerCase().includes(q) ||
-          c.topics.join(" ").toLowerCase().includes(q)
-        );
-      });
-      render(filtered);
-    };
-
-    if (searchInput) searchInput.addEventListener("input", update);
-    if (typeSelect) typeSelect.addEventListener("change", update);
-  }
-
-  function escapeHTML(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-})();
+async function init(){
+  const data = await fetchJSON('data/coursework.json');
+  if(!data) return;
+  STATE.items = data;
+  byId('cwQ').addEventListener('input', e=>{ STATE.q = e.target.value; draw(); });
+  byId('typeFilter').addEventListener('change', e=>{ STATE.type = e.target.value; draw(); });
+  draw();
+}
+document.addEventListener('DOMContentLoaded', init);
