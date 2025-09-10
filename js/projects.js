@@ -1,192 +1,79 @@
-// /js/projects.js
-// Loads projects from data/projects.json and wires up search, tag filters, and sorting.
-// No frameworks, just modern DOM APIs.
+import { $, $$, byId, fetchJSON, chip, formatDate } from './main.js';
 
-(function () {
-  "use strict";
+const STATE = { q:'', tag:null, sort:'newest', items:[] };
 
-  // ---------- DOM lookups with safe fallbacks ----------
-  const $ = (sel) => document.querySelector(sel);
-  const grid =
-    document.getElementById("projectsGrid") ||
-    $('[data-projects-grid]');
-  const searchInput =
-    document.getElementById("projectsSearch") ||
-    $('[data-projects-search]');
-  const sortSelect =
-    document.getElementById("projectsSort") ||
-    $('[data-projects-sort]');
-  const clearBtn =
-    document.getElementById("projectsClear") ||
-    $('[data-projects-clear]');
-  const tagsBar =
-    document.getElementById("projectsTags") ||
-    $('[data-projects-tags]');
+function collectTags(items){
+  const set = new Set();
+  items.forEach(p => (p.tags||[]).forEach(t => set.add(t)));
+  return Array.from(set).sort((a,b)=>a.localeCompare(b));
+}
 
-  if (!grid) {
-    console.warn("projects.js: #projectsGrid (or [data-projects-grid]) not found.");
-    return;
+function renderTags(tags){
+  const wrap = byId('tags');
+  wrap.innerHTML = '';
+  tags.forEach(t => {
+    const c = chip(t);
+    if (STATE.tag === t) c.style.outline = '2px solid var(--accent)';
+    c.tabIndex = 0;
+    c.addEventListener('click', () => { STATE.tag = (STATE.tag===t ? null : t); draw(); });
+    c.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') c.click(); });
+    wrap.appendChild(c);
+  })
+}
+
+function matches(p){
+  const q = STATE.q.trim().toLowerCase();
+  const inTag = STATE.tag ? (p.tags||[]).includes(STATE.tag) : true;
+  const inText = !q || [p.title, p.desc, ...(p.tags||[])].join(' ').toLowerCase().includes(q);
+  return inTag && inText;
+}
+
+function sortItems(arr){
+  const k = STATE.sort;
+  if (k==='title') return [...arr].sort((a,b)=>a.title.localeCompare(b.title));
+  if (k==='oldest') return [...arr].sort((a,b)=> (a.date||'0000').localeCompare(b.date||'0000'));
+  // newest
+  return [...arr].sort((a,b)=> (b.date||'0000').localeCompare(a.date||'0000'));
+}
+
+function projectCard(p){
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `
+    <h3>${p.title}</h3>
+    <div class="meta">
+      <span>${formatDate(p.date||'')}</span>
+      <span class="dot"></span>
+      <a class="inline" href="${p.link}" target="_blank" rel="noopener">Source / Demo</a>
+    </div>
+    <p>${p.desc}</p>
+    <div class="chips">${(p.tags||[]).map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+  `;
+  return el;
+}
+
+function draw(){
+  const grid = byId('projectGrid');
+  const items = sortItems(STATE.items.filter(matches));
+  grid.innerHTML = '';
+  if (!items.length){
+    const empty = document.createElement('div');
+    empty.className = 'card';
+    empty.innerHTML = `<p>No projects match your filters.</p>`;
+    grid.appendChild(empty);
+  }else{
+    items.forEach(p => grid.appendChild(projectCard(p)));
   }
+  renderTags(collectTags(STATE.items));
+}
 
-  // ---------- State ----------
-  let all = [];
-  let activeTags = new Set();
-
-  // ---------- Fetch & init ----------
-  fetch("data/projects.json")
-    .then((r) => {
-      if (!r.ok) throw new Error(r.status + " " + r.statusText);
-      return r.json();
-    })
-    .then((rows) => {
-      // Normalize and keep only fields we actually use.
-      all = rows.map((p, i) => ({
-        id: i,
-        title: p.title || "",
-        desc: p.desc || p.description || "",
-        date: p.date || "",
-        link: p.link || p.url || "#",
-        repo: p.repo || "",
-        tags: Array.isArray(p.tags) ? p.tags : [],
-        image: p.image || p.img || ""
-      }));
-
-      buildTags(all);
-      render(all);
-      wire();
-    })
-    .catch((err) => {
-      showEmpty("Could not load projects. Make sure <code>data/projects.json</code> exists and is being served from the same origin.");
-      console.error(err);
-    });
-
-  // ---------- UI builders ----------
-  function buildTags(list) {
-    if (!tagsBar) return;
-    const uniques = [...new Set(list.flatMap((p) => p.tags))].sort(
-      (a, b) => a.localeCompare(b)
-    );
-    tagsBar.innerHTML = "";
-    uniques.forEach((tag) => {
-      const chip = document.createElement("button");
-      chip.className = "chip";
-      chip.type = "button";
-      chip.textContent = tag;
-      chip.setAttribute("data-tag", tag);
-      tagsBar.appendChild(chip);
-    });
-  }
-
-  function render(list) {
-    grid.innerHTML = "";
-
-    if (!list.length) {
-      showEmpty("No projects match your filters.");
-      return;
-    }
-
-    const frag = document.createDocumentFragment();
-    list.forEach((p) => {
-      const card = document.createElement("article");
-      card.className = "card project-card";
-      card.innerHTML = `
-        <div class="card-body">
-          <header class="card-title">${escapeHTML(p.title)}</header>
-          <p class="card-desc">${escapeHTML(p.desc)}</p>
-          ${p.tags && p.tags.length ? `<div class="tags">${p.tags.map(t => `<span class="tag">${escapeHTML(t)}</span>`).join("")}</div>` : ""}
-          <div class="card-actions">
-            ${p.link ? `<a class="btn" href="${encodeURI(p.link)}" target="_blank" rel="noopener">Live</a>` : ""}
-            ${p.repo ? `<a class="btn secondary" href="${encodeURI(p.repo)}" target="_blank" rel="noopener">Code</a>` : ""}
-          </div>
-        </div>
-      `;
-      frag.appendChild(card);
-    });
-    grid.appendChild(frag);
-  }
-
-  function showEmpty(message) {
-    grid.innerHTML = `<div class="empty">${message}</div>`;
-  }
-
-  // ---------- Interactions ----------
-  function wire() {
-    // Search
-    if (searchInput) {
-      const handler = () => update();
-      searchInput.addEventListener("input", handler);
-    }
-
-    // Sort
-    if (sortSelect) {
-      sortSelect.addEventListener("change", update);
-    }
-
-    // Clear
-    if (clearBtn) {
-      clearBtn.addEventListener("click", () => {
-        activeTags.clear();
-        if (tagsBar) tagsBar.querySelectorAll(".chip.active").forEach((b) => b.classList.remove("active"));
-        if (searchInput) searchInput.value = "";
-        if (sortSelect) sortSelect.value = "dateDesc";
-        render(sorted(all));
-      });
-    }
-
-    // Tag chips
-    if (tagsBar) {
-      tagsBar.addEventListener("click", (e) => {
-        const btn = e.target.closest("button.chip");
-        if (!btn) return;
-        const tag = btn.getAttribute("data-tag");
-        if (btn.classList.toggle("active")) activeTags.add(tag);
-        else activeTags.delete(tag);
-        update();
-      });
-    }
-  }
-
-  function update() {
-    const q = (searchInput && searchInput.value.trim().toLowerCase()) || "";
-    const base = all.filter((p) => {
-      const inTags = !activeTags.size || p.tags.some((t) => activeTags.has(t));
-      if (!inTags) return false;
-      if (!q) return true;
-      return (
-        p.title.toLowerCase().includes(q) ||
-        p.desc.toLowerCase().includes(q) ||
-        p.tags.join(" ").toLowerCase().includes(q)
-      );
-    });
-    render(sorted(base));
-  }
-
-  function sorted(list) {
-    const mode = (sortSelect && sortSelect.value) || "dateDesc";
-    const copy = list.slice();
-    switch (mode) {
-      case "dateAsc":
-        copy.sort((a, b) => (a.date > b.date ? 1 : a.date < b.date ? -1 : 0));
-        break;
-      case "titleAsc":
-        copy.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      case "titleDesc":
-        copy.sort((a, b) => b.title.localeCompare(a.title));
-        break;
-      default: // "dateDesc"
-        copy.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
-    }
-    return copy;
-  }
-
-  // ---------- utils ----------
-  function escapeHTML(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-})();
+async function init(){
+  const data = await fetchJSON('data/projects.json');
+  if(!data) return;
+  STATE.items = data;
+  byId('q').addEventListener('input', e=>{ STATE.q = e.target.value; draw(); });
+  byId('sort').addEventListener('change', e=>{ STATE.sort = e.target.value; draw(); });
+  byId('clear').addEventListener('click', ()=>{ STATE.q=''; STATE.tag=null; byId('q').value=''; draw(); });
+  draw();
+}
+document.addEventListener('DOMContentLoaded', init);

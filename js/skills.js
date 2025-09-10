@@ -1,72 +1,59 @@
-// /js/skills.js
-// Loads and renders grouped skills from data/skills.json
+import { $, $$, byId, fetchJSON, chip } from './main.js';
 
-(function () {
-  "use strict";
-  const $ = (sel) => document.querySelector(sel);
-  const container =
-    document.getElementById("skillsContainer") ||
-    $('[data-skills-container]');
+function skillRow(s){
+  const row = document.createElement('div');
+  row.className = 'card';
+  const levelPct = Math.min(100, Math.max(0, (s.level||0) * 20));
+  row.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+      <h3 style="margin:0">${s.name}</h3>
+      <span class="small">Level ${s.level||0}/5</span>
+    </div>
+    <div class="progress" aria-label="Proficiency"><i style="width:${levelPct}%"></i></div>
+    ${s.keywords?.length ? `<div class="chips" style="margin-top:10px">${s.keywords.map(k=>`<span class='chip'>${k}</span>`).join('')}</div>` : ''}
+  `;
+  return row;
+}
 
-  if (!container) {
-    console.warn("skills.js: #skillsContainer (or [data-skills-container]) not found.");
-    return;
+function section(cat){
+  const sec = document.createElement('section');
+  sec.className = 'card';
+  const id = `cat-${cat.category.toLowerCase().replace(/\s+/g,'-')}`;
+  sec.innerHTML = `
+    <h3 id="${id}" style="margin-bottom:8px">${cat.category}</h3>
+    <div class="grid"></div>
+  `;
+  const grid = sec.querySelector('.grid');
+  cat.items.forEach(s => grid.appendChild(skillRow(s)));
+  return sec;
+}
+
+function filterCats(cats, q){
+  if (!q) return cats;
+  const t = q.toLowerCase();
+  return cats.map(c => ({
+    ...c,
+    items: (c.items||[]).filter(s =>
+      s.name.toLowerCase().includes(t) ||
+      (s.keywords||[]).join(' ').toLowerCase().includes(t))
+  })).filter(c => c.items.length);
+}
+
+async function init(){
+  const data = await fetchJSON('data/skills.json');
+  if(!data) return;
+  const wrap = byId('skillsList');
+
+  function draw(){
+    const q = byId('skillQ').value.trim();
+    wrap.innerHTML = '';
+    filterCats(data, q).forEach(c => wrap.appendChild(section(c)));
   }
 
-  fetch("data/skills.json")
-    .then((r) => {
-      if (!r.ok) throw new Error(r.status + " " + r.statusText);
-      return r.json();
-    })
-    .then((data) => {
-      // Expecting: [{ category: string, items: [{ name, level?, keywords?, projects? }] }]
-      render(data);
-      container.addEventListener("click", (e) => {
-        const btn = e.target.closest("button.skill-toggle");
-        if (!btn) return;
-        const panel = btn.closest(".skill-group").querySelector(".skill-list");
-        panel.hidden = !panel.hidden;
-        btn.setAttribute("aria-expanded", String(!panel.hidden));
-      });
-    })
-    .catch((err) => {
-      container.innerHTML = `<div class="empty">Could not load skills. Check <code>data/skills.json</code>.</div>`;
-      console.error(err);
-    });
+  byId('skillQ').addEventListener('input', draw);
+  byId('expandAll').addEventListener('click', () => $$('details').forEach(d=>d.open=true));
+  byId('collapseAll').addEventListener('click', () => $$('details').forEach(d=>d.open=false));
+  draw();
+}
 
-  function render(groups) {
-    container.innerHTML = "";
-    const frag = document.createDocumentFragment();
-    (groups || []).forEach((g) => {
-      const group = document.createElement("section");
-      group.className = "skill-group";
-      const items = (g.items || []).map((s) => `
-        <li>
-          <div class="skill">
-            <span class="skill-name">${escapeHTML(s.name || "")}</span>
-            ${s.level ? `<span class="pill">${escapeHTML(s.level)}</span>` : ""}
-          </div>
-          ${s.keywords?.length ? `<div class="muted small">${escapeHTML(s.keywords.join(", "))}</div>` : ""}
-        </li>`).join("");
-
-      group.innerHTML = `
-        <header class="group-header">
-          <h3>${escapeHTML(g.category || "Skills")}</h3>
-          <button class="skill-toggle" aria-expanded="true" type="button">Toggle</button>
-        </header>
-        <ul class="skill-list">${items}</ul>
-      `;
-      frag.appendChild(group);
-    });
-    container.appendChild(frag);
-  }
-
-  function escapeHTML(str) {
-    return String(str)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
-  }
-})();
+document.addEventListener('DOMContentLoaded', init);

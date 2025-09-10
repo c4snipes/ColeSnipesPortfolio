@@ -3,67 +3,32 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Cole Snipes • Portfolio</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <title>About • Cole Snipes</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand">
-        <div class="avatar" aria-hidden="true">
-          <!-- inline SVG to avoid external image dependency -->
-          <svg viewBox="0 0 128 128" role="img" aria-label="Avatar">
-            <circle cx="64" cy="64" r="64" class="svg-bg"/>
-            <circle cx="64" cy="48" r="22" class="svg-fg"/>
-            <rect x="28" y="74" width="72" height="38" rx="18" class="svg-fg"/>
-          </svg>
-        </div>
-        <div>
-          <h1>Cole Snipes</h1>
-          <p class="subtitle">Portfolio • Developer</p>
-        </div>
-      </div>
-      <nav class="top-nav" aria-label="Primary">
-        <a href="index.html" class="active">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="coursework.html">Coursework</a>
-        <a href="achievements.html">Achievements</a>
-      </nav>
+
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a class="active" href="index.html">About</a>
+      <a class="" href="projects.html">Projects</a>
+      <a class="" href="skills.html">Skills</a>
+      <a class="" href="coursework.html">Coursework</a>
+      <a class="" href="achievements.html">Achievements</a>
+    </nav>
+  <main class="container">
+  <section class="header">
+    <h1 class="h1">About me</h1>
+    <p class="lead">I'm Cole Snipes — a builder who turns ideas into working software. This site showcases selected projects, a snapshot of my skills, recent coursework, and achievements.</p>
+    <div class="tools">
+      <a class="button" href="projects.html">See Projects</a>
+      <a class="button secondary" href="skills.html">View Skills</a>
     </div>
-  </header>
-
-  <main class="container content-grid">
-    <aside class="image-col">
-      <!-- The “IMAGE” block required by the spec -->
-      <div class="photo-card">
-        <svg viewBox="0 0 128 96" role="img" aria-label="Code illustration">
-          <rect x="3" y="6" width="122" height="84" rx="8" class="svg-bg2"/>
-          <polyline points="40,24 28,48 40,72" class="svg-stroke"/>
-          <polyline points="88,24 100,48 88,72" class="svg-stroke"/>
-          <rect x="56" y="20" width="16" height="56" rx="3" class="svg-fill"/>
-        </svg>
-      </div>
-    </aside>
-
-    <section class="text-col">
-      <h2>About me</h2>
-      <p>
-        I’m Cole Snipes — a builder who enjoys turning ideas into working
-        software. This site showcases selected projects, a snapshot of my skills,
-        recent coursework, and achievements. Use the menu above to explore.
-      </p>
-      <div class="cta-row">
-        <a class="btn" href="projects.html">See Projects</a>
-        <a class="btn btn-outline" href="skills.html">View Skills</a>
-      </div>
-    </section>
+    <p class="small">Tip: use <span class="kbd">/</span> to focus the search on listing pages.</p>
+  </section>
   </main>
-
-  <footer class="site-footer container">
-    <small>&copy; <span id="year"></span> Cole Snipes</small>
-  </footer>
-
+  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script src="js/main.js" defer></script>
+
 </body>
 </html>

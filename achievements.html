@@ -4,34 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Achievements • Cole Snipes</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="brand"><h1>Achievements</h1></div>
-      <nav class="top-nav" aria-label="Primary">
-        <a href="index.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="coursework.html">Coursework</a>
-        <a href="achievements.html" class="active">Achievements</a>
-      </nav>
-    </div>
-  </header>
 
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a class="" href="index.html">About</a>
+      <a class="" href="projects.html">Projects</a>
+      <a class="" href="skills.html">Skills</a>
+      <a class="" href="coursework.html">Coursework</a>
+      <a class="active" href="achievements.html">Achievements</a>
+    </nav>
   <main class="container">
-    <div id="achList" class="list-cards"></div>
-
-    <section id="achError" class="error hide" role="alert" aria-live="polite">
-      Could not load <code>data/achievements.json</code>.
-    </section>
+  <section class="header">
+    <h1 class="h1">Achievements</h1>
+    <div id="achievements" class="grid"></div>
+  </section>
   </main>
-
-  <footer class="site-footer container">
-    <small>&copy; <span id="year"></span> Cole Snipes</small>
-  </footer>
-
+  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script src="js/main.js" defer></script>
   <script src="js/achievements.js" defer></script>
 </body>

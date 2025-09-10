@@ -1,0 +1,91 @@
+/* Cole Snipes Portfolio – Dark, clean, accessible */
+:root{
+  --bg:#0b1220;
+  --panel:#0f172a;
+  --elev:#111a2d;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --accent:#60a5fa;
+  --accent-2:#a78bfa;
+  --ring:#334155;
+  --chip:#1f2937;
+  --chip-text:#cbd5e1;
+  --ok:#22c55e;
+  --warn:#f59e0b;
+  --danger:#ef4444;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background: radial-gradient(1200px 800px at 70% -200px, rgba(96,165,250,.12), transparent 60%),
+              radial-gradient(800px 600px at 10% -150px, rgba(167,139,250,.10), transparent 70%),
+              var(--bg);
+  color:var(--text);
+  font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Inter, system-ui, "Helvetica Neue", Arial;
+}
+
+.container{max-width:1100px;margin:0 auto;padding:24px}
+.nav{
+  display:flex;gap:18px;align-items:center;justify-content:flex-start;
+  padding:18px 24px;border-bottom:1px solid #0b1426;backdrop-filter: blur(6px);
+  position:sticky;top:0;z-index:20;background:rgba(11,18,32,.72)
+}
+.nav .brand{font-weight:700;font-size:20px;margin-right:auto}
+.nav a{
+  color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:12px;display:inline-flex;
+}
+.nav a.active, .nav a:hover{color:var(--text);background:rgba(96,165,250,.14)}
+
+.header{padding:48px 0 16px}
+.h1{font-size:44px;line-height:1.15;margin:0 0 12px}
+.h2{font-size:28px;margin:28px 0 12px}
+.lead{color:var(--muted);font-size:18px}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap:16px;
+}
+
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
+  border:1px solid #101a2e;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 6px;font-size:20px}
+.card p{margin:0 0 10px;color:var(--muted)}
+
+.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+.meta .dot{width:6px;height:6px;border-radius:50%;background:#324055;margin:9px 2px 0}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.chip{background:var(--chip);color:var(--chip-text);padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid #2b3853}
+
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.input, .select, .button{
+  background:var(--panel);border:1px solid var(--ring);color:var(--text);
+  border-radius:12px;padding:10px 12px;outline:none;
+}
+.input{min-width:260px}
+.select{min-width:220px}
+.button{cursor:pointer}
+.button.secondary{background:transparent}
+.small{font-size:12px;color:var(--muted)}
+
+.footer{color:var(--muted);padding:24px 0;border-top:1px solid #0b1426;margin-top:40px}
+
+/* progress bars for Skills */
+.progress{
+  height:10px;background:#0d1424;border:1px solid #1c2742;border-radius:999px;overflow:hidden
+}
+.progress > i{
+  display:block;height:100%;background:linear-gradient(90deg, var(--accent), var(--accent-2));
+  width:0%
+}
+
+.kbd{padding:2px 6px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;background:#0c1426;font-size:12px}
+a.inline{color:#9ec5ff;text-decoration:none}
+a.inline:hover{text-decoration:underline}
