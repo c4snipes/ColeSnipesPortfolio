@@ -1,49 +1,49 @@
 [
   {
     "title": "WebVPython WASM Runner",
-    "desc": "A WebVPython runner using Pyodide and WASM to serve interactive Python in the browser. Focused on iframe messaging, dynamic imports, and validation.",
+    "desc": "I built a WebVPython runner using Pyodide and WebAssembly (WASM) that serves interactive Python directly in the browser. I focused on handling message communication between iframes, enabling dynamic imports of Python modules, and validating user input to create a safe and responsive environment.",
     "tags": ["JavaScript", "WASM", "Pyodide", "Docker"],
     "link": "https://github.com/vpython/wmWVPRunner",
     "date": "2023-12-04"
   },
   {
     "title": "Bluetooth Attendance Application",
-    "desc": "Python-based tool for automated attendance tracking via Bluetooth MAC detection with export features.",
+    "desc": "I developed a Python tool that automatically tracks attendance by detecting students' devices via Bluetooth MAC addresses. I added an exporter that writes attendance records to CSV files and ensured the program runs smoothly with multi-threading for simultaneous detection and logging.",
     "tags": ["Python", "Threads", "CSV"],
     "link": "https://github.com/c4snipes/BluetoothAttendanceApplication",
     "date": "2025-06-01"
   },
   {
     "title": "Budget Manager",
-    "desc": "Rust CLI tool for managing expenses and income with structured data and efficient parsing.",
+    "desc": "I created a command-line budget manager in Rust that tracks expenses and income. I implemented structured data storage, efficient parsing of user input, and reporting features to help manage personal finances via a simple terminal interface.",
     "tags": ["Rust", "CLI"],
     "link": "https://github.com/c4snipes/budget_manager",
     "date": "2025-05-20"
   },
   {
     "title": "Obesity Risk Prediction",
-    "desc": "Applied ML models to predict obesity categories based on lifestyle features. Includes data preprocessing and visualization.",
+    "desc": "I designed an obesity risk prediction pipeline by applying machine learning models—including logistic regression, decision trees, and random forests—to lifestyle and health data. I handled data preprocessing, trained and evaluated the models, and produced visualizations that communicate the performance and insights.",
     "tags": ["Python", "Pandas", "ML"],
     "link": "https://colab.research.google.com/drive/1KPU3XLnK4sVZgeRYdM17scwT8PfMw7gl?usp=sharing#scrollTo=y9NdIp0NHKW-",
     "date": "2024-11-10"
   },
   {
     "title": "Password Manager Testing",
-    "desc": "Automated testing suite with Selenium for a collaborative password manager project.",
+    "desc": "I built an automated test suite using Selenium for a collaborative password manager. I wrote end-to-end tests that simulate user actions like creating, sharing, and retrieving passwords, and integrated the suite into a continuous integration pipeline to ensure stability.",
     "tags": ["Python", "Selenium", "CI"],
     "link": "https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting",
     "date": "2024-04-15"
   },
   {
     "title": "Spring Boot Showcase",
-    "desc": "REST API learning project using Spring Boot, focusing on endpoints and minimal configuration.",
+    "desc": "I learned Spring Boot by creating a simple REST API. I configured controllers, services, and repositories to handle CRUD operations, experimented with dependency injection, and kept the configuration minimal to understand the framework’s defaults.",
     "tags": ["Java", "Spring Boot", "REST"],
     "link": "https://github.com/c4snipes/gs-spring-boot",
     "date": "2024-03-01"
   },
   {
     "title": "Portfolio Website",
-    "desc": "This website. Built from scratch with responsive design, dynamic data loading, and dark/light theming.",
+    "desc": "I designed and implemented this portfolio website from scratch. I focused on responsive layout, dynamic data loading from JSON files, search and filter functionality, and theme toggling between light and dark modes to provide a polished user experience.",
     "tags": ["HTML", "CSS", "JavaScript"],
     "link": "https://github.com/c4snipes/ColeSnipesPortfolio",
     "date": "2025-09-05"
