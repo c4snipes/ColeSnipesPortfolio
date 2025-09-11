@@ -1,4 +1,4 @@
-import { byId, fetchJSON, formatDate } from './main.js';
+import { byId, fetchJSON } from './main.js';
 
 function card(a){
   const el = document.createElement('article');
