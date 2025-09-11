@@ -2,52 +2,186 @@
   {
     "category": "Programming Languages",
     "items": [
-      { "name": "Python", "level": 5, "keywords": ["Pandas", "NumPy", "scikit-learn", "Selenium"], "projects": ["Obesity Risk Prediction", "Password Manager Testing", "Bluetooth Attendance Application"] },
-      { "name": "C/C++", "level": 4, "keywords": ["STL", "pointers", "OOP", "memory mgmt"], "projects": ["Algorithms coursework", "C++ practice"] },
-      { "name": "Java", "level": 4, "keywords": ["OOP", "Collections", "Streams"], "projects": ["Spring Boot Showcase"] },
-      { "name": "JavaScript", "level": 3, "keywords": ["DOM", "modules", "fetch"], "projects": ["Portfolio Website", "WebVPython WASM Runner"] },
-      { "name": "Rust", "level": 2, "keywords": ["ownership", "borrowing", "cargo"], "projects": ["Budget Manager"] },
-      { "name": "SQL", "level": 4, "keywords": ["joins", "indexes", "normalization"], "projects": ["Database Systems", "RMP-style app"] }
+      {
+        "name": "Python",
+        "level": 5,
+        "keywords": ["Pandas", "NumPy", "scikit-learn", "Selenium"],
+        "projects": [
+          "Obesity Risk Prediction",
+          "Password Manager Testing",
+          "Bluetooth Attendance Application"
+        ]
+      },
+      {
+        "name": "C/C++",
+        "level": 4,
+        "keywords": ["STL", "pointers", "OOP", "memory mgmt"],
+        "projects": ["Algorithms coursework", "C++ practice"]
+      },
+      {
+        "name": "Java",
+        "level": 4,
+        "keywords": ["OOP", "Collections", "Streams"],
+        "projects": ["Spring Boot Showcase"]
+      },
+      {
+        "name": "JavaScript",
+        "level": 3,
+        "keywords": ["DOM", "modules", "fetch"],
+        "projects": ["Portfolio Website", "WebVPython WASM Runner"]
+      },
+      {
+        "name": "Rust",
+        "level": 2,
+        "keywords": ["ownership", "borrowing", "cargo"],
+        "projects": ["Budget Manager"]
+      },
+      {
+        "name": "SQL",
+        "level": 4,
+        "keywords": ["joins", "indexes", "normalization"],
+        "projects": ["Database Systems", "RMP-style app"]
+      }
     ]
   },
   {
     "category": "Frameworks & Libraries",
     "items": [
-      { "name": "Spring Boot", "level": 3, "keywords": ["REST", "controllers", "validation"], "projects": ["Spring Boot Showcase"] },
-      { "name": "Django", "level": 3, "keywords": ["ORM", "templates", "auth"], "projects": ["Learning repos"] },
-      { "name": "Pandas", "level": 5, "keywords": ["EDA", "groupby", "merge"], "projects": ["Obesity Risk Prediction"] },
-      { "name": "NumPy", "level": 4, "keywords": ["vectorization", "ndarray"], "projects": ["ML pipelines"] },
-      { "name": "scikit-learn", "level": 4, "keywords": ["models", "metrics", "pipelines"], "projects": ["Obesity Risk Prediction"] },
-      { "name": "Selenium", "level": 3, "keywords": ["selectors", "page objects"], "projects": ["Password Manager Testing"] }
+      {
+        "name": "Spring Boot",
+        "level": 3,
+        "keywords": ["REST", "controllers", "validation"],
+        "projects": ["Spring Boot Showcase"]
+      },
+      {
+        "name": "Django",
+        "level": 3,
+        "keywords": ["ORM", "templates", "auth"],
+        "projects": ["Learning repos"]
+      },
+      {
+        "name": "Pandas",
+        "level": 5,
+        "keywords": ["EDA", "groupby", "merge"],
+        "projects": ["Obesity Risk Prediction"]
+      },
+      {
+        "name": "NumPy",
+        "level": 4,
+        "keywords": ["vectorization", "ndarray"],
+        "projects": ["ML pipelines"]
+      },
+      {
+        "name": "scikit-learn",
+        "level": 4,
+        "keywords": ["models", "metrics", "pipelines"],
+        "projects": ["Obesity Risk Prediction"]
+      },
+      {
+        "name": "Selenium",
+        "level": 3,
+        "keywords": ["selectors", "page objects"],
+        "projects": ["Password Manager Testing"]
+      }
     ]
   },
   {
     "category": "Systems & Tools",
     "items": [
-      { "name": "Linux", "level": 4, "keywords": ["shell", "processes", "permissions"], "projects": ["Daily dev"] },
-      { "name": "Docker", "level": 3, "keywords": ["images", "compose"], "projects": ["WebVPython WASM Runner"] },
-      { "name": "Git", "level": 4, "keywords": ["branching", "PRs", "rebases"], "projects": ["All repos"] },
-      { "name": "GitHub Actions", "level": 3, "keywords": ["CI", "workflows"], "projects": ["Automation"] },
-      { "name": "WebAssembly (WASM)", "level": 2, "keywords": ["Pyodide", "postMessage", "browser runtime"], "projects": ["WebVPython WASM Runner"] },
-      { "name": "Pyodide", "level": 2, "keywords": ["Python-in-browser"], "projects": ["WebVPython WASM Runner"] }
+      {
+        "name": "Linux",
+        "level": 4,
+        "keywords": ["shell", "processes", "permissions"],
+        "projects": ["Daily dev"]
+      },
+      {
+        "name": "Docker",
+        "level": 3,
+        "keywords": ["images", "compose"],
+        "projects": ["WebVPython WASM Runner"]
+      },
+      {
+        "name": "Git",
+        "level": 4,
+        "keywords": ["branching", "PRs", "rebases"],
+        "projects": ["All repos"]
+      },
+      {
+        "name": "GitHub Actions",
+        "level": 3,
+        "keywords": ["CI", "workflows"],
+        "projects": ["Automation"]
+      },
+      {
+        "name": "WebAssembly (WASM)",
+        "level": 2,
+        "keywords": ["Pyodide", "postMessage", "browser runtime"],
+        "projects": ["WebVPython WASM Runner"]
+      },
+      {
+        "name": "Pyodide",
+        "level": 2,
+        "keywords": ["Python-in-browser"],
+        "projects": ["WebVPython WASM Runner"]
+      }
     ]
   },
   {
     "category": "Core CS Topics",
     "items": [
-      { "name": "Data Structures & Algorithms", "level": 4, "keywords": ["graphs", "heaps", "dynamic programming"], "projects": ["Coursework", "C++ practice"] },
-      { "name": "Operating Systems", "level": 3, "keywords": ["scheduling", "memory", "threads"], "projects": ["OS coursework"] },
-      { "name": "Database Systems", "level": 3, "keywords": ["ERD", "transactions", "SQL design"], "projects": ["DB coursework", "RMP-style app"] },
-      { "name": "Software Testing", "level": 4, "keywords": ["unit", "integration", "coverage"], "projects": ["Testing repos"] },
-      { "name": "Networks & Distributed", "level": 3, "keywords": ["sockets", "protocols", "RPC"], "projects": ["Networking coursework"] }
+      {
+        "name": "Data Structures & Algorithms",
+        "level": 4,
+        "keywords": ["graphs", "heaps", "dynamic programming"],
+        "projects": ["Coursework", "C++ practice"]
+      },
+      {
+        "name": "Operating Systems",
+        "level": 3,
+        "keywords": ["scheduling", "memory", "threads"],
+        "projects": ["OS coursework"]
+      },
+      {
+        "name": "Database Systems",
+        "level": 3,
+        "keywords": ["ERD", "transactions", "SQL design"],
+        "projects": ["DB coursework", "RMP-style app"]
+      },
+      {
+        "name": "Software Testing",
+        "level": 4,
+        "keywords": ["unit", "integration", "coverage"],
+        "projects": ["Testing repos"]
+      },
+      {
+        "name": "Networks & Distributed",
+        "level": 3,
+        "keywords": ["sockets", "protocols", "RPC"],
+        "projects": ["Networking coursework"]
+      }
     ]
   },
   {
     "category": "UI/UX & Frontend",
     "items": [
-      { "name": "HTML5", "level": 4, "keywords": ["semantic", "a11y"], "projects": ["Portfolio Website"] },
-      { "name": "CSS3", "level": 4, "keywords": ["flexbox", "grid", "responsive"], "projects": ["Portfolio Website"] },
-      { "name": "Responsive Design", "level": 4, "keywords": ["mobile-first"], "projects": ["Portfolio Website"] }
+      {
+        "name": "HTML5",
+        "level": 4,
+        "keywords": ["semantic", "a11y"],
+        "projects": ["Portfolio Website"]
+      },
+      {
+        "name": "CSS3",
+        "level": 4,
+        "keywords": ["flexbox", "grid", "responsive"],
+        "projects": ["Portfolio Website"]
+      },
+      {
+        "name": "Responsive Design",
+        "level": 4,
+        "keywords": ["mobile-first"],
+        "projects": ["Portfolio Website"]
+      }
     ]
   }
 ]

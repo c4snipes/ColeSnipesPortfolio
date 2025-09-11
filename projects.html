@@ -1,65 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- No-flash theme init -->
-  <script>
-    (function () {
-      try {
-        const key = 'site-theme';
-        const saved = localStorage.getItem(key);
-        const prefersLight = window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: light)').matches;
-        const theme = saved || (prefersLight ? 'light' : 'dark');
-        document.documentElement.setAttribute(
-          'data-theme',
-          ['dark','light','solar'].includes(theme) ? theme : 'dark'
-        );
-      } catch (e) {}
-    })();
-  </script>
-  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <!-- No-flash theme init -->
+    <script>
+      (function () {
+        try {
+          const key = "site-theme";
+          const saved = localStorage.getItem(key);
+          const prefersLight =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches;
+          const theme = saved || (prefersLight ? "light" : "dark");
+          document.documentElement.setAttribute(
+            "data-theme",
+            ["dark", "light", "solar"].includes(theme) ? theme : "dark"
+          );
+        } catch (e) {}
+      })();
+    </script>
+    <meta
+      name="theme-color"
+      content="#070c14"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
 
-  <title>Cole Snipes — Projects</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <nav class="nav">
-    <div class="brand">Cole Snipes</div>
-    <a href="index.html">About</a>
-    <a class="active" href="projects.html">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="coursework.html">Coursework</a>
-    <a href="achievements.html">Achievements</a>
-    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-      <span class="icon">🌙</span><span>Dark</span>
-    </button>
-  </nav>
+    <title>Cole Snipes — Projects</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a href="index.html">About</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="coursework.html">Coursework</a>
+      <a href="achievements.html">Achievements</a>
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+      >
+        <span class="icon">🌙</span><span>Dark</span>
+      </button>
+    </nav>
 
-  <main class="container">
-    <header class="header">
-      <h1 class="h1">Projects</h1>
-      <p class="lead">Built with real technologies; filter by tag, search, or sort.</p>
-      <div class="tools">
-        <input id="q" class="input" placeholder="Search title, description, or tags…" />
-        <select id="sort" class="select">
-          <option value="newest" selected>Sort by date (newest)</option>
-          <option value="oldest">Sort by date (oldest)</option>
-          <option value="title">Sort by title (A–Z)</option>
-        </select>
-        <button id="clear" class="button secondary">Clear filters</button>
-      </div>
-      <div id="tags" class="chips"></div>
-    </header>
-    <section id="projectGrid" class="grid"></section>
-  </main>
+    <main class="container">
+      <header class="header">
+        <h1 class="h1">Projects</h1>
+        <p class="lead">
+          Built with real technologies; filter by tag, search, or sort.
+        </p>
+        <div class="tools">
+          <input
+            id="q"
+            class="input"
+            placeholder="Search title, description, or tags…"
+          />
+          <select id="sort" class="select">
+            <option value="newest" selected>Sort by date (newest)</option>
+            <option value="oldest">Sort by date (oldest)</option>
+            <option value="title">Sort by title (A–Z)</option>
+          </select>
+          <button id="clear" class="button secondary">Clear filters</button>
+        </div>
+        <div id="tags" class="chips"></div>
+      </header>
+      <section id="projectGrid" class="grid"></section>
+    </main>
 
-  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
+    <footer class="container footer">
+      © <span id="year"></span> Cole Snipes
+    </footer>
 
-  <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/projects.js"></script>
-</body>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/projects.js"></script>
+  </body>
 </html>
