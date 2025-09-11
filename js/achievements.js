@@ -11,11 +11,9 @@ function card(a){
   `;
   return el;
 }
-
 async function init(){
   const list = byId('achievements');
-  const data = await fetchJSON('data/achievements.json');
-  if(!data) return;
+  const data = await fetchJSON('data/achievements.json'); if(!data) return;
   list.innerHTML = '';
   data.forEach(a => list.appendChild(card(a)));
 }
