@@ -3,35 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Coursework • Cole Snipes</title>
+
+  <!-- No-flash theme init -->
+  <script>
+    (function () {
+      try {
+        const key = 'site-theme';
+        const saved = localStorage.getItem(key);
+        const prefersLight = window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = saved || (prefersLight ? 'light' : 'dark');
+        document.documentElement.setAttribute(
+          'data-theme',
+          ['dark','light','solar'].includes(theme) ? theme : 'dark'
+        );
+      } catch (e) {}
+    })();
+  </script>
+  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  <title>Cole Snipes — Coursework</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <nav class="nav">
+    <div class="brand">Cole Snipes</div>
+    <a href="index.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a class="active" href="coursework.html">Coursework</a>
+    <a href="achievements.html">Achievements</a>
+    <!-- Theme toggle button -->
+    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+      <span class="icon">🌙</span><span>Dark</span>
+    </button>
+  </nav>
 
-    <nav class="nav">
-      <div class="brand">Cole Snipes</div>
-      <a class="" href="index.html">About</a>
-      <a class="" href="projects.html">Projects</a>
-      <a class="" href="skills.html">Skills</a>
-      <a class="active" href="coursework.html">Coursework</a>
-      <a class="" href="achievements.html">Achievements</a>
-    </nav>
   <main class="container">
-  <section class="header">
-    <h1 class="h1">Coursework</h1>
-    <div class="tools">
-      <input id="cwQ" class="input" placeholder="Search courses, topics, or code…" />
-      <select id="typeFilter" class="select">
-        <option value="all">All types</option>
-        <option value="CS">CS</option>
-        <option value="Math">Math</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-  </section>
-  <section id="cwGrid" class="grid" aria-live="polite"></section>
+    <header class="header">
+      <h1 class="h1">Coursework</h1>
+      <div class="tools">
+        <input id="cwQ" class="input" placeholder="Search courses, topics, or code…" />
+        <select id="typeFilter" class="select">
+          <option value="all" selected>All types</option>
+          <option value="CS">CS</option>
+          <option value="Math">Math</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </header>
+    <section id="cwGrid" class="grid"></section>
   </main>
+
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
-<script type="module" src="js/coursework.js"></script>
+
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/coursework.js"></script>
 </body>
 </html>
