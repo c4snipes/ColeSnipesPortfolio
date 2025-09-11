@@ -1,11 +1,11 @@
-import { $, $$, byId, fetchJSON, chip, formatDate } from './main.js';
+import { $, $$, byId, fetchJSON, chip, formatDate, slugify } from './main.js';
 
 const STATE = { q:'', tag:null, sort:'newest', items:[] };
 
 function collectTags(items){
-  const set = new Set();
-  items.forEach(p => (p.tags||[]).forEach(t => set.add(t)));
-  return Array.from(set).sort((a,b)=>a.localeCompare(b));
+  const s = new Set();
+  items.forEach(p => (p.tags||[]).forEach(t => s.add(t)));
+  return Array.from(s).sort((a,b)=>a.localeCompare(b));
 }
 
 function renderTags(tags){
@@ -15,30 +15,33 @@ function renderTags(tags){
     const c = chip(t);
     if (STATE.tag === t) c.style.outline = '2px solid var(--accent)';
     c.tabIndex = 0;
-    c.addEventListener('click', () => { STATE.tag = (STATE.tag===t ? null : t); draw(); });
+    c.addEventListener('click', () => { STATE.tag = (STATE.tag===t? null : t); draw(); });
     c.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') c.click(); });
     wrap.appendChild(c);
-  })
+  });
 }
 
 function matches(p){
   const q = STATE.q.trim().toLowerCase();
-  const inTag = STATE.tag ? (p.tags||[]).includes(STATE.tag) : true;
-  const inText = !q || [p.title, p.desc, ...(p.tags||[])].join(' ').toLowerCase().includes(q);
-  return inTag && inText;
+  const okTag = STATE.tag ? (p.tags||[]).includes(STATE.tag) : true;
+  const inText = !q || [p.title,p.desc,...(p.tags||[])].join(' ').toLowerCase().includes(q);
+  return okTag && inText;
 }
 
 function sortItems(arr){
   const k = STATE.sort;
-  if (k==='title') return [...arr].sort((a,b)=>a.title.localeCompare(b.title));
-  if (k==='oldest') return [...arr].sort((a,b)=> (a.date||'0000').localeCompare(b.date||'0000'));
-  // newest
-  return [...arr].sort((a,b)=> (b.date||'0000').localeCompare(a.date||'0000'));
+  if (k==='title')  return [...arr].sort((a,b)=>a.title.localeCompare(b.title));
+  if (k==='oldest') return [...arr].sort((a,b)=>(a.date||'0000').localeCompare(b.date||'0000'));
+  return [...arr].sort((a,b)=>(b.date||'0000').localeCompare(a.date||'0000')); // newest
 }
 
 function projectCard(p){
   const el = document.createElement('article');
   el.className = 'card';
+  const chips = (p.tags||[]).map(t => {
+    const s = slugify(t);
+    return `<a class="chip" href="skills.html#skill-${s}" title="See skill: ${t}">${t}</a>`;
+  }).join('');
   el.innerHTML = `
     <h3>${p.title}</h3>
     <div class="meta">
@@ -47,7 +50,7 @@ function projectCard(p){
       <a class="inline" href="${p.link}" target="_blank" rel="noopener">Source / Demo</a>
     </div>
     <p>${p.desc}</p>
-    <div class="chips">${(p.tags||[]).map(t=>`<span class="chip">${t}</span>`).join('')}</div>
+    <div class="chips">${chips}</div>
   `;
   return el;
 }
@@ -71,9 +74,9 @@ async function init(){
   const data = await fetchJSON('data/projects.json');
   if(!data) return;
   STATE.items = data;
-  byId('q').addEventListener('input', e=>{ STATE.q = e.target.value; draw(); });
-  byId('sort').addEventListener('change', e=>{ STATE.sort = e.target.value; draw(); });
-  byId('clear').addEventListener('click', ()=>{ STATE.q=''; STATE.tag=null; byId('q').value=''; draw(); });
+  byId('q')?.addEventListener('input', e=>{ STATE.q = e.target.value; draw(); });
+  byId('sort')?.addEventListener('change', e=>{ STATE.sort = e.target.value; draw(); });
+  byId('clear')?.addEventListener('click', ()=>{ STATE.q=''; STATE.tag=null; byId('q').value=''; draw(); });
   draw();
 }
 document.addEventListener('DOMContentLoaded', init);

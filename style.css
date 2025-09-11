@@ -1,91 +1,159 @@
-/* Cole Snipes Portfolio – Dark, clean, accessible */
+/* Cole Snipes — Dark Neon UI
+   -------------------------------------------------- */
 :root{
-  --bg:#0b1220;
-  --panel:#0f172a;
-  --elev:#111a2d;
-  --text:#e5e7eb;
-  --muted:#94a3b8;
-  --accent:#60a5fa;
-  --accent-2:#a78bfa;
-  --ring:#334155;
-  --chip:#1f2937;
-  --chip-text:#cbd5e1;
-  --ok:#22c55e;
-  --warn:#f59e0b;
-  --danger:#ef4444;
+  /* Theme */
+  --bg:#070c14;
+  --bg-elev:#0b1220;
+  --panel:#0e1830;
+  --text:#e6ebf2;
+  --muted:#91a4bf;
+
+  /* Accents */
+  --accent:#60a5fa;         /* blue */
+  --accent-2:#a78bfa;       /* purple */
+  --glow: 0 0 0 rgba(96,165,250,.0);
+
+  /* Surfaces */
+  --ring:#2b3b59;
+  --chip:#142137;
+  --chip-text:#cfe0ff;
+
+  /* Misc */
+  --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
   --radius:16px;
-  --shadow:0 10px 30px rgba(0,0,0,.35);
+  --shadow:0 16px 40px rgba(0,0,0,.45);
 }
 
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
   margin:0;
-  background: radial-gradient(1200px 800px at 70% -200px, rgba(96,165,250,.12), transparent 60%),
-              radial-gradient(800px 600px at 10% -150px, rgba(167,139,250,.10), transparent 70%),
-              var(--bg);
   color:var(--text);
-  font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Roboto, Inter, system-ui, "Helvetica Neue", Arial;
+  background:
+    radial-gradient(1200px 800px at 80% -240px, rgba(96,165,250,.14), transparent 60%),
+    radial-gradient(900px 600px at 10% -160px, rgba(167,139,250,.12), transparent 70%),
+    var(--bg);
+  font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Inter, Roboto, system-ui, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
+/* Layout */
 .container{max-width:1100px;margin:0 auto;padding:24px}
-.nav{
-  display:flex;gap:18px;align-items:center;justify-content:flex-start;
-  padding:18px 24px;border-bottom:1px solid #0b1426;backdrop-filter: blur(6px);
-  position:sticky;top:0;z-index:20;background:rgba(11,18,32,.72)
-}
-.nav .brand{font-weight:700;font-size:20px;margin-right:auto}
-.nav a{
-  color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:12px;display:inline-flex;
-}
-.nav a.active, .nav a:hover{color:var(--text);background:rgba(96,165,250,.14)}
-
 .header{padding:48px 0 16px}
 .h1{font-size:44px;line-height:1.15;margin:0 0 12px}
 .h2{font-size:28px;margin:28px 0 12px}
 .lead{color:var(--muted);font-size:18px}
 
-.grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap:16px;
+/* Top Nav */
+.nav{
+  position:sticky;top:0;z-index:50;
+  display:flex;gap:16px;align-items:center;
+  padding:14px 24px;
+  background:linear-gradient(180deg, rgba(7,12,20,.85), rgba(7,12,20,.55));
+  border-bottom:1px solid #0c1426;
+  backdrop-filter:saturate(140%) blur(10px);
+}
+.nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
+.nav a{
+  color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:12px;
+  transition:all .18s ease;
+}
+.nav a.active,.nav a:hover{
+  color:var(--text);
+  background:rgba(96,165,250,.14);
+  box-shadow:0 0 0 1px rgba(96,165,250,.25) inset;
 }
 
-.card{
-  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
-  border:1px solid #101a2e;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+/* Cards / Grid */
+.grid{
+  display:grid;gap:16px;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
 }
-.card h3{margin:0 0 6px;font-size:20px}
+.card{
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%),
+    var(--bg-elev);
+  border:1px solid #101a2e;
+  border-radius:var(--radius);
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 8px;font-size:20px}
 .card p{margin:0 0 10px;color:var(--muted)}
 
-.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px}
+/* “meta” row dots and text */
+.meta{
+  display:flex;gap:10px;flex-wrap:wrap;
+  color:var(--muted);font-size:14px;margin-bottom:6px;
+}
 .meta .dot{width:6px;height:6px;border-radius:50%;background:#324055;margin:9px 2px 0}
 
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
-.chip{background:var(--chip);color:var(--chip-text);padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid #2b3853}
-
+/* Inputs / Buttons */
 .tools{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
-.input, .select, .button{
+.input,.select,.button{
   background:var(--panel);border:1px solid var(--ring);color:var(--text);
-  border-radius:12px;padding:10px 12px;outline:none;
+  border-radius:12px;padding:10px 12px;outline:none;transition:box-shadow .18s ease, transform .06s ease;
 }
-.input{min-width:260px}
-.select{min-width:220px}
+.input:focus,.select:focus{box-shadow:0 0 0 2px rgba(96,165,250,.35)}
 .button{cursor:pointer}
+.button:hover{transform:translateY(-1px)}
 .button.secondary{background:transparent}
 .small{font-size:12px;color:var(--muted)}
+.kbd{padding:2px 6px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;background:#0c1426;font-size:12px}
 
-.footer{color:var(--muted);padding:24px 0;border-top:1px solid #0b1426;margin-top:40px}
+/* Chips */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--chip);color:var(--chip-text);
+  padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid #2b3853;
+  text-decoration:none;
+}
+.chip:hover{box-shadow:0 0 0 1px rgba(96,165,250,.45) inset}
 
-/* progress bars for Skills */
+/* Progress bar (Skills) */
 .progress{
   height:10px;background:#0d1424;border:1px solid #1c2742;border-radius:999px;overflow:hidden
 }
-.progress > i{
-  display:block;height:100%;background:linear-gradient(90deg, var(--accent), var(--accent-2));
-  width:0%
+.progress>i{
+  display:block;height:100%;
+  background:linear-gradient(90deg, var(--accent), var(--accent-2));
+  width:0%;
 }
 
-.kbd{padding:2px 6px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;background:#0c1426;font-size:12px}
+/* details/summary styling (Skills categories) */
+details.skill-cat{
+  border:1px solid #101a2e;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
+  box-shadow:var(--shadow);padding:0;margin:0;
+}
+details.skill-cat+details.skill-cat{margin-top:12px}
+details.skill-cat[open]{background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%)}
+details.skill-cat>summary{
+  list-style:none;display:flex;justify-content:space-between;align-items:center;
+  cursor:pointer;padding:16px 18px;border-radius:var(--radius);
+  user-select:none;font-weight:700;
+}
+details.skill-cat>summary::-webkit-details-marker{display:none}
+details.skill-cat .grid{padding:0 18px 18px}
+
+/* Footer */
+.footer{color:var(--muted);padding:24px 0;border-top:1px solid #0b1426;margin-top:40px}
+
+/* Links inline */
 a.inline{color:#9ec5ff;text-decoration:none}
 a.inline:hover{text-decoration:underline}
+
+/* Hash-target pulse for deep links to a skill */
+.pulse{outline:2px solid var(--accent);border-radius:var(--radius);animation:pulseFade 1.2s ease-in-out 1}
+@keyframes pulseFade{
+  0%{box-shadow:0 0 0 0 rgba(96,165,250,.55)}
+  100%{box-shadow:var(--glow)}
+}
+
+/* Mobile friendliness */
+@media (max-width:760px){
+  .h1{font-size:34px}
+  .tools{gap:8px}
+  .input{min-width:100%}
+  .select{min-width:180px}
+}
