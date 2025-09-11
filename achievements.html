@@ -1,55 +1,71 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- No-flash theme init -->
-  <script>
-    (function () {
-      try {
-        const key = 'site-theme';
-        const saved = localStorage.getItem(key);
-        const prefersLight = window.matchMedia &&
-          window.matchMedia('(prefers-color-scheme: light)').matches;
-        const theme = saved || (prefersLight ? 'light' : 'dark');
-        document.documentElement.setAttribute(
-          'data-theme',
-          ['dark','light','solar'].includes(theme) ? theme : 'dark'
-        );
-      } catch (e) {}
-    })();
-  </script>
-  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <!-- No-flash theme init -->
+    <script>
+      (function () {
+        try {
+          const key = "site-theme";
+          const saved = localStorage.getItem(key);
+          const prefersLight =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches;
+          const theme = saved || (prefersLight ? "light" : "dark");
+          document.documentElement.setAttribute(
+            "data-theme",
+            ["dark", "light", "solar"].includes(theme) ? theme : "dark"
+          );
+        } catch (e) {}
+      })();
+    </script>
+    <meta
+      name="theme-color"
+      content="#070c14"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
 
-  <title>Cole Snipes — Achievements</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <nav class="nav">
-    <div class="brand">Cole Snipes</div>
-    <a href="index.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="coursework.html">Coursework</a>
-    <a class="active" href="achievements.html">Achievements</a>
-    <!-- Theme toggle button -->
-    <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-      <span class="icon">🌙</span><span>Dark</span>
-    </button>
-  </nav>
+    <title>Cole Snipes — Achievements</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a href="index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="coursework.html">Coursework</a>
+      <a class="active" href="achievements.html">Achievements</a>
+      <!-- Theme toggle button -->
+      <button
+        id="themeToggle"
+        class="theme-toggle"
+        type="button"
+        aria-pressed="false"
+      >
+        <span class="icon">🌙</span><span>Dark</span>
+      </button>
+    </nav>
 
-  <main class="container">
-    <header class="header">
-      <h1 class="h1">Achievements</h1>
-    </header>
-    <section id="achievements" class="grid"></section>
-  </main>
+    <main class="container">
+      <header class="header">
+        <h1 class="h1">Achievements</h1>
+      </header>
+      <section id="achievements" class="grid"></section>
+    </main>
 
-  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
+    <footer class="container footer">
+      © <span id="year"></span> Cole Snipes
+    </footer>
 
-  <script type="module" src="js/main.js"></script>
-  <script type="module" src="js/achievements.js"></script>
-</body>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/achievements.js"></script>
+  </body>
 </html>
