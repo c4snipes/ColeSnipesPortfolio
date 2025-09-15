@@ -1,82 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Theme setup: no flash of wrong theme & theme colors -->
+  <script>
+    (function(){
+      try{
+        const key='site-theme';
+        const saved=localStorage.getItem(key);
+        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+        const theme = saved || (prefersLight ? 'light' : 'dark');
+        const allowed = ['dark','light','solar'];
+        document.documentElement.setAttribute('data-theme', allowed.includes(theme)? theme : 'dark');
+      }catch(e){}
+    })();
+  </script>
+  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <title>Skills • Cole Snipes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-    <!-- No-flash theme init -->
-    <script>
-      (function () {
-        try {
-          const key = "site-theme";
-          const saved = localStorage.getItem(key);
-          const prefersLight =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: light)").matches;
-          const theme = saved || (prefersLight ? "light" : "dark");
-          document.documentElement.setAttribute(
-            "data-theme",
-            ["dark", "light", "solar"].includes(theme) ? theme : "dark"
-          );
-        } catch (e) {}
-      })();
-    </script>
-    <meta
-      name="theme-color"
-      content="#070c14"
-      media="(prefers-color-scheme: dark)"
-    />
-    <meta
-      name="theme-color"
-      content="#ffffff"
-      media="(prefers-color-scheme: light)"
-    />
-
-    <title>Cole Snipes — Skills</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
     <nav class="nav">
       <div class="brand">Cole Snipes</div>
-      <a href="index.html">About</a>
-      <a href="projects.html">Projects</a>
+      <a class="" href="index.html">About</a>
+      <a class="" href="projects.html">Projects</a>
       <a class="active" href="skills.html">Skills</a>
-      <a href="coursework.html">Coursework</a>
-      <a href="achievements.html">Achievements</a>
-      <!-- Theme toggle button -->
-      <button
-        id="themeToggle"
-        class="theme-toggle"
-        type="button"
-        aria-pressed="false"
-      >
+      <a class="" href="coursework.html">Coursework</a>
+      <a class="" href="achievements.html">Achievements</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
         <span class="icon">🌙</span><span>Dark</span>
       </button>
     </nav>
-
-    <main class="container">
-      <header class="header">
-        <h1 class="h1">Skills</h1>
-        <div class="tools">
-          <input
-            id="skillQ"
-            class="input"
-            placeholder="Search skills or keywords…"
-          />
-          <button id="expandAll" class="button">Expand all</button>
-          <button id="collapseAll" class="button secondary">
-            Collapse all
-          </button>
-        </div>
-      </header>
-      <section id="skillsList"></section>
-    </main>
-
-    <footer class="container footer">
-      © <span id="year"></span> Cole Snipes
-    </footer>
-
-    <script type="module" src="js/main.js"></script>
-    <script type="module" src="js/skills.js"></script>
-  </body>
+  <main class="container">
+  <section class="header">
+    <h1 class="h1">Skills</h1>
+    <p class="lead">Grouped by category as defined in <span class="kbd">data/skills.json</span>.</p>
+    <div class="tools">
+      <input id="skillQ" class="input" placeholder="Search skills…" />
+      <button id="expandAll" class="button secondary">Expand all</button>
+      <button id="collapseAll" class="button secondary">Collapse all</button>
+    </div>
+  </section>
+  <section id="skillsList"></section>
+  </main>
+  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
+  <script type="module" src="js/skills.js"></script>
+</body>
 </html>
