@@ -35,8 +35,18 @@
       </button>
     </nav>
   <main class="container">
+    <!--
+      The About section follows the assignment's desktop/mobile layout
+      specification. On larger screens the profile image sits to the left
+      of the copy. On narrow screens the image stacks above the text. A
+      minimum height ensures the band approximates the 200 px (desktop)
+      and 150 px (mobile) heights called out in the PDF.  The content
+      itself remains the same: a heading, descriptive paragraph, some
+      action buttons and a hint for the keyboard shortcut. The
+      placeholder image can be replaced with a real headshot.
+    -->
     <section class="header about">
-      <img src="assets/photo.jpg" class="about-image"/>
+      <img src="placeholder_light_gray_block.png" alt="Portrait of Cole Snipes" class="about-image" />
       <div class="about-text">
         <h1 class="h1">About me</h1>
         <p class="lead">I'm Cole Snipes — a builder who turns ideas into working software. This site showcases selected projects, a snapshot of my skills, recent coursework, and achievements.</p>
@@ -44,6 +54,7 @@
           <a class="button" href="projects.html">See Projects</a>
           <a class="button secondary" href="skills.html">View Skills</a>
         </div>
+        <p class="small">Tip: use <span class="kbd">/</span> to focus the search on listing pages.</p>
       </div>
     </section>
   </main>
