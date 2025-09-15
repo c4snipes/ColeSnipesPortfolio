@@ -180,11 +180,7 @@ a.inline:hover{text-decoration:underline}
   .select{min-width:180px}
 }
 
-/* Flex container for the About section. Ensures the image and text
-   appear side-by-side on wider screens while stacking on narrow
-   viewports. A minimum height on the section ensures the band is
-   visually prominent, roughly matching the heights indicated in the
-   specification (200 px on desktop, 150 px on mobile). */
+/*(200 px on desktop, 150 px on mobile). */
 .header.about{
   display:flex;
   align-items:center;
@@ -193,9 +189,7 @@ a.inline:hover{text-decoration:underline}
   margin-bottom:20px;
 }
 
-/* Image styling within the About section. The image takes up at most
-   40 % of the available width on larger screens and scales down
-   responsively. Rounded corners tie in with the rest of the UI. */
+
 .header.about img.about-image{
   flex:0 0 40%;
   max-width:350px;
@@ -204,9 +198,7 @@ a.inline:hover{text-decoration:underline}
   border-radius:var(--radius);
 }
 
-/* Wrapper for the text content in the About section. Using a flex
-   column here allows the buttons and tip to flow naturally under the
-   introductory copy. */
+
 .header.about .about-text{
   flex:1;
   display:flex;
@@ -214,8 +206,7 @@ a.inline:hover{text-decoration:underline}
   gap:16px;
 }
 
-/* Responsive behaviour: stack the image above the text on smaller
-   screens and reduce the overall minimum height. */
+
 @media (max-width:760px){
   .header.about{
     flex-direction:column;
