@@ -3,152 +3,270 @@
     "course": "Introduction to Programming",
     "code": "CSCI 155",
     "term": "Semester I 2022-2023",
-    "type": "Core",
-    "topics": ["C basics", "control flow", "functions", "Replit"],
-    "when": "2022-08-24"
+    "type": "CS",
+    "topics": [
+      "C basics",
+      "control flow",
+      "functions",
+      "Replit"
+    ],
+    "when": "2022-08-24",
+    "title": "Introduction to Programming",
+    "desc": "Introduction to Programming covers C basics, control flow, functions and more."
   },
   {
     "course": "Object-Oriented Programming",
     "code": "CSCI 156",
     "term": "Semester II 2022-2023",
-    "type": "Core",
-    "topics": ["classes", "inheritance", "encapsulation"],
-    "when": "2023-01-19"
+    "type": "CS",
+    "topics": [
+      "classes",
+      "inheritance",
+      "encapsulation"
+    ],
+    "when": "2023-01-19",
+    "title": "Object-Oriented Programming",
+    "desc": "Object-Oriented Programming covers classes, inheritance, encapsulation and more."
   },
   {
     "course": "Calculus & Analytic Geometry I",
     "code": "MATH 190",
     "term": "Semester I 2022-2023",
     "type": "Math",
-    "topics": ["limits", "derivatives", "integrals"],
-    "when": "2022-08-24"
+    "topics": [
+      "limits",
+      "derivatives",
+      "integrals"
+    ],
+    "when": "2022-08-24",
+    "title": "Calculus & Analytic Geometry I",
+    "desc": "Calculus & Analytic Geometry I covers limits, derivatives, integrals and more."
   },
   {
     "course": "Calculus & Analytic Geometry II",
     "code": "MATH 191",
     "term": "Semester II 2022-2023",
     "type": "Math",
-    "topics": ["series", "parametric", "polar"],
-    "when": "2023-01-19"
+    "topics": [
+      "series",
+      "parametric",
+      "polar"
+    ],
+    "when": "2023-01-19",
+    "title": "Calculus & Analytic Geometry II",
+    "desc": "Calculus & Analytic Geometry II covers series, parametric, polar and more."
   },
   {
     "course": "Data Structures & Algorithms",
     "code": "CSCI 240",
     "term": "Semester I 2023-2024",
-    "type": "Core",
-    "topics": ["trees", "graphs", "sorting", "Big-O"],
-    "when": "2023-09-01"
+    "type": "CS",
+    "topics": [
+      "trees",
+      "graphs",
+      "sorting",
+      "Big-O"
+    ],
+    "when": "2023-09-01",
+    "title": "Data Structures & Algorithms",
+    "desc": "Data Structures & Algorithms covers trees, graphs, sorting and more."
   },
   {
     "course": "Computer Architecture & Parallel Computing",
     "code": "CSCI 230",
     "term": "Semester I 2023-2024",
-    "type": "Core",
-    "topics": ["pipelines", "caches", "threads", "SIMD"],
-    "when": "2023-09-01"
+    "type": "CS",
+    "topics": [
+      "pipelines",
+      "caches",
+      "threads",
+      "SIMD"
+    ],
+    "when": "2023-09-01",
+    "title": "Computer Architecture & Parallel Computing",
+    "desc": "Computer Architecture & Parallel Computing covers pipelines, caches, threads and more."
   },
   {
     "course": "Discrete Mathematics",
     "code": "MATH 195",
     "term": "Semester I 2023-2024",
     "type": "Math",
-    "topics": ["logic", "sets", "combinatorics"],
-    "when": "2023-09-01"
+    "topics": [
+      "logic",
+      "sets",
+      "combinatorics"
+    ],
+    "when": "2023-09-01",
+    "title": "Discrete Mathematics",
+    "desc": "Discrete Mathematics covers logic, sets, combinatorics and more."
   },
   {
     "course": "Software Engineering I",
     "code": "SWEN 200",
     "term": "Semester I 2023-2024",
-    "type": "Core",
-    "topics": ["requirements", "design", "testing"],
-    "when": "2023-09-01"
+    "type": "CS",
+    "topics": [
+      "requirements",
+      "design",
+      "testing"
+    ],
+    "when": "2023-09-01",
+    "title": "Software Engineering I",
+    "desc": "Software Engineering I covers requirements, design, testing and more."
   },
   {
     "course": "Software Validation & Testing",
     "code": "SWEN 320",
     "term": "Semester II 2023-2024",
-    "type": "Core",
-    "topics": ["unit/integration/system tests", "coverage", "Selenium"],
-    "when": "2024-01-13"
+    "type": "CS",
+    "topics": [
+      "unit/integration/system tests",
+      "coverage",
+      "Selenium"
+    ],
+    "when": "2024-01-13",
+    "title": "Software Validation & Testing",
+    "desc": "Software Validation & Testing covers unit/integration/system tests, coverage, Selenium and more."
   },
   {
     "course": "Big Data Mining",
     "code": "CSCI 424",
     "term": "Semester II 2023-2024",
-    "type": "Elective",
-    "topics": ["feature engineering", "evaluation", "pipelines"],
-    "when": "2024-01-13"
+    "type": "CS",
+    "topics": [
+      "feature engineering",
+      "evaluation",
+      "pipelines"
+    ],
+    "when": "2024-01-13",
+    "title": "Big Data Mining",
+    "desc": "Big Data Mining covers feature engineering, evaluation, pipelines and more."
   },
   {
     "course": "Linear Algebra",
     "code": "MATH 280",
     "term": "Semester II 2023-2024",
     "type": "Math",
-    "topics": ["matrices", "eigenvalues", "vector spaces"],
-    "when": "2024-01-13"
+    "topics": [
+      "matrices",
+      "eigenvalues",
+      "vector spaces"
+    ],
+    "when": "2024-01-13",
+    "title": "Linear Algebra",
+    "desc": "Linear Algebra covers matrices, eigenvalues, vector spaces and more."
   },
   {
     "course": "Operating Systems",
     "code": "SWEN 310",
     "term": "Semester I 2024-2025",
-    "type": "Core",
-    "topics": ["scheduling", "processes", "memory", "filesystems"],
-    "when": "2024-08-23"
+    "type": "CS",
+    "topics": [
+      "scheduling",
+      "processes",
+      "memory",
+      "filesystems"
+    ],
+    "when": "2024-08-23",
+    "title": "Operating Systems",
+    "desc": "Operating Systems covers scheduling, processes, memory and more."
   },
   {
     "course": "Programming Languages",
     "code": "CSCI 350",
     "term": "Semester I 2024-2025",
-    "type": "Core",
-    "topics": ["parsing", "typing", "semantics"],
-    "when": "2024-08-23"
+    "type": "CS",
+    "topics": [
+      "parsing",
+      "typing",
+      "semantics"
+    ],
+    "when": "2024-08-23",
+    "title": "Programming Languages",
+    "desc": "Programming Languages covers parsing, typing, semantics and more."
   },
   {
     "course": "General Physics I (Calc-Based)",
     "code": "PHYS 153",
     "term": "Semester I 2024-2025",
-    "type": "Science",
-    "topics": ["kinematics", "forces", "energy"],
-    "when": "2024-08-23"
+    "type": "Other",
+    "topics": [
+      "kinematics",
+      "forces",
+      "energy"
+    ],
+    "when": "2024-08-23",
+    "title": "General Physics I (Calc-Based)",
+    "desc": "General Physics I (Calc-Based) covers kinematics, forces, energy and more."
   },
   {
     "course": "Computer Algorithms",
     "code": "CSCI 340",
     "term": "Semester II 2024-2025",
-    "type": "Core",
-    "topics": ["greedy", "divide & conquer", "dynamic programming"],
-    "when": "2025-01-15"
+    "type": "CS",
+    "topics": [
+      "greedy",
+      "divide & conquer",
+      "dynamic programming"
+    ],
+    "when": "2025-01-15",
+    "title": "Computer Algorithms",
+    "desc": "Computer Algorithms covers greedy, divide & conquer, dynamic programming and more."
   },
   {
     "course": "Database Systems",
     "code": "CSCI 370",
     "term": "Semester II 2024-2025",
-    "type": "Core",
-    "topics": ["SQL", "transactions", "ER design"],
-    "when": "2025-01-15"
+    "type": "CS",
+    "topics": [
+      "SQL",
+      "transactions",
+      "ER design"
+    ],
+    "when": "2025-01-15",
+    "title": "Database Systems",
+    "desc": "Database Systems covers SQL, transactions, ER design and more."
   },
   {
     "course": "Networks & Distributed Computing",
     "code": "CSCI 420",
     "term": "Semester I 2025-2026",
-    "type": "Core",
-    "topics": ["sockets", "protocols", "RPC"],
-    "when": "2025-08-25"
+    "type": "CS",
+    "topics": [
+      "sockets",
+      "protocols",
+      "RPC"
+    ],
+    "when": "2025-08-25",
+    "title": "Networks & Distributed Computing",
+    "desc": "Networks & Distributed Computing covers sockets, protocols, RPC and more."
   },
   {
     "course": "GUI & Game Programming",
     "code": "CSCI 310",
     "term": "Semester I 2025-2026",
-    "type": "Elective",
-    "topics": ["graphics", "event loop", "input"],
-    "when": "2025-08-25"
+    "type": "CS",
+    "topics": [
+      "graphics",
+      "event loop",
+      "input"
+    ],
+    "when": "2025-08-25",
+    "title": "GUI & Game Programming",
+    "desc": "GUI & Game Programming covers graphics, event loop, input and more."
   },
   {
     "course": "CS Capstone I (Lab)",
     "code": "CSCI 496",
     "term": "Semester I 2025-2026",
-    "type": "Capstone",
-    "topics": ["scoping", "MVP", "milestones"],
-    "when": "2025-08-25"
+    "type": "CS",
+    "topics": [
+      "scoping",
+      "MVP",
+      "milestones"
+    ],
+    "when": "2025-08-25",
+    "title": "CS Capstone I (Lab)",
+    "desc": "CS Capstone I (Lab) covers scoping, MVP, milestones and more."
   }
 ]
