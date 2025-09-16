@@ -21,7 +21,7 @@
 </head>
 <body>
   <main class="container">
-    <!-- 1) Header -->
+    <!-- 1) Header (desktop: 200px tall per spec) -->
     <header class="page-header">
       <h1 class="h1">Projects</h1>
     </header>
@@ -39,24 +39,24 @@
       </button>
     </nav>
 
-    <!-- 3) Content -->
+    <!-- 3) Controls (IDs restored for JS) -->
     <section class="page-controls">
-      <!-- Keep/replace with your existing search/sort UI -->
       <div class="tools">
-        <input id="projectSearch" class="input" placeholder="Search title, description" />
-        <select id="projectSort" class="select" aria-label="Sort projects">
+        <input id="q" class="input" placeholder="Search title, description" />
+        <select id="sort" class="select" aria-label="Sort projects">
           <option value="newest">Sort by date (newest)</option>
           <option value="oldest">Sort by date (oldest)</option>
           <option value="az">Sort A–Z</option>
           <option value="za">Sort Z–A</option>
         </select>
-        <button id="projectClear" class="button">Clear filters</button>
+        <button id="clear" class="button">Clear filters</button>
       </div>
-      <div id="projectTags" class="chips"><!-- chips injected here --></div>
+      <div id="tags" class="chips"><!-- chips injected here --></div>
     </section>
 
+    <!-- 4) Content grid (ID restored for JS) -->
     <section class="page-content">
-      <div id="projectsGrid" class="grid"><!-- cards injected here --></div>
+      <div id="grid" class="grid"><!-- cards injected here --></div>
     </section>
   </main>
 
