@@ -76,6 +76,8 @@ body{
 
 /* Layout */
 .container{
+  /* Limit the width of the page content on desktop to match the assignment spec.
+   * The default maximum width is 900 px, centered, with generous horizontal padding. */
   max-width:900px;
   margin:0 auto;
   padding:24px;
@@ -86,12 +88,26 @@ body{
 .lead{color:var(--muted);font-size:18px}
 
 /* Nav */
+/* Navigation bar
+ *
+ * On large screens the menu band needs to be approximately 20 px tall,
+ * matching the specification in Figure 1. To achieve this we remove
+ * vertical padding and explicitly set the height. On mobile screens
+ * (see the media query below) the menu height increases to 50 px.
+ */
+/*
+ * Navigation bar styling
+ * The nav is positioned relative so it flows within the normal document
+ * order instead of sticking to the top of the viewport.  A fixed height
+ * ensures it meets the specification (20 px on desktop, 50 px on mobile).
+ */
 .nav{
   position:relative;
   z-index:50;
   display:flex;
   gap:12px;
   align-items:center;
+  /* fixed height for the menu bar on desktop */
   height:20px;
   min-height:20px;
   padding:0 24px;
@@ -99,7 +115,8 @@ body{
   border-bottom:1px solid color-mix(in oklab, var(--ring) 65%, transparent);
   backdrop-filter:saturate(140%) blur(10px);
   /* Separate the navigation bar from subsequent filters/chips so
-     content does not overlap. */
+     content does not overlap.  A slightly larger margin prevents
+     chips or inputs from crowding the menu on complex pages. */
   margin-bottom:12px;
 }
 .nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
@@ -191,7 +208,8 @@ a.inline:hover{text-decoration:underline}
   .input{min-width:100%}
   .select{min-width:180px}
 
-
+  /* Restrict the overall page width on mobile to 600 px (or 100 %, whichever is smaller).
+   * This matches the 600 px width shown in the mobile layout figure. */
   .container{
     max-width:600px;
     margin:0 auto;
@@ -199,7 +217,9 @@ a.inline:hover{text-decoration:underline}
     padding-right:24px;
   }
 
-
+  /* Increase the menu band height on mobile to 50 px. We also adjust
+   * padding so the navigation links and toggle button remain vertically
+   * centered within the 50 px band. */
   .nav{
     height:50px;
     min-height:50px;
@@ -214,7 +234,23 @@ a.inline:hover{text-decoration:underline}
   }
 }
 
+/*
+ * Assignment-specific layout adjustments
+ *
+ * The design brief specifies a split layout on larger screens where an
+ * image sits alongside the introductory text on the About page. On
+ * mobile screens the layout collapses into a single column with the
+ * image stacked above the text. Header sections also need to occupy
+ * enough vertical space to feel like a distinct band across the page
+ * (approx. 200 px on desktop, 150 px on mobile) and there should be
+ * a modest gap between the navigation and the rest of the content.
+ */
 
+/* Flex container for the About section. Ensures the image and text
+   appear side-by-side on wider screens while stacking on narrow
+   viewports. A minimum height on the section ensures the band is
+   visually prominent, roughly matching the heights indicated in the
+   specification (200 px on desktop, 150 px on mobile). */
 .header.about{
   display:flex;
   align-items:center;
@@ -223,7 +259,9 @@ a.inline:hover{text-decoration:underline}
   margin-bottom:20px;
 }
 
-
+/* Image styling within the About section. The image takes up at most
+   40 % of the available width on larger screens and scales down
+   responsively. Rounded corners tie in with the rest of the UI. */
 .header.about img.about-image{
   flex:0 0 40%;
   max-width:350px;
@@ -232,6 +270,9 @@ a.inline:hover{text-decoration:underline}
   border-radius:var(--radius);
 }
 
+/* Wrapper for the text content in the About section. Using a flex
+   column here allows the buttons and tip to flow naturally under the
+   introductory copy. */
 .header.about .about-text{
   flex:1;
   display:flex;
