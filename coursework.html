@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Theme setup: no flash of wrong theme & theme colors -->
   <script>
     (function(){
       try{
@@ -15,17 +16,17 @@
       }catch(e){}
     })();
   </script>
+  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <title>Coursework • Cole Snipes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <!-- Navigation moved below the header; the nav markup is inserted later in this file. -->
   <main class="container">
-    <!-- 1) Header -->
-    <header class="page-header">
-      <h1 class="h1">Coursework</h1>
-    </header>
-
-    <!-- 2) Nav -->
+  <section class="header">
+    <h1 class="h1">Coursework</h1>
+    <!-- Navigation bar sits directly below the page header and above the search controls. -->
     <nav class="nav">
       <div class="brand">Cole Snipes</div>
       <a href="index.html">About</a>
@@ -37,28 +38,19 @@
         <span class="icon">🌙</span><span>Dark</span>
       </button>
     </nav>
-
-    <!-- 3) Content -->
-    <section class="page-controls">
-      <div class="tools">
-        <input id="courseSearch" class="input" placeholder="Search courses, topics, or code…" />
-        <select id="courseType" class="select" aria-label="Filter by type">
-          <option value="all">All types</option>
-          <option value="CS">CS</option>
-          <option value="Math">Math</option>
-          <option value="Other">Other</option>
-        </select>
-        <button id="courseClear" class="button">Clear filters</button>
-      </div>
-    </section>
-
-    <section class="page-content">
-      <div id="courseList" class="grid"><!-- course cards injected here --></div>
-    </section>
+    <div class="tools">
+      <input id="cwQ" class="input" placeholder="Search courses, topics, or code…" />
+      <select id="typeFilter" class="select">
+        <option value="all">All types</option>
+        <option value="CS">CS</option>
+        <option value="Math">Math</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </section>
+    <section id="cwGrid" class="grid" aria-live="polite"></section>
   </main>
-
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
-  <script type="module" src="js/main.js"></script>
   <script type="module" src="js/coursework.js"></script>
 </body>
 </html>
