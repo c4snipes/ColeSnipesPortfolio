@@ -2,9 +2,9 @@
    Cole Snipes — Portfolio Styles
    Desktop & Mobile layouts aligned with the PDF specification
    -----------------------------------------------------------
-   • Desktop: 900px content width, header ≈ 200px tall, menu row 20px
-   • Mobile : 600px content width, header ≈ 150px tall, menu row 50px
-   • Nav always appears UNDER the big page header and ABOVE controls
+   • Desktop: 900px content width, header ≈200px, menu row 20px
+   • Mobile : 600px content width, header ≈150px, menu row 50px
+   • Nav always appears UNDER the big page header and ABOVE content
    • Light / Dark / Solar themes via CSS variables
    =========================================================== */
 
@@ -82,39 +82,37 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
+img{max-width:100%;height:auto;display:block}
+
 /* -------------------- LAYOUT -------------------- */
+/* Desktop content width per spec */
 .container{
   max-width:900px;       /* 900px across on desktop */
   margin:0 auto;
   padding:24px;
 }
 
-.header{
-  display:block;         
-  min-height:200px;     
-  padding:48px 0 16px;
-  margin:0;
+/* Page header area: big title (separate block) */
+.page-header{
+  min-height:200px;      /* ≈ 200px on desktop */
+  padding:48px 0 12px;   /* space above + small space below */
 }
-
-/* Typography */
-.h1{font-size:44px;line-height:1.15;margin:0 0 12px;font-weight:900;letter-spacing:.2px}
-.h2{font-size:28px;margin:28px 0 12px}
-.lead{color:var(--muted);font-size:18px}
+.h1{font-size:44px;line-height:1.15;margin:0;font-weight:900;letter-spacing:.2px}
 
 /* -------------------- NAVIGATION (sits under H1) -------------------- */
 .nav{
   position:relative;
-  z-index:5;                 
+  z-index:5;
   display:flex;
   gap:12px;
   align-items:center;
-  height:20px;               
+  height:20px;               /* 20px “menu row” on desktop per spec */
   min-height:20px;
   padding:0 24px;
   background:linear-gradient(180deg, color-mix(in oklab, var(--bg) 88%, transparent), color-mix(in oklab, var(--bg) 60%, transparent));
   border-bottom:1px solid color-mix(in oklab, var(--ring) 65%, transparent);
   backdrop-filter:saturate(140%) blur(10px);
-  margin-bottom:12px;        
+  margin-bottom:12px;        /* space before main content/filters */
 }
 .nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
 .nav a{
@@ -127,11 +125,7 @@ body{
   box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent) inset;
 }
 
-.nav + .tools,
-.nav + .chips,
-.nav + .filters{ margin-top:12px; }
-
-/* -------------------- THEME TOGGLE -------------------- */
+/* Theme toggle */
 .theme-toggle{
   display:inline-flex;align-items:center;gap:8px;
   background:transparent;color:var(--text);
@@ -141,25 +135,19 @@ body{
 .theme-toggle .icon{ font-size:16px }
 
 /* -------------------- ABOUT PAGE CONTENT ROW -------------------- */
+/* Place under the nav; two columns on desktop */
 .about-content{
-  display:flex;
-  align-items:center;
+  display:grid;
+  grid-template-columns: 1fr 1.4fr;  /* image : text */
   gap:24px;
-  margin-top:12px;       /* space under nav */
+  margin-top:12px;
 }
-.about-content .about-image{
-  flex:0 0 40%;
-  max-width:350px;
-  width:100%;
-  height:auto;
+.about-image{
   border-radius:var(--radius);
+  max-width:350px;
 }
-.about-content .about-text{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
+.about-text{ display:flex; flex-direction:column; gap:16px; }
+.lead{color:var(--muted);font-size:18px;margin:0}
 
 /* -------------------- GRID, CARDS, META -------------------- */
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
@@ -211,9 +199,7 @@ details.skill-cat .grid{padding:0 18px 18px}
 /* -------------------- FOOTER -------------------- */
 .footer{color:var(--muted);padding:24px 0;border-top:1px solid color-mix(in oklab, var(--ring) 70%, transparent);margin-top:40px}
 
-/* -------------------- INLINE LINKS & EFFECTS -------------------- */
-a.inline{color:color-mix(in oklab, var(--accent) 70%, white 0%);text-decoration:none}
-a.inline:hover{text-decoration:underline}
+/* -------------------- EFFECTS -------------------- */
 .pulse{outline:2px solid var(--accent);border-radius:var(--radius);animation:pulseFade 1.2s ease-in-out 1}
 @keyframes pulseFade{0%{box-shadow:0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent)}100%{box-shadow:0 0 0 14px rgba(0,0,0,0)}}
 
@@ -221,12 +207,16 @@ a.inline:hover{text-decoration:underline}
 @media (max-width:760px){
   .h1{font-size:34px}
 
+  /* Mobile content width per spec */
   .container{
-    max-width:600px;    
+    max-width:600px;    /* 600px across */
     margin:0 auto;
     padding-left:24px;
     padding-right:24px;
   }
+
+  /* Header visual height on mobile (≈150px) */
+  .page-header{ min-height:150px; padding-top:24px; }
 
   /* Menu row height per spec (50px) */
   .nav{
@@ -236,21 +226,12 @@ a.inline:hover{text-decoration:underline}
     margin-bottom:12px;
   }
 
-  /* Header visual height on mobile (≈150px) */
-  .header{ min-height:150px; padding-top:24px; }
-
-  /* About content stacks image above text on mobile */
+  /* About stacks vertically */
   .about-content{
-    flex-direction:column;
-    align-items:flex-start;
+    display:block;
   }
-  .about-content .about-image{
+  .about-image{
     max-width:100%;
-    margin-bottom:16px;
+    margin:0 0 16px 0;
   }
-  .about-content .about-text{ width:100%; }
-
-  .tools{gap:8px}
-  .input{min-width:100%}
-  .select{min-width:180px}
 }
