@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Theme setup: no flash of wrong theme & theme colors -->
+  <!-- No-flash theme -->
   <script>
     (function(){
       try{
@@ -16,44 +16,52 @@
       }catch(e){}
     })();
   </script>
-  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <title>Projects • Cole Snipes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-
-    <!-- Navigation moved below the header; the nav markup is inserted later in this file. -->
   <main class="container">
-    <section class="header">
+    <!-- 1) Header -->
+    <header class="page-header">
       <h1 class="h1">Projects</h1>
-      <p class="lead">Built with real technologies; filter by tag, search, or sort.</p>
-      <!-- Navigation bar sits directly below the page header and above the filters. -->
-      <nav class="nav">
-        <div class="brand">Cole Snipes</div>
-        <a href="index.html">About</a>
-        <a class="active" href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="coursework.html">Coursework</a>
-        <a href="achievements.html">Achievements</a>
-        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-          <span class="icon">🌙</span><span>Dark</span>
-        </button>
-      </nav>
+    </header>
+
+    <!-- 2) Nav (under header, above filters) -->
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a href="index.html">About</a>
+      <a class="active" href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="coursework.html">Coursework</a>
+      <a href="achievements.html">Achievements</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span class="icon">🌙</span><span>Dark</span>
+      </button>
+    </nav>
+
+    <!-- 3) Content -->
+    <section class="page-controls">
+      <!-- Keep/replace with your existing search/sort UI -->
       <div class="tools">
-        <input id="q" class="input" placeholder="Search title, description, or tags…" />
-        <select id="sort" class="select">
+        <input id="projectSearch" class="input" placeholder="Search title, description" />
+        <select id="projectSort" class="select" aria-label="Sort projects">
           <option value="newest">Sort by date (newest)</option>
           <option value="oldest">Sort by date (oldest)</option>
-          <option value="title">Sort by title (A–Z)</option>
+          <option value="az">Sort A–Z</option>
+          <option value="za">Sort Z–A</option>
         </select>
-        <button id="clear" class="button secondary">Clear filters</button>
+        <button id="projectClear" class="button">Clear filters</button>
       </div>
-      <div id="tags" class="chips"></div>
+      <div id="projectTags" class="chips"><!-- chips injected here --></div>
     </section>
-    <section id="projectGrid" class="grid" aria-live="polite"></section>
+
+    <section class="page-content">
+      <div id="projectsGrid" class="grid"><!-- cards injected here --></div>
+    </section>
   </main>
+
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
+  <script type="module" src="js/main.js"></script>
   <script type="module" src="js/projects.js"></script>
 </body>
 </html>

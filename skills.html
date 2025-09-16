@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Theme setup: no flash of wrong theme & theme colors -->
   <script>
     (function(){
       try{
@@ -16,18 +15,17 @@
       }catch(e){}
     })();
   </script>
-  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <title>Skills • Cole Snipes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- Navigation moved below the header; the nav markup is inserted later in this file. -->
   <main class="container">
-  <section class="header">
-    <h1 class="h1">Skills</h1>
-    <p class="lead">Grouped by category as defined in <span class="kbd">data/skills.json</span>.</p>
-    <!-- Navigation bar sits directly below the page header and above the search controls. -->
+    <!-- 1) Header -->
+    <header class="page-header">
+      <h1 class="h1">Skills</h1>
+    </header>
+
+    <!-- 2) Nav -->
     <nav class="nav">
       <div class="brand">Cole Snipes</div>
       <a href="index.html">About</a>
@@ -39,15 +37,19 @@
         <span class="icon">🌙</span><span>Dark</span>
       </button>
     </nav>
-    <div class="tools">
-      <input id="skillQ" class="input" placeholder="Search skills…" />
-      <button id="expandAll" class="button secondary">Expand all</button>
-      <button id="collapseAll" class="button secondary">Collapse all</button>
-    </div>
-  </section>
-    <section id="skillsList"></section>
+
+    <!-- 3) Content -->
+    <section class="page-controls">
+      <!-- Optional: any filters/toggles for skills; keep empty if not needed -->
+    </section>
+
+    <section id="skillsRoot" class="page-content">
+      <!-- skills.js will render collapsible categories + progress bars here -->
+    </section>
   </main>
+
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
+  <script type="module" src="js/main.js"></script>
   <script type="module" src="js/skills.js"></script>
 </body>
 </html>
