@@ -76,8 +76,7 @@ body{
 
 /* Layout */
 .container{
-  /* Limit the width of the page content on desktop to match the assignment spec.
-   * The default maximum width is 900 px, centered, with generous horizontal padding. */
+   /* The default maximum width is 900 px*/
   max-width:900px;
   margin:0 auto;
   padding:24px;
