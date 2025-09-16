@@ -76,7 +76,6 @@ body{
 
 /* Layout */
 .container{
-   /* The default maximum width is 900 px*/
   max-width:900px;
   margin:0 auto;
   padding:24px;
@@ -86,10 +85,9 @@ body{
 .h2{font-size:28px;margin:28px 0 12px}
 .lead{color:var(--muted);font-size:18px}
 
-
+/* Nav */
 .nav{
-  position:sticky;
-  top:0;
+  position:relative;
   z-index:50;
   display:flex;
   gap:12px;
@@ -100,6 +98,9 @@ body{
   background:linear-gradient(180deg, color-mix(in oklab, var(--bg) 88%, transparent), color-mix(in oklab, var(--bg) 60%, transparent));
   border-bottom:1px solid color-mix(in oklab, var(--ring) 65%, transparent);
   backdrop-filter:saturate(140%) blur(10px);
+  /* Separate the navigation bar from subsequent filters/chips so
+     content does not overlap. */
+  margin-bottom:12px;
 }
 .nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
 .nav a{
@@ -190,8 +191,7 @@ a.inline:hover{text-decoration:underline}
   .input{min-width:100%}
   .select{min-width:180px}
 
-  /* Restrict the overall page width on mobile to 600 px (or 100 %, whichever is smaller).
-   * This matches the 600 px width shown in the mobile layout figure. */
+
   .container{
     max-width:600px;
     margin:0 auto;
@@ -199,11 +199,13 @@ a.inline:hover{text-decoration:underline}
     padding-right:24px;
   }
 
-  /* Increase the menu band height on mobile to 50 px. */
+
   .nav{
     height:50px;
     min-height:50px;
     padding:0 16px;
+    /* Maintain a bit of separation from filters/chips on mobile */
+    margin-bottom:12px;
   }
 
   /* Ensure the About header band remains 150 px tall on mobile. */
@@ -212,9 +214,7 @@ a.inline:hover{text-decoration:underline}
   }
 }
 
-/* A minimum height on the section ensures the band is
-   visually prominent, roughly matching the heights indicated in the
-   specification (200 px on desktop, 150 px on mobile). */
+
 .header.about{
   display:flex;
   align-items:center;
@@ -223,7 +223,7 @@ a.inline:hover{text-decoration:underline}
   margin-bottom:20px;
 }
 
-/* Image styling within the About section.  */
+
 .header.about img.about-image{
   flex:0 0 40%;
   max-width:350px;
@@ -232,7 +232,6 @@ a.inline:hover{text-decoration:underline}
   border-radius:var(--radius);
 }
 
-
 .header.about .about-text{
   flex:1;
   display:flex;
@@ -240,6 +239,8 @@ a.inline:hover{text-decoration:underline}
   gap:16px;
 }
 
+/* Responsive behaviour: stack the image above the text on smaller
+   screens and reduce the overall minimum height. */
 @media (max-width:760px){
   .header.about{
     flex-direction:column;

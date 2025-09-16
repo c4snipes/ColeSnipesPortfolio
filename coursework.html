@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Theme setup: no flash of wrong theme & theme colors -->
   <script>
     (function(){
       try{
@@ -25,17 +26,7 @@
   <main class="container">
   <section class="header">
     <h1 class="h1">Coursework</h1>
-    <div class="tools">
-      <input id="cwQ" class="input" placeholder="Search courses, topics, or code…" />
-      <select id="typeFilter" class="select">
-        <option value="all">All types</option>
-        <option value="CS">CS</option>
-        <option value="Math">Math</option>
-        <option value="Other">Other</option>
-      </select>
-    </div>
-  </section>
-    <!-- Insert navigation below the header -->
+    <!-- Navigation bar sits directly below the page header and above the search controls. -->
     <nav class="nav">
       <div class="brand">Cole Snipes</div>
       <a href="index.html">About</a>
@@ -47,6 +38,16 @@
         <span class="icon">🌙</span><span>Dark</span>
       </button>
     </nav>
+    <div class="tools">
+      <input id="cwQ" class="input" placeholder="Search courses, topics, or code…" />
+      <select id="typeFilter" class="select">
+        <option value="all">All types</option>
+        <option value="CS">CS</option>
+        <option value="Math">Math</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+  </section>
     <section id="cwGrid" class="grid" aria-live="polite"></section>
   </main>
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
