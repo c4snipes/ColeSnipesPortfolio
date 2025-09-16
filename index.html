@@ -24,43 +24,48 @@
 <body>
   <main class="container">
     <section class="header about">
-      <img src="assets/photo.jpg" alt="Portrait of Cole Snipes" class="about-image" />
-      <div class="about-text">
-        <h1 class="h1">About me</h1>
-        <nav class="nav">
-      <div class="brand">Cole Snipes</div>
-      <a class="active" href="index.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="skills.html">Skills</a>
-      <a href="coursework.html">Coursework</a>
-      <a href="achievements.html">Achievements</a>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-        <span class="icon">🌙</span><span>Dark</span>
-      </button>
-    </nav>
-        <p class="lead">
-          Hi, I’m Cole Snipes. I’m a computer science student from Indiana,
-          graduating in 2026. I built this site to document what I’ve been
-          learning and to share the projects I’m proud of. Away from the
-          keyboard you’ll often find me catching a Pacers or Colts game,
-          keeping up with football, or unwinding with video games — my Xbox
-          gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
-          As I look ahead to graduation I’m starting to explore career
-          opportunities, so feel free to reach out.
-        </p>
-        <div class="tools">
-          <a class="button" href="projects.html">See Projects</a>
-          <a class="button secondary" href="skills.html">View Skills</a>
-        </div>
-        <div class="tools">
-          <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
+      <h1 class="h1">About me</h1>
+
+      <!-- Navigation bar directly below the header -->
+      <nav class="nav">
+        <div class="brand">Cole Snipes</div>
+        <a class="active" href="index.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="achievements.html">Achievements</a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+          <span class="icon">🌙</span><span>Dark</span>
+        </button>
+      </nav>
+
+      <!-- Wrap image and text in an about-content container -->
+      <div class="about-content">
+        <img src="assets/photo.jpg" alt="Portrait of Cole Snipes" class="about-image" />
+        <div class="about-text">
+          <p class="lead">
+            Hi, I’m Cole Snipes. I’m a computer science student from Indiana,
+            graduating in 2026. I built this site to document what I’ve been
+            learning and to share the projects I’m proud of. Away from the
+            keyboard you’ll often find me catching a Pacers or Colts game,
+            keeping up with football, or unwinding with video games — my Xbox
+            gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
+            As I look ahead to graduation I’m starting to explore career
+            opportunities, so feel free to reach out.
+          </p>
+          <div class="tools">
+            <a class="button" href="projects.html">See Projects</a>
+            <a class="button secondary" href="skills.html">View Skills</a>
+          </div>
+          <div class="tools">
+            <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
+            <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
+          </div>
         </div>
       </div>
     </section>
   </main>
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script type="module" src="js/main.js"></script>
-
 </body>
 </html>
