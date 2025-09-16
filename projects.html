@@ -3,36 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <!-- No-flash theme -->
   <script>
     (function(){
       try{
         const key='site-theme';
         const saved=localStorage.getItem(key);
-        const prefersLight = matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
+        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
         const theme = saved || (prefersLight ? 'light' : 'dark');
         const allowed = ['dark','light','solar'];
         document.documentElement.setAttribute('data-theme', allowed.includes(theme)? theme : 'dark');
       }catch(e){}
     })();
   </script>
-
-  <title>About • Cole Snipes</title>
+  <title>Projects • Cole Snipes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <main class="container">
-    <!-- Big header band -->
+    <!-- 1) Header -->
     <header class="page-header">
-      <h1 class="h1">About me</h1>
+      <h1 class="h1">Projects</h1>
     </header>
 
-    <!-- Nav directly under header (same across pages) -->
-    <nav class="nav" id="site-nav">
+    <!-- 2) Nav (under header, above filters) -->
+    <nav class="nav">
       <div class="brand">Cole Snipes</div>
-      <a class="active" href="index.html">About</a>
-      <a href="projects.html">Projects</a>
+      <a href="index.html">About</a>
+      <a class="active" href="projects.html">Projects</a>
       <a href="skills.html">Skills</a>
       <a href="coursework.html">Coursework</a>
       <a href="achievements.html">Achievements</a>
@@ -41,35 +39,29 @@
       </button>
     </nav>
 
-    <!-- Photo + text live in their own flex wrapper -->
-    <section class="about-content">
-      <img src="assets/photo.jpg" alt="Portrait of Cole Snipes" class="about-image" />
-      <div class="about-text">
-        <p class="lead">
-          Hi, I’m Cole Snipes. I’m a computer science student from Indiana,
-          graduating in 2026. I built this site to document what I’ve been
-          learning and to share the projects I’m proud of. Away from the
-          keyboard you’ll often find me catching a Pacers or Colts game,
-          keeping up with football, or unwinding with video games — my Xbox
-          gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
-          As I look ahead to graduation I’m starting to explore career
-          opportunities, so feel free to reach out.
-        </p>
-
-        <div class="tools">
-          <a class="button" href="projects.html">See Projects</a>
-          <a class="button secondary" href="skills.html">View Skills</a>
-        </div>
-
-        <div class="tools">
-          <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
-        </div>
+    <!-- 3) Content -->
+    <section class="page-controls">
+      <!-- Keep/replace with your existing search/sort UI -->
+      <div class="tools">
+        <input id="projectSearch" class="input" placeholder="Search title, description" />
+        <select id="projectSort" class="select" aria-label="Sort projects">
+          <option value="newest">Sort by date (newest)</option>
+          <option value="oldest">Sort by date (oldest)</option>
+          <option value="az">Sort A–Z</option>
+          <option value="za">Sort Z–A</option>
+        </select>
+        <button id="projectClear" class="button">Clear filters</button>
       </div>
+      <div id="projectTags" class="chips"><!-- chips injected here --></div>
+    </section>
+
+    <section class="page-content">
+      <div id="projectsGrid" class="grid"><!-- cards injected here --></div>
     </section>
   </main>
 
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/projects.js"></script>
 </body>
 </html>
