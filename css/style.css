@@ -90,7 +90,7 @@ body{
 
 .nav{
   position:sticky;
-  top:5px;
+  top:0;
   z-index:50;
   display:flex;
   gap:12px;
@@ -224,9 +224,7 @@ a.inline:hover{text-decoration:underline}
   margin-bottom:20px;
 }
 
-/* Image styling within the About section. The image takes up at most
-   40 % of the available width on larger screens and scales down
-   responsively. Rounded corners tie in with the rest of the UI. */
+/* Image styling within the About section.  */
 .header.about img.about-image{
   flex:0 0 40%;
   max-width:350px;
@@ -242,7 +240,6 @@ a.inline:hover{text-decoration:underline}
   flex-direction:column;
   gap:16px;
 }
-
 
 @media (max-width:760px){
   .header.about{
