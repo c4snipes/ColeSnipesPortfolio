@@ -1,5 +1,14 @@
-/* Cole Snipes — Neon UI with Multi-Theme
-   -------------------------------------------------- */
+/* ===========================================================
+   Cole Snipes — Portfolio Styles
+   Desktop & Mobile layouts aligned with the PDF specification
+   -----------------------------------------------------------
+   • Desktop: 900px content width, header ≈ 200px tall, menu row 20px
+   • Mobile : 600px content width, header ≈ 150px tall, menu row 50px
+   • Nav always appears UNDER the big page header and ABOVE controls
+   • Light / Dark / Solar themes via CSS variables
+   =========================================================== */
+
+/* -------------------- THEME TOKENS -------------------- */
 :root{
   /* DARK (default) */
   --bg:#070c14;
@@ -16,11 +25,10 @@
   --chip-text:#cfe0ff;
 
   --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444;
+
   --radius:16px;
   --shadow:0 16px 40px rgba(0,0,0,.45);
 }
-
-/* ---------- THEME OVERRIDES ---------- */
 :root[data-theme="light"]{
   --bg:#f7f9fe;
   --bg-elev:#ffffff;
@@ -54,11 +62,11 @@
   --shadow:0 18px 44px rgba(245,158,11,.18);
 }
 
-/* Let browsers color UI correctly */
+/* Let browsers color native UI correctly */
 :root{ color-scheme: dark; }
 :root[data-theme="light"]{ color-scheme: light; }
 
-/* Base */
+/* -------------------- BASE -------------------- */
 *{box-sizing:border-box}
 html,body{height:100%}
 html, body, .card, .nav { transition: background-color .25s ease, color .25s ease; }
@@ -74,36 +82,39 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-/* Layout */
+/* -------------------- LAYOUT -------------------- */
 .container{
-  /* Limit the width of the page content on desktop to match the assignment spec.
-   * The default maximum width is 900 px, centered, with generous horizontal padding. */
-  max-width:900px;
+  max-width:900px;       /* 900px across on desktop */
   margin:0 auto;
   padding:24px;
 }
-.header{padding:48px 0 16px}
-.h1{font-size:44px;line-height:1.15;margin:0 0 12px}
+
+.header{
+  display:block;         
+  min-height:200px;     
+  padding:48px 0 16px;
+  margin:0;
+}
+
+/* Typography */
+.h1{font-size:44px;line-height:1.15;margin:0 0 12px;font-weight:900;letter-spacing:.2px}
 .h2{font-size:28px;margin:28px 0 12px}
 .lead{color:var(--muted);font-size:18px}
 
-
+/* -------------------- NAVIGATION (sits under H1) -------------------- */
 .nav{
   position:relative;
-  z-index:50;
+  z-index:5;                 
   display:flex;
   gap:12px;
   align-items:center;
-  height:20px;
+  height:20px;               
   min-height:20px;
   padding:0 24px;
   background:linear-gradient(180deg, color-mix(in oklab, var(--bg) 88%, transparent), color-mix(in oklab, var(--bg) 60%, transparent));
   border-bottom:1px solid color-mix(in oklab, var(--ring) 65%, transparent);
   backdrop-filter:saturate(140%) blur(10px);
-  /* Separate the navigation bar from subsequent filters/chips so
-     content does not overlap.  A slightly larger margin prevents
-     chips or inputs from crowding the menu on complex pages. */
-  margin-bottom:12px;
+  margin-bottom:12px;        
 }
 .nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
 .nav a{
@@ -116,7 +127,11 @@ body{
   box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent) inset;
 }
 
-/* Theme toggle */
+.nav + .tools,
+.nav + .chips,
+.nav + .filters{ margin-top:12px; }
+
+/* -------------------- THEME TOGGLE -------------------- */
 .theme-toggle{
   display:inline-flex;align-items:center;gap:8px;
   background:transparent;color:var(--text);
@@ -125,7 +140,28 @@ body{
 .theme-toggle:hover{ background:color-mix(in oklab, var(--text) 8%, transparent); }
 .theme-toggle .icon{ font-size:16px }
 
-/* Cards & Grid */
+/* -------------------- ABOUT PAGE CONTENT ROW -------------------- */
+.about-content{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-top:12px;       /* space under nav */
+}
+.about-content .about-image{
+  flex:0 0 40%;
+  max-width:350px;
+  width:100%;
+  height:auto;
+  border-radius:var(--radius);
+}
+.about-content .about-text{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+/* -------------------- GRID, CARDS, META -------------------- */
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%), var(--bg-elev);
@@ -136,12 +172,10 @@ body{
 }
 .card h3{margin:0 0 8px;font-size:20px}
 .card p{margin:0 0 10px;color:var(--muted)}
-
-/* Meta line */
 .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-bottom:6px}
 .meta .dot{width:6px;height:6px;border-radius:50%;background:color-mix(in oklab, var(--ring) 70%, transparent);margin:9px 2px 0}
 
-/* Inputs / Buttons */
+/* -------------------- CONTROLS -------------------- */
 .tools{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
 .input,.select,.button{
   background:var(--panel);border:1px solid var(--ring);color:var(--text);
@@ -154,7 +188,7 @@ body{
 .small{font-size:12px;color:var(--muted)}
 .kbd{padding:2px 6px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;background:color-mix(in oklab, var(--panel) 85%, transparent);font-size:12px}
 
-/* Chips */
+/* -------------------- CHIPS -------------------- */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
 .chip{
   display:inline-flex;align-items:center;gap:6px;
@@ -164,11 +198,9 @@ body{
 }
 .chip:hover{box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent) inset}
 
-/* Progress bar (Skills) */
+/* -------------------- SKILLS -------------------- */
 .progress{height:10px;background:color-mix(in oklab, var(--panel) 80%, transparent);border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);border-radius:999px;overflow:hidden}
 .progress>i{display:block;height:100%;background:linear-gradient(90deg, var(--accent), var(--accent-2));width:0%}
-
-/* details/summary (Skills) */
 details.skill-cat{border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);box-shadow:var(--shadow);padding:0;margin:0}
 details.skill-cat+details.skill-cat{margin-top:12px}
 details.skill-cat[open]{background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%)}
@@ -176,32 +208,27 @@ details.skill-cat>summary{list-style:none;display:flex;justify-content:space-bet
 details.skill-cat>summary::-webkit-details-marker{display:none}
 details.skill-cat .grid{padding:0 18px 18px}
 
-/* Footer */
+/* -------------------- FOOTER -------------------- */
 .footer{color:var(--muted);padding:24px 0;border-top:1px solid color-mix(in oklab, var(--ring) 70%, transparent);margin-top:40px}
 
-/* Inline links */
+/* -------------------- INLINE LINKS & EFFECTS -------------------- */
 a.inline{color:color-mix(in oklab, var(--accent) 70%, white 0%);text-decoration:none}
 a.inline:hover{text-decoration:underline}
-
-/* Deep-link pulse */
 .pulse{outline:2px solid var(--accent);border-radius:var(--radius);animation:pulseFade 1.2s ease-in-out 1}
 @keyframes pulseFade{0%{box-shadow:0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent)}100%{box-shadow:0 0 0 14px rgba(0,0,0,0)}}
 
-/* Mobile */
+/* -------------------- MOBILE (≤ 760px) -------------------- */
 @media (max-width:760px){
   .h1{font-size:34px}
-  .tools{gap:8px}
-  .input{min-width:100%}
-  .select{min-width:180px}
 
   .container{
-    max-width:600px;
+    max-width:600px;    
     margin:0 auto;
     padding-left:24px;
     padding-right:24px;
   }
 
- 
+  /* Menu row height per spec (50px) */
   .nav{
     height:50px;
     min-height:50px;
@@ -209,49 +236,21 @@ a.inline:hover{text-decoration:underline}
     margin-bottom:12px;
   }
 
-  .header.about{
-    min-height:150px;
-  }
-}
+  /* Header visual height on mobile (≈150px) */
+  .header{ min-height:150px; padding-top:24px; }
 
-.header.about{
-  display:flex;
-  align-items:center;
-  gap:24px;
-  min-height:200px;
-  margin-bottom:20px;
-}
-
-
-.header.about img.about-image{
-  flex:0 0 40%;
-  max-width:350px;
-  width:100%;
-  height:auto;
-  border-radius:var(--radius);
-}
-
-
-.header.about .about-text{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
-
-/* Responsive behaviour: stack the image above the text on smaller
-   screens and reduce the overall minimum height. */
-@media (max-width:760px){
-  .header.about{
+  /* About content stacks image above text on mobile */
+  .about-content{
     flex-direction:column;
     align-items:flex-start;
-    min-height:150px;
   }
-  .header.about img.about-image{
+  .about-content .about-image{
     max-width:100%;
     margin-bottom:16px;
   }
-  .header.about .about-text{
-    width:100%;
-  }
+  .about-content .about-text{ width:100%; }
+
+  .tools{gap:8px}
+  .input{min-width:100%}
+  .select{min-width:180px}
 }
