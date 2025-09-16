@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- No-flash theme -->
   <script>
-    (function(){
-      try{
-        const key='site-theme';
-        const saved=localStorage.getItem(key);
+    (function () {
+      try {
+        const key = 'site-theme';
+        const saved = localStorage.getItem(key);
         const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
         const theme = saved || (prefersLight ? 'light' : 'dark');
-        const allowed = ['dark','light','solar'];
-        document.documentElement.setAttribute('data-theme', allowed.includes(theme)? theme : 'dark');
-      }catch(e){}
+        const allowed = ['dark', 'light', 'solar'];
+        document.documentElement.setAttribute('data-theme', allowed.includes(theme) ? theme : 'dark');
+      } catch (e) {}
     })();
   </script>
   <title>Projects • Cole Snipes</title>
@@ -39,7 +39,7 @@
       </button>
     </nav>
 
-    <!-- 3) Controls (IDs restored for JS) -->
+    <!-- 3) Controls (IDs must match projects.js) -->
     <section class="page-controls">
       <div class="tools">
         <input id="q" class="input" placeholder="Search title, description" />
@@ -54,9 +54,9 @@
       <div id="tags" class="chips"><!-- chips injected here --></div>
     </section>
 
-    <!-- 4) Content grid (ID restored for JS) -->
+    <!-- 4) Grid (ID must be projectGrid for draw()) -->
     <section class="page-content">
-      <div id="grid" class="grid"><!-- cards injected here --></div>
+      <div id="projectGrid" class="grid"><!-- cards injected here --></div>
     </section>
   </main>
 
