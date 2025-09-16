@@ -19,34 +19,64 @@
   <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
   <title>About • Cole Snipes</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <nav class="nav">
-      <div class="brand">Cole Snipes</div>
-      <a class="active" href="index.html">About</a>
-      <a class="" href="projects.html">Projects</a>
-      <a class="" href="skills.html">Skills</a>
-      <a class="" href="coursework.html">Coursework</a>
-      <a class="" href="achievements.html">Achievements</a>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-        <span class="icon">🌙</span><span>Dark</span>
-      </button>
-    </nav>
+    <!-- Navigation is repositioned below the header section. See
+         the matching markup inserted later in this file. -->
   <main class="container">
-   
+    <!--
+      The About section follows the assignment's desktop/mobile layout
+      specification. On larger screens the profile image sits to the left
+      of the copy. On narrow screens the image stacks above the text. A
+      minimum height ensures the band approximates the 200 px (desktop)
+      and 150 px (mobile) heights called out in the PDF.  The content
+      itself remains the same: a heading, descriptive paragraph, some
+      action buttons and a hint for the keyboard shortcut. The
+      placeholder image can be replaced with a real headshot.
+    -->
     <section class="header about">
-      <img src="assets/photo.jpg" class="about-image" />
+      <img src="placeholder_light_gray_block.png" alt="Portrait of Cole Snipes" class="about-image" />
       <div class="about-text">
         <h1 class="h1">About me</h1>
-        <p class="lead">I'm Cole Snipes changing the world one line of code of a time. This site showcases selected projects, a snapshot of my skills, recent coursework, and achievements.</p>
+        <p class="lead">
+          Hi, I’m Cole Snipes. I’m a computer science student from Indiana,
+          graduating in 2026. I built this site to document what I’ve been
+          learning and to share the projects I’m proud of. Away from the
+          keyboard you’ll often find me catching a Pacers or Colts game,
+          keeping up with football, or unwinding with video games — my Xbox
+          gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
+          As I look ahead to graduation I’m starting to explore career
+          opportunities, so feel free to reach out.
+        </p>
         <div class="tools">
           <a class="button" href="projects.html">See Projects</a>
           <a class="button secondary" href="skills.html">View Skills</a>
         </div>
+        <!-- Additional links to LinkedIn and a downloadable résumé.  The résumé link
+             uses the default download behaviour and does not specify a folder. -->
+        <div class="tools">
+          <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
+        </div>
+        <p class="small">Tip: use <span class="kbd">/</span> to focus the search on listing pages.</p>
       </div>
     </section>
+    <!-- The menu bar appears below the header to better reflect the assignment's layout.
+         It remains full-width but sits inside the container so it respects the
+         responsive width (600 px mobile / 900 px desktop). -->
+    <nav class="nav">
+      <div class="brand">Cole Snipes</div>
+      <a class="active" href="index.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="coursework.html">Coursework</a>
+      <a href="achievements.html">Achievements</a>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+        <span class="icon">🌙</span><span>Dark</span>
+      </button>
+    </nav>
   </main>
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script type="module" src="js/main.js"></script>
