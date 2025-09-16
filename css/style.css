@@ -1,14 +1,15 @@
-/* Cole Snipes – Responsive portfolio */
+/* Cole Snipes – Multi-theme UI
+   ================================================================== */
 :root{
-  /* Dark (default) */
+  /* DARK (default) */
   --bg:#070c14;
   --bg-elev:#0b1220;
   --panel:#0f172a;
   --text:#e6ebf2;
   --muted:#8fa2c0;
 
-  --accent:#60a5fa;
-  --accent-2:#a78bfa;
+  --accent:#60a5fa;     /* blue */
+  --accent-2:#a78bfa;   /* purple */
 
   --ring:#2b3b59;
   --chip:#132038;
@@ -18,48 +19,32 @@
   --radius:16px;
   --shadow:0 16px 40px rgba(0,0,0,.45);
 }
-
 :root[data-theme="light"]{
   --bg:#f7f9fe;
   --bg-elev:#ffffff;
   --panel:#ffffff;
   --text:#0c1220;
   --muted:#4f5b72;
-
-  --accent:#2563eb;
-  --accent-2:#7c3aed;
-
+  --accent:#2563eb; --accent-2:#7c3aed;
   --ring:#d9e3f3;
-  --chip:#eef4ff;
-  --chip-text:#1f2a44;
-
+  --chip:#eef4ff; --chip-text:#1f2a44;
   --shadow:0 10px 26px rgba(15,23,42,.08);
 }
-
 :root[data-theme="solar"]{
-  --bg:#0a0b10;
-  --bg-elev:#11131a;
-  --panel:#141826;
-  --text:#fdf7ee;
-  --muted:#d2c6b5;
-
-  --accent:#f59e0b;
-  --accent-2:#c084fc;
-
-  --ring:#3a2f23;
-  --chip:#1c1a14;
-  --chip-text:#ffe9c2;
-
+  --bg:#0a0b10; --bg-elev:#11131a; --panel:#141826;
+  --text:#fdf7ee; --muted:#d2c6b5;
+  --accent:#f59e0b; --accent-2:#c084fc;
+  --ring:#3a2f23; --chip:#1c1a14; --chip-text:#ffe9c2;
   --shadow:0 18px 44px rgba(245,158,11,.18);
 }
-
-/* let form controls pick correct system palette */
+/* Let browsers color UI correctly */
 :root{ color-scheme: dark; }
 :root[data-theme="light"]{ color-scheme: light; }
 
-/* ---------- Base ---------- */
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+/* Base / page shell ------------------------------------------------- */
+*{box-sizing:border-box}
+html,body{height:100%}
+html, body, .card, .nav { transition: background-color .25s ease, color .25s ease; }
 
 body{
   margin:0;
@@ -69,95 +54,106 @@ body{
     var(--bg);
   color:var(--text);
   font:16px/1.6 ui-sans-serif, -apple-system, Segoe UI, Inter, Roboto, system-ui, "Helvetica Neue", Arial;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-/* ---------- Page width (PDF spec) ---------- */
 .container{
-  max-width:900px;   /* Desktop width per Figure 1 */
+  /* Desktop spec: 900px content width */
+  max-width:900px;
   margin:0 auto;
   padding:24px;
 }
 
-/* ---------- Page header + nav placement ---------- */
-.page-header, .header{
-  min-height:200px;          /* Desktop: 200px */
-  display:block;             
-  padding:24px 0 8px;
+/* Headings */
+.h1{font-size:44px;line-height:1.15;margin:0}
+.h2{font-size:28px;margin:28px 0 12px}
+.lead{color:var(--muted);font-size:18px}
+
+/* Page header band (just the big title area) ------------------------ */
+.page-header,
+.header{               /* keep old .header class working */
+  display:block;
+  padding:32px 0 12px;
+  min-height:200px;    /* Desktop spec */
+  border:0;
 }
 
-.h1{ font-size:44px; line-height:1.15; margin:0 0 12px; }
-.h2{ font-size:28px; margin:28px 0 12px; }
-.lead{ color:var(--muted); font-size:18px; }
-
-/* Nav sits directly UNDER the H1 on every page */
+/* NAV: sits below the big title, above filters/content -------------- */
 .nav{
   position:relative;
-  z-index:2;
+  z-index:10;
   display:flex;
-  align-items:center;
   gap:12px;
-  height:20px;       /* Desktop menu bar height per spec */
+  align-items:center;
+  height:20px;         /* Desktop spec */
   min-height:20px;
-  padding:0 16px;
+  padding:0 24px;
+  background:linear-gradient(180deg, color-mix(in oklab, var(--bg) 88%, transparent), color-mix(in oklab, var(--bg) 60%, transparent));
   border-bottom:1px solid color-mix(in oklab, var(--ring) 65%, transparent);
-  background:linear-gradient(180deg, color-mix(in oklab, var(--bg) 92%, transparent), color-mix(in oklab, var(--bg) 60%, transparent));
   backdrop-filter:saturate(140%) blur(10px);
-  margin-bottom:14px; /* keep space above chips/filters */
+  margin-top:12px;     /* clear the title */
+  margin-bottom:12px;  /* clear filters/chips below */
 }
-
-.nav .brand{
-  font-weight:800; font-size:20px; letter-spacing:.2px; margin-right:auto;
-}
+.nav .brand{font-weight:800;font-size:20px;margin-right:auto;letter-spacing:.2px}
 .nav a{
-  color:var(--muted);
-  text-decoration:none;
-  padding:8px 12px;
-  border-radius:12px;
-  transition:.18s all ease;
-  display:inline-flex; align-items:center; gap:6px;
+  color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:12px;
+  transition:all .18s ease; display:inline-flex; align-items:center; gap:6px;
 }
-.nav a.active, .nav a:hover{
+.nav a.active,.nav a:hover{
   color:var(--text);
   background:color-mix(in oklab, var(--accent) 14%, transparent);
   box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 30%, transparent) inset;
 }
 
-/* Theme toggle button (in nav) */
+/* Theme toggle */
 .theme-toggle{
-  display:inline-flex; align-items:center; gap:8px;
-  background:transparent; color:var(--text);
-  border:1px solid var(--ring); border-radius:12px;
-  padding:8px 12px; cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--text);
+  border:1px solid var(--ring);border-radius:12px;padding:8px 12px;cursor:pointer;
 }
 .theme-toggle:hover{ background:color-mix(in oklab, var(--text) 8%, transparent); }
-.theme-toggle .icon{ font-size:16px; }
+.theme-toggle .icon{ font-size:16px }
 
-/* ---------- “About” content block BELOW header ---------- */
+/* About page: image + text layout ---------------------------------- */
 .about-content{
-  display:grid;
-  grid-template-columns: 1fr 1.35fr; /* image | text */
-  gap:24px;
-  align-items:start;
-  margin-top:10px;
+  display:flex; align-items:center; gap:24px;
+  margin-top:12px;
 }
-
 .about-image{
+  flex:0 0 40%;
+  max-width:350px;
   width:100%;
-  max-width:360px;
-  border-radius:var(--radius);
   height:auto;
+  border-radius:var(--radius);
 }
-.about-text{ display:flex; flex-direction:column; gap:16px; }
+.about-text{flex:1; display:flex; flex-direction:column; gap:16px}
 
-/* ---------- Utilities / components ---------- */
-.grid{
-  display:grid;
-  gap:16px;
-  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+/* Controls/filters band right under nav ------------------------------ */
+.tools{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.input,.select,.button{
+  background:var(--panel);border:1px solid var(--ring);color:var(--text);
+  border-radius:12px;padding:10px 12px;outline:none;transition:box-shadow .18s ease, transform .06s ease;
 }
+.input:focus,.select:focus{box-shadow:0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent)}
+.button{cursor:pointer}
+.button:hover{transform:translateY(-1px)}
+.button.secondary{background:transparent}
+.small{font-size:12px;color:var(--muted)}
+.kbd{padding:2px 6px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;background:color-mix(in oklab, var(--panel) 85%, transparent);font-size:12px}
 
+/* Chips -------------------------------------------------------------- */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 0}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--chip);color:var(--chip-text);
+  padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid color-mix(in oklab, var(--ring) 70%, transparent);
+  text-decoration:none; cursor:pointer;
+}
+.chip:hover{box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent) inset}
+.chip.active{outline:2px solid color-mix(in oklab, var(--accent) 50%, transparent)}
+
+/* Cards & Grid ------------------------------------------------------- */
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
 .card{
   background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%), var(--bg-elev);
   border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);
@@ -165,84 +161,35 @@ body{
   padding:18px;
   box-shadow:var(--shadow);
 }
-.card h3{ margin:0 0 8px; font-size:20px; }
-.card p{ margin:0 0 10px; color:var(--muted); }
+.card h3{margin:0 0 8px;font-size:20px}
+.card p{margin:0 0 10px;color:var(--muted)}
+.meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin-bottom:6px}
+.meta .dot{width:6px;height:6px;border-radius:50%;background:color-mix(in oklab, var(--ring) 70%, transparent);margin:9px 2px 0}
 
-.tools{ display:flex; gap:12px; flex-wrap:wrap; margin:16px 0; }
-.input, .select, .button{
-  background:var(--panel);
-  border:1px solid var(--ring);
-  color:var(--text);
-  border-radius:12px;
-  padding:10px 12px;
-  outline:none;
-  transition:box-shadow .18s ease, transform .06s ease;
-}
-.input:focus, .select:focus{ box-shadow:0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent); }
-.button{ cursor:pointer; }
-.button:hover{ transform:translateY(-1px); }
-.button.secondary{ background:transparent; }
+/* Progress bar (Skills) */
+.progress{height:10px;background:color-mix(in oklab, var(--panel) 80%, transparent);border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);border-radius:999px;overflow:hidden}
+.progress>i{display:block;height:100%;background:linear-gradient(90deg, var(--accent), var(--accent-2));width:0%}
 
-.small{ font-size:12px; color:var(--muted); }
-.kbd{
-  padding:2px 6px; border:1px solid var(--ring); border-bottom-width:2px;
-  border-radius:6px; background:color-mix(in oklab, var(--panel) 85%, transparent);
-  font-size:12px;
-}
+/* details/summary (Skills) */
+details.skill-cat{border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);box-shadow:var(--shadow);padding:0;margin:0}
+details.skill-cat+details.skill-cat{margin-top:12px}
+details.skill-cat[open]{background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%)}
+details.skill-cat>summary{list-style:none;display:flex;justify-content:space-between;align-items:center;cursor:pointer;padding:16px 18px;border-radius:var(--radius);user-select:none;font-weight:700}
+details.skill-cat>summary::-webkit-details-marker{display:none}
+details.skill-cat .grid{padding:0 18px 18px}
 
-.chips{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 0; }
-.chip{
-  display:inline-flex; align-items:center; gap:6px;
-  background:var(--chip); color:var(--chip-text);
-  padding:6px 10px; border-radius:999px; font-size:12px;
-  border:1px solid color-mix(in oklab, var(--ring) 70%, transparent);
-  text-decoration:none;
-}
-.chip:hover{ box-shadow:0 0 0 1px color-mix(in oklab, var(--accent) 45%, transparent) inset; }
+/* Footer ------------------------------------------------------------- */
+.footer{color:var(--muted);padding:24px 0;border-top:1px solid color-mix(in oklab, var(--ring) 70%, transparent);margin-top:40px}
 
-.progress{ height:10px; background:color-mix(in oklab, var(--panel) 80%, transparent);
-  border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);
-  border-radius:999px; overflow:hidden; }
-.progress > i{
-  display:block; height:100%;
-  background:linear-gradient(90deg, var(--accent), var(--accent-2));
-  width:0%;
-}
+/* Inline links */
+a.inline{color:color-mix(in oklab, var(--accent) 70%, white 0%);text-decoration:none}
+a.inline:hover{text-decoration:underline}
 
-/* <details> accordions on Skills */
-details.skill-cat{
-  border:1px solid color-mix(in oklab, var(--ring) 75%, transparent);
-  border-radius:var(--radius);
-  background:linear-gradient(180deg, rgba(255,255,255,.02), transparent 60%);
-  box-shadow:var(--shadow);
-  padding:0; margin:0;
-}
-details.skill-cat + details.skill-cat{ margin-top:12px; }
-details.skill-cat[open]{ background:linear-gradient(180deg, rgba(255,255,255,.03), transparent 60%); }
-details.skill-cat > summary{
-  list-style:none; display:flex; justify-content:space-between; align-items:center;
-  cursor:pointer; padding:16px 18px; border-radius:var(--radius); user-select:none; font-weight:700;
-}
-details.skill-cat > summary::-webkit-details-marker{ display:none; }
-details.skill-cat .grid{ padding:0 18px 18px; }
+/* Deep-link pulse */
+.pulse{outline:2px solid var(--accent);border-radius:var(--radius);animation:pulseFade 1.2s ease-in-out 1}
+@keyframes pulseFade{0%{box-shadow:0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent)}100%{box-shadow:0 0 0 14px rgba(0,0,0,0)}}
 
-.footer{
-  color:var(--muted);
-  padding:24px 0;
-  border-top:1px solid color-mix(in oklab, var(--ring) 70%, transparent);
-  margin-top:40px;
-}
-
-a.inline{ color:color-mix(in oklab, var(--accent) 70%, white 0%); text-decoration:none; }
-a.inline:hover{ text-decoration:underline; }
-
-.pulse{ outline:2px solid var(--accent); border-radius:var(--radius); animation:pulseFade 1.2s ease-in-out 1; }
-@keyframes pulseFade{
-  0%{ box-shadow:0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
-  100%{ box-shadow:0 0 0 14px rgba(0,0,0,0); }
-}
-
-/* ---------- Mobile (PDF Figure 2) ---------- */
+/* Mobile spec (Figure 2): 600px text width, 50px menu, 150px header */
 @media (max-width:760px){
   .container{
     max-width:600px;
@@ -250,18 +197,12 @@ a.inline:hover{ text-decoration:underline; }
     padding-left:24px;
     padding-right:24px;
   }
-
-  .h1{ font-size:34px; }
-  .tools{ gap:8px; }
-  .input{ min-width:100%; }
-  .select{ min-width:180px; }
-
-  /* Header / Menu sizes for mobile */
-  .page-header, .header{ min-height:150px; }   
-  .nav{ height:50px; min-height:50px; }        
-
-  .about-content{
-    grid-template-columns: 1fr;
-  }
-  .about-image{ max-width:100%; }
+  .h1{font-size:34px}
+  .page-header,.header{ min-height:150px; padding-top:24px; }
+  .nav{ height:50px; min-height:50px; padding:0 16px; }
+  .tools{gap:8px}
+  .input{min-width:100%}
+  .select{min-width:180px}
+  .about-content{flex-direction:column;align-items:flex-start}
+  .about-image{max-width:100%;margin-bottom:16px}
 }
