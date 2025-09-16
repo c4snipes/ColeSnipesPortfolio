@@ -25,33 +25,33 @@
 
     <!-- Navigation moved below the header; the nav markup is inserted later in this file. -->
   <main class="container">
-  <section class="header">
-    <h1 class="h1">Projects</h1>
-    <p class="lead">Built with real technologies; filter by tag, search, or sort.</p>
-    <div class="tools">
-      <input id="q" class="input" placeholder="Search title, description, or tags…" />
-      <select id="sort" class="select">
-        <option value="newest">Sort by date (newest)</option>
-        <option value="oldest">Sort by date (oldest)</option>
-        <option value="title">Sort by title (A–Z)</option>
-      </select>
-      <button id="clear" class="button secondary">Clear filters</button>
-    </div>
-    <div id="tags" class="chips"></div>
-  </section>
-    <!-- Insert navigation below the header -->
-    <nav class="nav">
-      <div class="brand">Cole Snipes</div>
-      <a href="index.html">About</a>
-      <a class="active" href="projects.html">Projects</a>
-      <a href="skills.html">Skills</a>
-      <a href="coursework.html">Coursework</a>
-      <a href="achievements.html">Achievements</a>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-        <span class="icon">🌙</span><span>Dark</span>
-      </button>
-    </nav>
-  <section id="projectGrid" class="grid" aria-live="polite"></section>
+    <section class="header">
+      <h1 class="h1">Projects</h1>
+      <p class="lead">Built with real technologies; filter by tag, search, or sort.</p>
+      <!-- Navigation bar sits directly below the page header and above the filters. -->
+      <nav class="nav">
+        <div class="brand">Cole Snipes</div>
+        <a href="index.html">About</a>
+        <a class="active" href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="achievements.html">Achievements</a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+          <span class="icon">🌙</span><span>Dark</span>
+        </button>
+      </nav>
+      <div class="tools">
+        <input id="q" class="input" placeholder="Search title, description, or tags…" />
+        <select id="sort" class="select">
+          <option value="newest">Sort by date (newest)</option>
+          <option value="oldest">Sort by date (oldest)</option>
+          <option value="title">Sort by title (A–Z)</option>
+        </select>
+        <button id="clear" class="button secondary">Clear filters</button>
+      </div>
+      <div id="tags" class="chips"></div>
+    </section>
+    <section id="projectGrid" class="grid" aria-live="polite"></section>
   </main>
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
   <script type="module" src="js/projects.js"></script>
