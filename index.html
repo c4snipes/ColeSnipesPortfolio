@@ -3,65 +3,76 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Theme setup: no flash of wrong theme -->
+
+  <!-- No-flash theme init -->
   <script>
-    (function(){
-      try{
-        const key='site-theme';
-        const saved=localStorage.getItem(key);
-        const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    (function () {
+      try {
+        const key = 'site-theme';
+        const saved = localStorage.getItem(key);
+        const prefersLight = window.matchMedia &&
+          window.matchMedia('(prefers-color-scheme: light)').matches;
         const theme = saved || (prefersLight ? 'light' : 'dark');
-        const allowed = ['dark','light','solar'];
-        document.documentElement.setAttribute('data-theme', allowed.includes(theme)? theme : 'dark');
-      }catch(e){}
+        document.documentElement.setAttribute(
+          'data-theme',
+          ['dark','light','solar'].includes(theme) ? theme : 'dark'
+        );
+      } catch(e) {}
     })();
   </script>
   <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
   <title>About • Cole Snipes</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <main class="container">
-    <!-- 1) PAGE HEADER (≈200px desktop / 150px mobile) -->
+
+    <!-- PAGE HEADER: title then nav (nav is not inside the content row) -->
     <header class="page-header">
       <h1 class="h1">About me</h1>
+
+      <nav class="nav">
+        <div class="brand">Cole Snipes</div>
+        <a class="active" href="index.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="coursework.html">Coursework</a>
+        <a href="achievements.html">Achievements</a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
+          <span class="icon">🌙</span><span>Dark</span>
+        </button>
+      </nav>
     </header>
 
-    <!-- 2) NAV ROW (20px desktop / 50px mobile) -->
-    <nav class="nav">
-      <div class="brand">Cole Snipes</div>
-      <a class="active" href="index.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="skills.html">Skills</a>
-      <a href="coursework.html">Coursework</a>
-      <a href="achievements.html">Achievements</a>
-      <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-        <span class="icon">🌙</span><span>Dark</span>
-      </button>
-    </nav>
-
-    <!-- 3) CONTENT AREA (image + text) -->
+    <!-- ABOUT CONTENT: this is the only thing that uses flex row -->
     <section class="about-content">
       <img src="assets/photo.jpg" alt="Portrait of Cole Snipes" class="about-image" />
       <div class="about-text">
         <p class="lead">
-          Hi, I’m Cole Snipes. I’m a computer science student from Indiana, graduating in 2026.
-          I built this site to document what I’ve been learning and to share the projects I’m proud of.
-          Away from the keyboard you’ll often find me catching a Pacers or Colts game, keeping up with football,
-          or unwinding with video games — my Xbox gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
-          As I look ahead to graduation I’m starting to explore career opportunities, so feel free to reach out.
+          Hi, I’m Cole Snipes. I’m a computer science student from Indiana,
+          graduating in 2026. I built this site to document what I’ve been
+          learning and to share the projects I’m proud of. Away from the
+          keyboard you’ll often find me catching a Pacers or Colts game,
+          keeping up with football, or unwinding with video games—my Xbox
+          gamertag is <strong>SilverCloud595</strong> if you’d like to connect.
+          As I look ahead to graduation I’m starting to explore career
+          opportunities, so feel free to reach out.
         </p>
+
         <div class="tools">
           <a class="button" href="projects.html">See Projects</a>
           <a class="button secondary" href="skills.html">View Skills</a>
         </div>
+
         <div class="tools">
           <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
           <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
