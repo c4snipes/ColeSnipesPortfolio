@@ -13,7 +13,7 @@ Sentry.init({
   dsn: 'https://bd851632e00a8c48fef43f7ac22f155b@o4510671552512000.ingest.us.sentry.io/4510671603040256',
   environment: import.meta.env.MODE,
   enabled: import.meta.env.PROD,
-  tracesSampleRate: 0.1, // Sample 10% of transactions for performance
+  tracesSampleRate: 0.1,
 })
 
 // Track Web Vitals and send to Sentry
@@ -32,11 +32,11 @@ const sendToAnalytics = (metric) => {
   }
 }
 
-onCLS(sendToAnalytics)   // Cumulative Layout Shift
-onINP(sendToAnalytics)   // Interaction to Next Paint (replaced FID)
-onLCP(sendToAnalytics)   // Largest Contentful Paint
-onFCP(sendToAnalytics)   // First Contentful Paint
-onTTFB(sendToAnalytics)  // Time to First Byte
+onCLS(sendToAnalytics)
+onINP(sendToAnalytics)
+onLCP(sendToAnalytics)
+onFCP(sendToAnalytics)
+onTTFB(sendToAnalytics)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
