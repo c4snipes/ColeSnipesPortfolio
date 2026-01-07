@@ -1,0 +1,187 @@
+/* Hide default cursor when custom cursor is active */
+body:has(.custom-cursor) {
+  cursor: none !important;
+}
+
+body:has(.custom-cursor) * {
+  cursor: none !important;
+}
+
+/* Main cursor element */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  mix-blend-mode: difference;
+  transition: width 0.2s ease, height 0.2s ease, background 0.2s ease;
+}
+
+.custom-cursor::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.custom-cursor.clicking::before {
+  transform: scale(0.6);
+}
+
+/* Cursor content (text like <  />, {  }, etc.) */
+.cursor-content {
+  position: absolute;
+  font-family: 'JetBrains Mono', 'SF Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Hero cursor - code brackets */
+.custom-cursor.hero .cursor-content {
+  opacity: 1;
+  transform: translateY(0);
+  color: #7aa2f7;
+}
+
+.custom-cursor.hero::before {
+  opacity: 0;
+}
+
+/* Projects cursor - braces */
+.custom-cursor.projects .cursor-content {
+  opacity: 1;
+  transform: translateY(0);
+  color: #bb9af7;
+}
+
+.custom-cursor.projects::before {
+  opacity: 0;
+}
+
+/* Terminal cursor - blinking underscore */
+.custom-cursor.terminal .cursor-content {
+  opacity: 1;
+  transform: translateY(0);
+  color: #9ece6a;
+  animation: cursorBlink 0.8s infinite;
+}
+
+.custom-cursor.terminal::before {
+  opacity: 0;
+}
+
+/* Code cursor */
+.custom-cursor.code .cursor-content {
+  opacity: 1;
+  transform: translateY(0);
+  color: #e0af68;
+  font-size: 10px;
+}
+
+.custom-cursor.code::before {
+  opacity: 0;
+}
+
+/* Hover state - enlarged dot */
+.custom-cursor.hover {
+  width: 50px;
+  height: 50px;
+}
+
+.custom-cursor.hover::before {
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border: 2px solid #fff;
+  transform: scale(1);
+}
+
+.custom-cursor.hover.clicking::before {
+  transform: scale(0.8);
+}
+
+/* Cursor glow/trail effect */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(122, 162, 247, 0.15) 0%, transparent 70%);
+  filter: blur(10px);
+  transition: background 0.3s ease, width 0.3s ease, height 0.3s ease;
+}
+
+.cursor-glow.hero {
+  background: radial-gradient(circle, rgba(255, 62, 0, 0.15) 0%, transparent 70%);
+  width: 150px;
+  height: 150px;
+}
+
+.cursor-glow.projects {
+  background: radial-gradient(circle, rgba(187, 154, 247, 0.15) 0%, transparent 70%);
+}
+
+.cursor-glow.terminal {
+  background: radial-gradient(circle, rgba(158, 206, 106, 0.15) 0%, transparent 70%);
+}
+
+.cursor-glow.hover {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  width: 120px;
+  height: 120px;
+}
+
+/* Blink animation for terminal cursor */
+@keyframes cursorBlink {
+  0%, 49% {
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Disable custom cursor on touch devices and reduced motion */
+@media (pointer: coarse), (hover: none) {
+  .custom-cursor,
+  .cursor-glow {
+    display: none !important;
+  }
+
+  body:has(.custom-cursor),
+  body:has(.custom-cursor) * {
+    cursor: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor,
+  .cursor-glow {
+    display: none !important;
+  }
+
+  body:has(.custom-cursor),
+  body:has(.custom-cursor) * {
+    cursor: auto !important;
+  }
+}

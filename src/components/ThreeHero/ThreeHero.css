@@ -1,0 +1,52 @@
+.three-hero-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.three-hero-container canvas {
+  pointer-events: auto;
+}
+
+/* Fallback gradient for mobile/reduced motion */
+.three-hero-fallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 30% 20%,
+    rgba(255, 62, 0, 0.15) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse at 70% 80%,
+    rgba(122, 162, 247, 0.1) 0%,
+    transparent 50%
+  ),
+  radial-gradient(
+    ellipse at 50% 50%,
+    rgba(187, 154, 247, 0.08) 0%,
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+/* Hide Three.js on mobile for performance */
+@media (max-width: 768px) {
+  .three-hero-container {
+    display: none;
+  }
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .three-hero-container {
+    display: none;
+  }
+}
