@@ -1,0 +1,128 @@
+/* Achievement Toast - Xbox Style */
+.achievement-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #107c10 0%, #0e6b0e 100%);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(16, 124, 16, 0.4);
+  max-width: 380px;
+}
+
+.achievement-toast-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.achievement-toast-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.achievement-toast-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+
+.achievement-toast-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.achievement-toast-desc {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.achievement-toast-points {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #90EE90;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Achievement Gallery */
+.achievement-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.achievement-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--ring);
+  border-radius: var(--radius-sm);
+  transition: all 0.3s ease;
+}
+
+.achievement-card.locked {
+  opacity: 0.5;
+  filter: grayscale(0.8);
+}
+
+.achievement-card.unlocked {
+  border-color: #107c10;
+  background: linear-gradient(135deg, rgba(16, 124, 16, 0.1), transparent);
+}
+
+.achievement-card-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.achievement-card-info {
+  flex: 1;
+}
+
+.achievement-card-title {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.achievement-card-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.achievement-card-points {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #107c10;
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  .achievement-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+
+  .achievement-toast-icon {
+    font-size: 2rem;
+  }
+
+  .achievement-toast-title {
+    font-size: 1rem;
+  }
+}

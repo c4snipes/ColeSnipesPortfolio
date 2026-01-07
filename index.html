@@ -1,68 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cole Snipes - Software Engineer, CS Student at University of Indianapolis. Building software that makes a difference." />
+  <meta name="theme-color" content="#1a1b26" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f8f9fc" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <title>Cole Snipes | Software Engineer</title>
   <script>
     (function(){
-      try{
-        const key='site-theme';
-        const saved=localStorage.getItem(key);
+      try {
+        const saved = localStorage.getItem('site-theme');
         const prefersLight = matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
         const theme = saved || (prefersLight ? 'light' : 'dark');
-        document.documentElement.setAttribute('data-theme', ['dark','light','solar'].includes(theme)? theme : 'dark');
-      }catch(e){}
+        document.documentElement.setAttribute('data-theme', ['dark','light'].includes(theme) ? theme : 'dark');
+      } catch(e) {}
     })();
   </script>
-  <meta name="theme-color" content="#070c14" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#ffffff"  media="(prefers-color-scheme: light)">
-  <title>About • Cole Snipes</title>
-  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <main class="container">
-    <!-- Header block (200px desktop / 150px mobile) -->
-    <section class="header">
-      <h1 class="h1">About me</h1>
-      <nav class="nav">
-        <div class="brand">Cole Snipes</div>
-        <a class="active" href="index.html">About</a>
-        <a href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="coursework.html">Coursework</a>
-        <a href="achievements.html">Achievements</a>
-        <button id="themeToggle" class="theme-toggle" type="button" aria-pressed="false">
-          <span class="icon">🌙</span><span>Dark</span>
-        </button>
-      </nav>
-    </section>
-
-    <section class="about-content">
-      <img src="assets/photo.jpg" alt="Portrait of Cole Snipes" class="about-image" />
-      <div class="about-text">
-        <p1 class="lead">
-          Hi, I’m Cole Snipes. I’m a computer science student from University of Indianapolis,
-          graduating in 2026. I built this site to document what I’ve been
-          learning and to share the projects I’m proud of.</p1> 
-          <p2>When I am not grinding the terminal or the IED you will find me watching a Pacers or Colts game,
-          keeping up with football, or unwinding with video games:
-          My Xbox Gamertag is <a class="button" href="https://www.xbox.com/en-US/play/share/friend/emJW4HVKwp" target="_blank" rel="noopener">SilverCloud595</a> if you’d like to play. </p2>
-          <p1 class="lead">As I look ahead to graduation I’m starting to explore career
-          opportunities, so feel free to reach out. No seriously though please reach out because the CSCI job market is cooked. <strong>This is Cole Snipes and I am changing the world one Line of Code @ a Time</strong>.
-        </p1>
-        <div class="tools">
-          <a class="button" href="projects.html">See Projects</a>
-          <a class="button secondary" href="skills.html">View Skills</a>
-        </div>
-        <div class="tools">
-          <a class="button" href="https://www.linkedin.com/in/cole-snipes" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="button secondary" href="Cole_Snipes_Resume.pdf" download>Download Résumé</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="container footer">© <span id="year"></span> Cole Snipes</footer>
-  <script type="module" src="js/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>

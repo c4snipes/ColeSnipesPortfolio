@@ -1,0 +1,65 @@
+[
+  {
+    "title": "WebVPython WASM Runner",
+    "desc": "Built a WebVPython runner using Pyodide and WebAssembly (WASM) that serves interactive Python directly in the browser. Focused on handling message communication between iframes, enabling dynamic imports of Python modules, and validating user input to create a safe and responsive environment.",
+    "tags": ["JavaScript", "WASM", "Pyodide", "Docker"],
+    "link": "https://github.com/vpython/wmWVPRunner",
+    "date": "2023-12-04"
+  },
+  {
+    "title": "Bluetooth Attendance Application",
+    "desc": "Developed a Python tool that automatically tracks attendance by detecting students' devices via Bluetooth MAC addresses. Added an exporter that writes attendance records to CSV files and ensured the program runs smoothly with multi-threading for simultaneous detection and logging.",
+    "tags": ["Python", "Threads", "CSV"],
+    "link": "https://github.com/c4snipes/BluetoothAttendanceApplication",
+    "date": "2025-06-01"
+  },
+  {
+    "title": "Budget Manager",
+    "desc": "Created a command-line budget manager in Rust that tracks expenses and income. Implemented structured data storage, efficient parsing of user input, and reporting features to help manage personal finances via a simple terminal interface.",
+    "tags": ["Rust", "CLI"],
+    "link": "https://github.com/c4snipes/budget_manager",
+    "date": "2025-05-20"
+  },
+  {
+    "title": "Obesity Risk Prediction",
+    "desc": "Designed an end-to-end machine learning pipeline predicting obesity risk levels using Logistic Regression and Random Forest models on a dataset of 2,111 records. Analyzed dietary, activity, and health factors through preprocessing, EDA, and feature engineering. Achieved high classification accuracy with visualizations including confusion matrices, ROC curves, and feature importance charts to communicate real-world healthcare insights.",
+    "tags": ["Python", "Pandas", "ML", "scikit-learn"],
+    "link": "https://colab.research.google.com/drive/1KPU3XLnK4sVZgeRYdM17scwT8PfMw7gl?usp=sharing#scrollTo=y9NdIp0NHKW-",
+    "date": "2024-11-10"
+  },
+  {
+    "title": "American Gun Violence Analysis",
+    "desc": "Conducted comprehensive statistical analysis of national gun violence trends using Excel and R linear regression. Examined correlations between poverty rates, education levels, firearm ownership, and state-level mortality rates. Used R² values to assess correlation strength and created data visualizations to communicate statistically significant findings.",
+    "tags": ["R", "Excel", "Statistics", "Data Visualization"],
+    "link": "#",
+    "date": "2024-03-15"
+  },
+  {
+    "title": "Engineering 198 Project Tracking System",
+    "desc": "Led development of a project tracking system for a lab manager as part of a cross-functional engineering team. Practiced Agile methodology with iterative development cycles, requirements gathering, and sprint planning to deliver client-centered functionality within project constraints.",
+    "tags": ["Agile", "Team Project", "Project Management"],
+    "link": "#",
+    "date": "2023-05-01"
+  },
+  {
+    "title": "Password Manager Testing",
+    "desc": "Built an automated test suite using Selenium for a collaborative password manager. Wrote end-to-end tests that simulate user actions like creating, sharing, and retrieving passwords, and integrated the suite into a continuous integration pipeline to ensure stability.",
+    "tags": ["Python", "Selenium", "CI"],
+    "link": "https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting",
+    "date": "2024-04-15"
+  },
+  {
+    "title": "Spring Boot Showcase",
+    "desc": "Learned Spring Boot by creating a simple REST API. Configured controllers, services, and repositories to handle CRUD operations, experimented with dependency injection, and kept the configuration minimal to understand the framework's defaults.",
+    "tags": ["Java", "Spring Boot", "REST"],
+    "link": "https://github.com/c4snipes/gs-spring-boot",
+    "date": "2024-03-01"
+  },
+  {
+    "title": "Portfolio Website",
+    "desc": "Designed and implemented this portfolio website from scratch with a Tokyo Night-inspired theme. Features include animated hero section with typing effect, responsive layout, dynamic data loading from JSON, search/filter functionality, and smooth theme toggling between dark and light modes.",
+    "tags": ["HTML", "CSS", "JavaScript"],
+    "link": "https://github.com/c4snipes/ColeSnipesPortfolio",
+    "date": "2025-09-05"
+  }
+]
