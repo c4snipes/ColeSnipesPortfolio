@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import * as Sentry from '@sentry/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { onCLS, onINP, onLCP, onFCP, onTTFB } from 'web-vitals'
 import { AchievementProvider } from './context/AchievementContext'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -44,6 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <AchievementProvider>
           <App />
+          <SpeedInsights />
         </AchievementProvider>
       </BrowserRouter>
     </ErrorBoundary>
