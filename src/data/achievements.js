@@ -15,14 +15,7 @@ export const achievements = [
     points: 25,
     requirement: { type: 'pages', count: 4 }
   },
-  {
-    id: 'terminal-user',
-    title: 'Code Reader',
-    description: 'Used the terminal',
-    icon: '💻',
-    points: 20
-  },
-  {
+    {
     id: 'night-owl',
     title: 'Night Owl',
     description: 'Embraced the dark side',
@@ -44,28 +37,14 @@ export const achievements = [
     points: 15,
     requirement: { type: 'projects', count: 3 }
   },
-  {
-    id: 'secret-finder',
-    title: 'Secret Agent',
-    description: 'Found an easter egg',
-    icon: '🥚',
-    points: 50
-  },
-  {
+    {
     id: 'skill-master',
     title: 'Skill Seeker',
     description: 'Explored all skill categories',
     icon: '📚',
     points: 15
   },
-  {
-    id: 'speed-reader',
-    title: 'Speed Reader',
-    description: 'Checked out the terminal help',
-    icon: '📖',
-    points: 10
-  },
-  {
+    {
     id: 'completionist',
     title: 'Completionist',
     description: 'Unlocked all achievements',

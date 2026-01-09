@@ -4,7 +4,6 @@ import Nav from './Nav'
 import Footer from './Footer'
 import ScrollProgress from './ScrollProgress'
 import AchievementToast from './Achievements/AchievementToast'
-import CustomCursor from './CustomCursor/CustomCursor'
 import { useAchievements } from '../context/AchievementContext'
 
 export default function Layout() {
@@ -29,7 +28,6 @@ export default function Layout() {
 
   return (
     <>
-      <CustomCursor />
       <ScrollProgress />
       <Nav />
       <Outlet />

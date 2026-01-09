@@ -8,8 +8,7 @@ const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
   { to: '/skills', label: 'Skills' },
-  { to: '/coursework', label: 'Courses' },
-  { to: '/terminal', label: '>_' }
+  { to: '/coursework', label: 'Courses' }
 ]
 
 export default function Nav() {
