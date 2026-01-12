@@ -15,7 +15,7 @@ export const achievements = [
     points: 25,
     requirement: { type: 'pages', count: 4 }
   },
-    {
+  {
     id: 'night-owl',
     title: 'Night Owl',
     description: 'Embraced the dark side',
@@ -37,14 +37,14 @@ export const achievements = [
     points: 15,
     requirement: { type: 'projects', count: 3 }
   },
-    {
+  {
     id: 'skill-master',
     title: 'Skill Seeker',
     description: 'Explored all skill categories',
     icon: '📚',
     points: 15
   },
-    {
+  {
     id: 'completionist',
     title: 'Completionist',
     description: 'Unlocked all achievements',

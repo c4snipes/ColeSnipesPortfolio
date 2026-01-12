@@ -19,7 +19,6 @@ This is a React 18 portfolio site built with Vite. Key architectural decisions:
 - `/projects` - Searchable/filterable project gallery
 - `/skills` - Skills radar visualization
 - `/coursework` - Academic courses
-- `/terminal` - Interactive CLI-style interface
 
 **State Management**:
 - `AchievementContext` (src/context/) - Achievement system persisted to localStorage
@@ -34,7 +33,7 @@ This is a React 18 portfolio site built with Vite. Key architectural decisions:
 **Component Organization**:
 - `src/components/Layout.jsx` - Wraps all routes, handles achievement tracking
 - `src/components/ThreeHero/` - 3D background with CSS orb fallback for mobile
-- `src/data/` - Static JSON for projects, skills, coursework; JS for achievements and terminal commands
+- `src/data/` - Static JSON for projects, skills, coursework; JS for achievements
 
 **Performance Patterns**:
 - ThreeHero is lazy-loaded with Suspense (only on desktop without reduced-motion)
