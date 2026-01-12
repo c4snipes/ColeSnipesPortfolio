@@ -9,6 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@opentelemetry/api": "^1.9.0",
+    "@opentelemetry/context-zone": "^2.3.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.209.0",
+    "@opentelemetry/instrumentation-document-load": "^0.54.0",
+    "@opentelemetry/instrumentation-fetch": "^0.209.0",
+    "@opentelemetry/instrumentation-xml-http-request": "^0.209.0",
+    "@opentelemetry/resources": "^2.3.0",
+    "@opentelemetry/sdk-trace-web": "^2.3.0",
+    "@opentelemetry/semantic-conventions": "^1.38.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^8.15.19",
     "@sentry/react": "^10.32.1",
