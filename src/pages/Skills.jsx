@@ -3,9 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import PageTransition from '../components/PageTransition'
 import SkillRadar from '../components/SkillRadar/SkillRadar'
-import GitHubWidget from '../components/GitHubActivity/GitHubWidget'
 import { useTheme } from '../hooks/useTheme'
-import { useAchievements } from '../context/AchievementContext'
 import { slugify } from '../utils/slugify'
 import skills from '../data/skills.json'
 import coursework from '../data/coursework.json'
@@ -23,9 +21,7 @@ export default function Skills() {
   const [search, setSearch] = useState('')
   const [openCategories, setOpenCategories] = useState(new Set(skills.map(c => c.category)))
   const [highlightedSkill, setHighlightedSkill] = useState(null)
-  const [visitedCategories, setVisitedCategories] = useState(new Set())
   const { theme } = useTheme()
-  const { unlock } = useAchievements()
   const location = useLocation()
   const skillRefs = useRef({})
 
@@ -94,17 +90,6 @@ export default function Skills() {
   }, [search, allSkills])
 
   const toggleCategory = (category) => {
-    // Track visited categories for skill-master achievement
-    setVisitedCategories(prev => {
-      const next = new Set(prev)
-      next.add(category)
-      // Unlock skill-master when all 6 categories have been visited
-      if (next.size >= 6) {
-        unlock('skill-master')
-      }
-      return next
-    })
-
     setOpenCategories(prev => {
       const next = new Set(prev)
       if (next.has(category)) {
@@ -148,7 +133,7 @@ export default function Skills() {
           />
         </motion.div>
 
-        {/* Skill Radar and GitHub Activity */}
+        {/* Skill Radar */}
         <motion.div
           className="skills-widgets"
           initial={{ opacity: 0, y: 20 }}
@@ -161,7 +146,6 @@ export default function Skills() {
               window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
             }}
           />
-          <GitHubWidget />
         </motion.div>
 
         <motion.section

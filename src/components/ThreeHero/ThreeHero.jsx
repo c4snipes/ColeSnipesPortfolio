@@ -60,7 +60,6 @@ function FloatingCodeBlock({ position, code, rotation, speed = 1 }) {
           color="#c0caf5"
           anchorX="center"
           anchorY="middle"
-          font="/fonts/JetBrainsMono-Regular.ttf"
           fallbackFont="monospace"
         >
           {code}

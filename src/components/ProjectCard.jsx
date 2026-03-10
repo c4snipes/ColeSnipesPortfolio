@@ -1,7 +1,7 @@
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useTheme } from '../hooks/useTheme'
-import { useAchievements } from '../context/AchievementContext'
 import { slugify } from '../utils/slugify'
 
 const iconMap = {
@@ -28,9 +28,8 @@ function truncateText(text, maxLength) {
   return text.substring(0, maxLength).trim() + '...'
 }
 
-export default function ProjectCard({ project, index = 0 }) {
+function ProjectCard({ project, index = 0 }) {
   const { theme } = useTheme()
-  const { trackProjectView } = useAchievements()
   const firstTag = project.tags[0]
   const icon = iconMap[firstTag] || 'github'
 
@@ -78,7 +77,6 @@ export default function ProjectCard({ project, index = 0 }) {
           className="btn btn-primary"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          onClick={() => trackProjectView(project.title)}
         >
           View Project
         </motion.a>
@@ -86,3 +84,5 @@ export default function ProjectCard({ project, index = 0 }) {
     </motion.article>
   )
 }
+
+export default memo(ProjectCard)

@@ -881,18 +881,11 @@ h1, h2, h3, h4, h5, h6 {
   height: auto;
 }
 
-/* Skills Widgets (Radar & GitHub) */
+/* Skills Widgets */
 .skills-widgets {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--grid-gap);
+  display: flex;
+  justify-content: center;
   margin-bottom: 48px;
-}
-
-@media (max-width: 1024px) {
-  .skills-widgets {
-    grid-template-columns: 1fr;
-  }
 }
 
 .skill-category {
@@ -1044,6 +1037,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .course-card:hover {
   border-color: var(--accent-secondary);
+}
+
+.coursework-grid {
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 320px));
 }
 
 .course-type {

@@ -6,6 +6,7 @@ import { useTheme } from '../hooks/useTheme'
 import ProjectCard from '../components/ProjectCard'
 import PageTransition from '../components/PageTransition'
 import projects from '../data/projects.json'
+import { getSkillIconsUrl } from '../utils/skillIcons'
 
 // Lazy load Three.js hero for performance
 const ThreeHero = lazy(() => import('../components/ThreeHero/ThreeHero'))
@@ -153,15 +154,25 @@ export default function Home() {
 
           <motion.div className="tech-icons" variants={itemVariants}>
             <motion.img
-              src={`https://skillicons.dev/icons?i=python,java,js,c,cpp,rust&theme=${theme}`}
+              src={getSkillIconsUrl('python,java,js,c,cpp,rust', theme)}
               alt="Languages"
+              onError={(e) => {
+                if (e.currentTarget.dataset.fallbackTried) return
+                e.currentTarget.dataset.fallbackTried = '1'
+                e.currentTarget.src = getSkillIconsUrl('python,java,js,c,cpp,rust', theme, false)
+              }}
               whileHover={{ scale: 1.05 }}
             />
           </motion.div>
           <motion.div className="tech-icons" variants={itemVariants}>
             <motion.img
-              src={`https://skillicons.dev/icons?i=spring,django,docker,git,linux,vscode&theme=${theme}`}
+              src={getSkillIconsUrl('spring,django,docker,git,linux,vscode', theme)}
               alt="Tools"
+              onError={(e) => {
+                if (e.currentTarget.dataset.fallbackTried) return
+                e.currentTarget.dataset.fallbackTried = '1'
+                e.currentTarget.src = getSkillIconsUrl('spring,django,docker,git,linux,vscode', theme, false)
+              }}
               whileHover={{ scale: 1.05 }}
             />
           </motion.div>
@@ -288,7 +299,7 @@ export default function Home() {
               {[
                 { href: 'mailto:Cole.Snipes@icloud.com', icon: '📧', label: 'Email' },
                 { href: 'https://www.linkedin.com/in/cole-snipes', icon: '💼', label: 'LinkedIn' },
-                { href: 'https://github.com/c4snipes', label: 'GitHub' },
+                { href: 'https://github.com/c4snipes', icon: 'github', label: 'GitHub' },
               ].map((contact, index) => (
                 <motion.a
                   key={contact.label}
@@ -302,7 +313,21 @@ export default function Home() {
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   whileHover={{ y: -4, scale: 1.02 }}
                 >
-                  <span className="contact-icon">{contact.icon}</span>
+                  <span className="contact-icon">
+                    {contact.icon === 'github' ? (
+                      <img
+                        src={getSkillIconsUrl('github', theme)}
+                        alt="GitHub"
+                        width="22"
+                        height="22"
+                        onError={(e) => {
+                          if (e.currentTarget.dataset.fallbackTried) return
+                          e.currentTarget.dataset.fallbackTried = '1'
+                          e.currentTarget.src = getSkillIconsUrl('github', theme, false)
+                        }}
+                      />
+                    ) : contact.icon}
+                  </span>
                   <span className="contact-label">{contact.label}</span>
                 </motion.a>
               ))}

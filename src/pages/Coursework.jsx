@@ -108,7 +108,7 @@ export default function Coursework() {
           )}
         </motion.section>
 
-        <section className="grid grid-3 page-bottom" aria-live="polite">
+        <section className="grid grid-3 coursework-grid page-bottom" aria-live="polite">
           {filteredCourses.length === 0 ? (
             <motion.article
               className="course-card"
