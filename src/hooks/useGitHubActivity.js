@@ -107,10 +107,14 @@ export function useGitHubActivity() {
       setError(err.message)
 
       // Try to use cached data even if expired
-      const cached = localStorage.getItem(CACHE_KEY)
-      if (cached) {
-        const { data: cachedData } = JSON.parse(cached)
-        setData(cachedData)
+      try {
+        const cached = localStorage.getItem(CACHE_KEY)
+        if (cached) {
+          const { data: cachedData } = JSON.parse(cached)
+          setData(cachedData)
+        }
+      } catch {
+        // Cache is corrupted, ignore
       }
     } finally {
       setLoading(false)

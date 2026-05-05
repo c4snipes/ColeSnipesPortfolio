@@ -52,23 +52,36 @@ export function AchievementProvider({ children }) {
 
   // Unlock an achievement
   const unlock = useCallback((id) => {
-    if (unlockedIds.includes(id)) return false
-
     const achievement = getAchievementById(id)
     if (!achievement) return false
 
-    setUnlockedIds(prev => [...prev, id])
-    setPendingToast(achievement)
+    let wasUnlocked = false
 
-    // Check for completionist
-    const newUnlocked = [...unlockedIds, id]
-    const nonCompletionist = achievements.filter(a => a.id !== 'completionist')
-    if (nonCompletionist.every(a => newUnlocked.includes(a.id))) {
-      setTimeout(() => unlock('completionist'), 2000)
+    setUnlockedIds(prev => {
+      // Already unlocked - no change needed
+      if (prev.includes(id)) return prev
+
+      wasUnlocked = true
+      const newUnlocked = [...prev, id]
+
+      // Check for completionist (only if we're not already unlocking it)
+      if (id !== 'completionist') {
+        const nonCompletionist = achievements.filter(a => a.id !== 'completionist')
+        if (nonCompletionist.every(a => newUnlocked.includes(a.id)) && !newUnlocked.includes('completionist')) {
+          setTimeout(() => unlock('completionist'), 2000)
+        }
+      }
+
+      return newUnlocked
+    })
+
+    // Only show toast if actually unlocked (check happens after state update)
+    if (wasUnlocked) {
+      setPendingToast(achievement)
     }
 
-    return true
-  }, [unlockedIds])
+    return wasUnlocked
+  }, [])
 
   // Track page visits
   const trackPageVisit = useCallback((pageName) => {

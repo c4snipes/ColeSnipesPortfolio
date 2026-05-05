@@ -8,6 +8,10 @@ import { AchievementProvider } from './context/AchievementContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import App from './App'
 import './index.css'
+import { initTracing } from "./utils/tracing";
+
+// Initialize OpenTelemetry tracing
+initTracing();
 
 // Initialize Sentry (only in production)
 Sentry.init({

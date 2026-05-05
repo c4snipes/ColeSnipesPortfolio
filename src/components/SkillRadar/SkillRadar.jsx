@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
   Tooltip
 } from 'recharts'
+import { useDeviceType } from '../../hooks/useDeviceType'
 import './SkillRadar.css'
 
 const skillCategories = {
@@ -77,8 +78,16 @@ const CustomTooltip = ({ active, payload }) => {
 
 export default function SkillRadar({ onSkillSelect }) {
   const [activeCategory, setActiveCategory] = useState('languages')
+  const { isMobile, isTablet } = useDeviceType()
 
   const categoryData = skillCategories[activeCategory]
+
+  // Adjust chart height and font sizes based on device
+  const chartHeight = isMobile ? 280 : isTablet ? 320 : 350
+  const tickFontSize = isMobile ? 10 : 12
+  const margins = isMobile
+    ? { top: 15, right: 20, bottom: 15, left: 20 }
+    : { top: 20, right: 30, bottom: 20, left: 30 }
 
   return (
     <motion.div
@@ -109,10 +118,10 @@ export default function SkillRadar({ onSkillSelect }) {
 
       {/* Radar Chart */}
       <div className="radar-chart-container">
-        <ResponsiveContainer width="100%" height={350}>
+        <ResponsiveContainer width="100%" height={chartHeight}>
           <RadarChart
             data={categoryData.skills}
-            margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
+            margin={margins}
           >
             <PolarGrid
               stroke="rgba(255, 255, 255, 0.1)"
@@ -120,7 +129,7 @@ export default function SkillRadar({ onSkillSelect }) {
             />
             <PolarAngleAxis
               dataKey="name"
-              tick={{ fill: '#7f849c', fontSize: 12 }}
+              tick={{ fill: '#7f849c', fontSize: tickFontSize }}
               tickLine={false}
             />
             <PolarRadiusAxis
