@@ -1,7 +1,7 @@
 # Cole Snipes Portfolio
 
 Welcome to my personal developer portfolio!  
-This site highlights my projects, skills, and experience as a Computer Science student at the University of Indianapolis (graduating 2026). It’s designed to be clean and responsive.
+This site highlights my projects, skills, and experience as a Computer Science student at the University of Indianapolis, I just recently graduated from University on May 2026. It’s designed to be clean and responsive.
 
 
 ---
@@ -40,7 +40,8 @@ This site highlights my projects, skills, and experience as a Computer Science s
 - **Obesity Risk Prediction** – Machine learning models predicting obesity levels  
 - **Password Manager (Testing Suite)** – Selenium-based test automation in Python  
 - **Spring Boot Showcase** – REST API learning project in Java/Spring Boot  
-- **This Portfolio** – Built with semantic HTML and modern CSS
+- **This Portfolio** – Built with semantic Firebase, Svelte, and Components Library for Department Chair to Map Course Objectives to Accrediation Standard   
+- **Curriculum Mapping Web Application** - 
 
 Each project is linked directly from the site with repo access for code and context.
 
@@ -55,6 +56,4 @@ Each project is linked directly from the site with repo access for code and cont
 
 ---
 
-## License
-This project is open-source under the [GNU License](LICENSE).  
-Feel free to fork and adapt for your own portfolio!
+

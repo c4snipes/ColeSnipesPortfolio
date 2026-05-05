@@ -1,35 +1,22 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
-import { useEffect } from 'react'
 import { Analytics } from '@vercel/analytics/react'
-import Layout from './components/Layout'
-import Home from './pages/Home'
-import Projects from './pages/Projects'
-import Skills from './pages/Skills'
-import Coursework from './pages/Coursework'
-import { trackPageView } from './utils/tracing'
+import Nav from './components/Nav'
+import Hero from './components/Hero'
+import Work from './components/Work'
+import About from './components/About'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 
 function App() {
-  const location = useLocation()
-
-  // Track page views on route changes
-  useEffect(() => {
-    const pageName = location.pathname === '/' ? 'home' : location.pathname.slice(1)
-    trackPageView(pageName)
-  }, [location.pathname])
-
   return (
     <>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="skills" element={<Skills />} />
-            <Route path="coursework" element={<Coursework />} />
-          </Route>
-        </Routes>
-      </AnimatePresence>
+      <Nav />
+      <main>
+        <Hero />
+        <Work />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
       <Analytics />
     </>
   )
