@@ -26,6 +26,9 @@ The goal is not to look "old." It is to look *considered*. Restraint applied wit
 | "I am a passionate developer" copy | Meaningless opener that wastes prime attention real estate |
 | Emoji as UI elements | Degrades typographic tone immediately |
 | Hero particle systems | A decade past their expiry date |
+| Custom cursor or `cursor: none` | Breaks native affordances and reads as a gimmick |
+| Inline `<style>` blocks in JSX | Hides the system and encourages quick-fix styling |
+| Inline `style={{}}` for layout/typography | Makes design decisions unsearchable and inconsistent |
 
 ---
 
@@ -65,6 +68,7 @@ Typography does 80% of the personality work. Every size, weight, and spacing dec
 - **Hierarchy signal:** Weight alone is insufficient. Use size, spacing, AND color contrast together.
 - **Orphan control:** CSS `text-wrap: balance` on all headings.
 - **No underlines as decoration** — underlines are reserved exclusively for functional hyperlinks.
+- **Drop caps appear once** on the lead paragraph only. Never on every paragraph.
 
 ---
 
@@ -94,7 +98,7 @@ Typography does 80% of the personality work. Every size, weight, and spacing dec
 ### 3.2 Usage Rules
 
 - **Accent color appears on no more than 5% of any viewport** — it is a signal, not a wash.
-- Accent is used for: the cursor underline on the hero name, section numbering (01, 02, 03...), hover states on project titles, and the active nav indicator.
+- Accent is used for: section numbering (01, 02, 03...), nav hover underlines, hover states on project titles, and the About drop cap.
 - **No dark mode toggle.** The palette is warm and singular. A toggle implies the designer wasn't sure. Commit.
 - **Background is never pure white (#FFFFFF) or pure black (#000000).** Both signal digital laziness.
 
@@ -139,6 +143,7 @@ Not a standard 12-column grid. Instead: a **named-area editorial grid** that all
 - Text columns use `content-start / content-end` (9 of 11 units)
 - Full-bleed elements use `margin-start / margin-end`
 - Pull-quotes and figures intentionally break to `feature-start / margin-end` — off-balance by design
+- Never use `direction: rtl` to swap layout order. Use grid areas or ordering so reading direction stays logical.
 
 ### 4.2 Vertical Rhythm
 
@@ -308,6 +313,7 @@ One line. `Space Mono`, `--step--2`, `--color-ghost`. Full-width. That's it.
 
 - **Motion has one job:** reveal structure. It should never distract or perform.
 - **One entrance animation** on the hero (name, then subtitle, staggered by 120ms). Everything else appears at scroll entry, no animation.
+- **No JS-driven choreography** for simple reveals. Use CSS keyframes or transitions.
 - **Scroll-triggered:** Sections fade from `opacity: 0` to `opacity: 1` with `translateY(16px → 0)` over 500ms when they enter the viewport. Use `IntersectionObserver`, not a scroll event listener.
 - **No looping animations** anywhere on the page unless the user explicitly has reduced motion disabled.
 - Always respect `prefers-reduced-motion: reduce`. When set, disable all transforms; crossfades are allowed.
@@ -324,12 +330,7 @@ One line. `Space Mono`, `--step--2`, `--color-ghost`. Full-width. That's it.
 
 ### 6.3 Cursor
 
-A custom cursor is acceptable here — it reinforces the editorial tone.
-
-- Default: a 10×10px `--color-accent` filled circle, no border
-- On hover over links/project cards: expands to 40×40px, `border: 1px solid --color-accent`, `background: transparent`
-- Transition: `width/height` 200ms `cubic-bezier(0.16, 1, 0.3, 1)`
-- **Hide on touch devices.** Always.
+No custom cursor. The system cursor is the UI contract — keep it. Never hide it with `cursor: none` or replace it with DOM elements. If emphasis is needed, use hover and focus styles on the element itself.
 
 ---
 

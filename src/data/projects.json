@@ -2,6 +2,7 @@
   {
     "title": "KSPT Curricular Command Center",
     "descriptor": "Accreditation mapping tool",
+    "image": "/assets/placeholder.svg",
     "stack": ["SvelteKit", "Firebase", "Gemini AI"],
     "year": "2025",
     "link": null,
@@ -12,6 +13,7 @@
   {
     "title": "WebVPython WASM Runner",
     "descriptor": "Browser physics simulator",
+    "image": "/assets/placeholder.svg",
     "stack": ["JavaScript", "WebAssembly", "Pyodide", "Docker"],
     "year": "2023",
     "link": "https://github.com/vpython/wmWVPRunner",
@@ -22,6 +24,7 @@
   {
     "title": "Bluetooth Attendance",
     "descriptor": "Automated MAC address scanner",
+    "image": "/assets/placeholder.svg",
     "stack": ["Python", "Threading", "CSV"],
     "year": "2025",
     "link": "https://github.com/c4snipes/BluetoothAttendanceApplication",
@@ -32,6 +35,7 @@
   {
     "title": "Obesity Risk Prediction",
     "descriptor": "End-to-end ML classification pipeline",
+    "image": "/assets/placeholder.svg",
     "stack": ["Python", "scikit-learn", "Pandas"],
     "year": "2024",
     "link": "https://colab.research.google.com/drive/1KPU3XLnK4sVZgeRYdM17scwT8PfMw7gl?usp=sharing",
@@ -42,16 +46,18 @@
   {
     "title": "American Gun Violence Analysis",
     "descriptor": "Statistical correlation study",
+    "image": "/assets/placeholder.svg",
     "stack": ["R", "Excel", "Statistics"],
     "year": "2024",
     "link": null,
     "goal": "Examine whether state-level socioeconomic factors — poverty rates, education levels, firearm ownership — correlate meaningfully with gun violence mortality rates, or whether the relationships are weaker than commonly assumed.",
-    "process": "Applied linear regression in R across national datasets, computing R² values for each variable pair to assess correlation strength rather than relying on visual pattern-matching. Built data visualizations to communicate statistically significant findings to a non-specialist audience. The honest result required reporting where the model did not find strong correlation, not just where it did.",
+    "process": "Applied linear regression in excel across national datasets, computing R² values for each variable pair to assess correlation strength rather than relying on visual pattern-matching. Built data visualizations to communicate statistically significant findings to a non-specialist audience. The honest result required reporting where the model did not find strong correlation, not just where it did.",
     "result": "A data-grounded analysis of which socioeconomic variables show meaningful association with state-level gun mortality rates, with explicit acknowledgment of model limitations."
   },
   {
     "title": "Budget Manager",
     "descriptor": "Rust CLI finance tracker",
+    "image": "/assets/placeholder.svg",
     "stack": ["Rust", "CLI"],
     "year": "2025",
     "link": "https://github.com/c4snipes/budget_manager",
@@ -62,6 +68,7 @@
   {
     "title": "Password Manager Testing",
     "descriptor": "Selenium E2E suite with CI integration",
+    "image": "/assets/placeholder.svg",
     "stack": ["Python", "Selenium", "CI/CD"],
     "year": "2024",
     "link": "https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting",
@@ -72,6 +79,7 @@
   {
     "title": "Portfolio Website",
     "descriptor": "This site",
+    "image": "/assets/placeholder.svg",
     "stack": ["React", "Vite", "CSS"],
     "year": "2025",
     "link": "https://github.com/c4snipes/ColeSnipesPortfolio",
