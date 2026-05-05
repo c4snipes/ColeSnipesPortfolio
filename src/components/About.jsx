@@ -22,7 +22,7 @@ export default function About() {
           <h2 className="section-title">About</h2>
           <div className="about-inner">
             <p className="about-copy about-copy--lead">
-              I write code that makes systems feel smaller than they are.
+             Writing code that makes systems feel smaller than they are.
             </p>
             <p className="about-copy">
               Most of my work lives in the gap between raw computation and the people who need

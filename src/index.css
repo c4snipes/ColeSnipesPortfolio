@@ -449,6 +449,14 @@ a {
   text-transform: uppercase;
   color: var(--color-muted);
 }
+.contact-honeypot {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
 .contact-input,
 .contact-textarea {
   font-family: 'Space Mono', monospace;

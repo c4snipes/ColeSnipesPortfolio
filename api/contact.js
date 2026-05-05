@@ -1,5 +1,6 @@
 const MAX_ATTEMPTS = 10
 const WINDOW_MS = 60 * 60 * 1000
+const MIN_ELAPSED_MS = 5000
 const rateLimitStore = globalThis.__contactRateLimit ?? new Map()
 
 if (!globalThis.__contactRateLimit) {
@@ -60,9 +61,21 @@ export default async function handler(req, res) {
   const deviceId = typeof body.deviceId === 'string' ? body.deviceId.trim() : ''
   const page = typeof body.page === 'string' ? body.page.trim() : ''
   const userAgent = typeof body.userAgent === 'string' ? body.userAgent.trim() : ''
+  const honeypot = typeof body.honeypot === 'string' ? body.honeypot.trim() : ''
+  const elapsedMs = typeof body.elapsedMs === 'number' ? body.elapsedMs : null
 
   if (!subject || !message) {
     res.status(400).json({ error: 'Subject and message are required.' })
+    return
+  }
+
+  if (honeypot) {
+    res.status(400).json({ error: 'Unable to send your message right now.' })
+    return
+  }
+
+  if (elapsedMs !== null && elapsedMs < MIN_ELAPSED_MS) {
+    res.status(400).json({ error: 'Please take a moment before submitting.' })
     return
   }
 
