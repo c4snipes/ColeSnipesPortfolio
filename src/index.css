@@ -1582,6 +1582,43 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Phablet / Large phones */
+@media (max-width: 600px) {
+  :root {
+    --page-top: 65px;
+    --section-padding: 45px;
+    --container-padding: 18px;
+    --grid-gap: 16px;
+    --card-padding: 16px;
+  }
+
+  .nav-link {
+    padding: 10px 14px;
+    font-size: 0.875rem;
+  }
+
+  .about-image-container {
+    max-width: 240px;
+  }
+
+  .hero-cta {
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 12px 22px;
+    font-size: 0.95rem;
+  }
+
+  .contact-card {
+    padding: 18px 24px;
+  }
+
+  .skills-widgets {
+    gap: 16px;
+  }
+}
+
 /* Small mobile / Portrait phones */
 @media (max-width: 480px) {
   :root {
@@ -1677,6 +1714,126 @@ h1, h2, h3, h4, h5, h6 {
 
   .tech-icons img {
     height: 30px;
+  }
+}
+
+/* Landscape mobile - Short viewport height */
+@media (max-height: 500px) and (orientation: landscape) {
+  :root {
+    --page-top: 50px;
+    --section-padding: 30px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 60px 16px 30px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .terminal-prompt {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .typing-container {
+    font-size: 1rem;
+    min-height: 1.5rem;
+    margin-bottom: 12px;
+  }
+
+  .hero-quote {
+    margin: 16px 0;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+
+  .tech-icons {
+    margin: 16px 0;
+  }
+
+  .tech-icons img {
+    height: 32px;
+  }
+
+  .hero-cta {
+    margin-top: 20px;
+    gap: 8px;
+  }
+
+  .btn {
+    padding: 10px 18px;
+    font-size: 0.9rem;
+  }
+
+  .nav {
+    padding: 8px 16px;
+  }
+
+  .about-grid {
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    text-align: left;
+  }
+
+  .about-badges {
+    justify-content: flex-start;
+  }
+
+  .about-links {
+    justify-content: flex-start;
+  }
+
+  .orb {
+    opacity: 0.3;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse), (hover: none) {
+  /* Larger touch targets */
+  .nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .theme-toggle {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+
+  .chip {
+    min-height: 40px;
+  }
+
+  .tag.tag-link {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* Disable hover effects that don't work on touch */
+  .project-card::before {
+    display: none;
+  }
+
+  .project-card:hover {
+    transform: none;
+  }
+
+  .project-card:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:hover::after {
+    display: none;
   }
 }
 

@@ -1,10 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 export function useTypewriter(phrases, options = {}) {
   const { typeSpeed = 80, deleteSpeed = 40, pauseTime = 2000 } = options
   const [text, setText] = useState('')
   const [phraseIndex, setPhraseIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
+  const pauseTimeoutRef = useRef(null)
 
   useEffect(() => {
     const phrase = phrases[phraseIndex]
@@ -14,7 +15,7 @@ export function useTypewriter(phrases, options = {}) {
         if (text.length < phrase.length) {
           setText(phrase.slice(0, text.length + 1))
         } else {
-          setTimeout(() => setIsDeleting(true), pauseTime)
+          pauseTimeoutRef.current = setTimeout(() => setIsDeleting(true), pauseTime)
         }
       } else {
         if (text.length > 0) {
@@ -26,7 +27,12 @@ export function useTypewriter(phrases, options = {}) {
       }
     }, isDeleting ? deleteSpeed : typeSpeed)
 
-    return () => clearTimeout(timeout)
+    return () => {
+      clearTimeout(timeout)
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current)
+      }
+    }
   }, [text, phraseIndex, isDeleting, phrases, typeSpeed, deleteSpeed, pauseTime])
 
   return text
