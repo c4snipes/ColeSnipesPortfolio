@@ -12,6 +12,7 @@ export default function Contact() {
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState(null)
   const [isSending, setIsSending] = useState(false)
+  const [formStartedAt, setFormStartedAt] = useState(() => Date.now())
 
   useEffect(() => {
     const el = ref.current
@@ -104,6 +105,7 @@ export default function Contact() {
     }
 
     const deviceId = getDeviceId()
+    const elapsedMs = Math.max(0, Date.now() - formStartedAt)
 
     setIsSending(true)
     setStatus({ type: 'sending', message: 'Sending message…' })
@@ -116,6 +118,9 @@ export default function Contact() {
           subject: trimmedSubject,
           message: trimmedMessage,
           deviceId,
+          startedAt: formStartedAt,
+          elapsedMs,
+          honeypot: event.currentTarget?.website?.value || '',
           page: window.location.href,
           userAgent: navigator.userAgent,
         }),
@@ -141,6 +146,7 @@ export default function Contact() {
       })
       setSubject('')
       setMessage('')
+      setFormStartedAt(Date.now())
     } catch {
       setStatus({ type: 'error', message: 'Unable to send your message right now.' })
     } finally {
@@ -156,6 +162,16 @@ export default function Contact() {
           <h2 className="section-title">Contact</h2>
           <p className="contact-lead">Let's work together.</p>
           <form className="contact-form" onSubmit={handleSubmit} aria-busy={isSending}>
+            <div className="contact-honeypot" aria-hidden="true">
+              <label htmlFor="contact-website">Website</label>
+              <input
+                id="contact-website"
+                name="website"
+                type="text"
+                tabIndex="-1"
+                autoComplete="off"
+              />
+            </div>
             <label className="contact-label" htmlFor="contact-subject">
               Subject
             </label>
