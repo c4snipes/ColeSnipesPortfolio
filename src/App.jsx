@@ -7,15 +7,17 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import Skills from './pages/Skills'
 import Coursework from './pages/Coursework'
+import Contact from './pages/Contact'
 import { trackPageView } from './utils/tracing'
 
 function App() {
   const location = useLocation()
 
-  // Track page views on route changes
+  // Track page views and scroll to top on route changes
   useEffect(() => {
     const pageName = location.pathname === '/' ? 'home' : location.pathname.slice(1)
     trackPageView(pageName)
+    window.scrollTo(0, 0)
   }, [location.pathname])
 
   return (
@@ -27,6 +29,7 @@ function App() {
             <Route path="projects" element={<Projects />} />
             <Route path="skills" element={<Skills />} />
             <Route path="coursework" element={<Coursework />} />
+            <Route path="contact" element={<Contact />} />
           </Route>
         </Routes>
       </AnimatePresence>

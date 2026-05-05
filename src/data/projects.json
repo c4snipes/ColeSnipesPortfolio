@@ -30,7 +30,7 @@
   {
     "title": "American Gun Violence Analysis",
     "desc": "Conducted comprehensive statistical analysis of national gun violence trends using Excel and R linear regression. Examined correlations between poverty rates, education levels, firearm ownership, and state-level mortality rates. Used R² values to assess correlation strength and created data visualizations to communicate statistically significant findings.",
-    "tags": ["R", "Excel", "Statistics", "Data Visualization"],
+    "tags": ["Excel", "Statistics", "Data Visualization"],
     "link": "#",
     "date": "2024-03-15"
   },

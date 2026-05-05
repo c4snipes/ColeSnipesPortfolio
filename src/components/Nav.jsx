@@ -2,24 +2,20 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useTheme } from '../hooks/useTheme'
-import { useAchievements } from '../context/AchievementContext'
 
 const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/projects', label: 'Projects' },
   { to: '/skills', label: 'Skills' },
-  { to: '/coursework', label: 'Courses' }
+  { to: '/coursework', label: 'Courses' },
+  { to: '/contact', label: 'Contact' }
 ]
 
 export default function Nav() {
   const { theme, toggleTheme } = useTheme()
-  const { unlock } = useAchievements()
   const [mobileOpen, setMobileOpen] = useState(false)
 
   const handleThemeToggle = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark'
-    if (newTheme === 'dark') unlock('night-owl')
-    if (newTheme === 'light') unlock('day-walker')
     toggleTheme()
   }
 
