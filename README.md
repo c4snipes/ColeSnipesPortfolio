@@ -49,11 +49,10 @@ Each project is linked directly from the site with repo access for code and cont
 ---
 
 ## Contact
+- Email form sends directly from the site (Vercel serverless). Configure `RESEND_API_KEY`, `CONTACT_FROM`, and `CONTACT_TO`.
 - Email: [cole.snipes@icloud.com](mailto:cole.snipes@icloud.com)  
 - LinkedIn: [linkedin.com/in/cole-snipes](https://www.linkedin.com/in/cole-snipes/)  
 - GitHub: [github.com/c4snipes](https://github.com/c4snipes)
 
 
 ---
-
-

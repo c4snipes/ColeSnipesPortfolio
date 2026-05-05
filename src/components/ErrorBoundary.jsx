@@ -1,50 +1,56 @@
 import { Component } from 'react'
-import * as Sentry from '@sentry/react'
 
 class ErrorBoundary extends Component {
-  state = { hasError: false }
+  state = { hasError: false, error: null, errorInfo: null }
 
-  static getDerivedStateFromError() {
-    return { hasError: true }
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error }
   }
 
   componentDidCatch(error, errorInfo) {
-    Sentry.captureException(error, { extra: errorInfo })
+    this.setState({ errorInfo })
+    console.error('ErrorBoundary caught an error:', error, errorInfo)
+  }
+
+  handleReset = () => {
+    this.setState({ hasError: false, error: null, errorInfo: null })
   }
 
   render() {
     if (this.state.hasError) {
+      const errorMessage = this.state.error?.message || 'Unexpected application error.'
+      const componentStack = this.state.errorInfo?.componentStack
       return (
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          padding: '2rem',
-          textAlign: 'center',
-          background: 'var(--bg)',
-          color: 'var(--text)'
-        }}>
-          <h2 style={{ marginBottom: '1rem' }}>Something went wrong</h2>
-          <p style={{ marginBottom: '1.5rem', opacity: 0.7 }}>
-            An unexpected error occurred. Please try refreshing the page.
+        <div className="error-boundary">
+          <p className="error-boundary__title">Something went wrong.</p>
+          <p className="error-boundary__message">
+            {errorMessage} You can retry, or refresh the page.
           </p>
-          <button
-            onClick={() => window.location.reload()}
-            style={{
-              padding: '0.75rem 1.5rem',
-              background: 'var(--accent)',
-              color: 'var(--bg)',
-              border: 'none',
-              borderRadius: '0.5rem',
-              cursor: 'pointer',
-              fontFamily: 'inherit',
-              fontSize: '1rem'
-            }}
-          >
-            Refresh Page
-          </button>
+          <div className="error-boundary__actions">
+            <button
+              onClick={this.handleReset}
+              className="error-boundary__button"
+              type="button"
+            >
+              Try again
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              className="error-boundary__button error-boundary__button--ghost"
+              type="button"
+            >
+              Refresh page
+            </button>
+          </div>
+          {(this.state.error || componentStack) && (
+            <details className="error-boundary__details">
+              <summary className="error-boundary__summary">Technical details</summary>
+              <pre className="error-boundary__stack">
+                {this.state.error?.toString()}
+                {componentStack ? `\n${componentStack}` : ''}
+              </pre>
+            </details>
+          )}
         </div>
       )
     }
