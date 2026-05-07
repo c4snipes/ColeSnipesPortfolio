@@ -3,18 +3,43 @@
     "title": "KSPT Curricular Command Center",
     "descriptor": "Accreditation mapping tool",
     "image": "/assets/placeholder.svg",
-    "stack": ["SvelteKit", "Firebase", "Gemini AI"],
+    "stack": [
+      "SvelteKit 2",
+      "Firebase",
+      "Gemini AI",
+      "RBAC"
+    ],
     "year": "2025",
-    "link": null,
-    "goal": "The DPT program's accreditation process required manually mapping every course to CAPTE standards across disconnected spreadsheets. Each mapping cycle took weeks and was error-prone — a compliance risk for the department.",
-    "process": "Built a SvelteKit 2 frontend using Svelte 5's new reactivity model, designing the component architecture around the accreditation data model before writing any UI code. Integrated Gemini AI to suggest standard mappings from course descriptions, reducing the manual review workload. Firebase provided real-time sync and Google OAuth, eliminating the shared-spreadsheet access problem entirely.",
-    "result": "Manual mapping time reduced by approximately 60%. Faculty now work from a shared live interface rather than emailed spreadsheet versions."
+    "link": "https://engr49x-kspt.web.app",
+    "goal": "The DPT program's accreditation process required manually mapping every course objective to 93 CAPTE standards across disconnected spreadsheets. Each review cycle took weeks and was error-prone — a compliance risk for a department preparing for accreditation audit.",
+    "process": "Built a SvelteKit 2 frontend using Svelte 5's new reactivity model, designing the component architecture around the accreditation data model before writing any UI code. Implemented role-based access control across two roles (admin, viewer) at the Firebase Rules layer, not just the UI, so access policy couldn't drift between layers. Integrated Gemini AI to surface alignment gaps between course objectives and CAPTE criteria, replacing the manual cross-referencing step. Delivered across five Agile sprints with a five-person team, validating requirements directly with the department chair each cycle.",
+    "result": "Cross-referencing time for administrators reduced from hours to minutes per review cycle. Ninety-three standards now mapped and maintained through a shared live interface with real-time sync."
+  },
+  {
+    "title": "n8n-to-Python Transpiler",
+    "descriptor": "Workflow automation CLI",
+    "image": "/assets/placeholder.svg",
+    "stack": [
+      "Python",
+      "AST",
+      "CLI"
+    ],
+    "year": "2025",
+    "link": "https://github.com/c4snipes/n8n-transpiler",
+    "goal": "n8n workflows are useful for prototyping automation, but they create a hard runtime dependency on a running n8n instance. Production environments often can't carry that dependency — which means workflows either get rewritten from scratch or never make it to production.",
+    "process": "Built a CLI tool that parses n8n's exported JSON workflow format and generates equivalent standalone Python scripts using AST-based code generation rather than string templating. The AST approach was the non-obvious choice: string templates would have been faster to write but would collapse on any node with nested conditionals or dynamic field references. Implemented support for HTTP request nodes, data transformation, and conditional branching — the node types that appear in the majority of real workflows.",
+    "result": "n8n workflows convert to clean, dependency-free Python scripts without manual rewriting. The output is readable and maintainable, not generated noise."
   },
   {
     "title": "WebVPython WASM Runner",
     "descriptor": "Browser physics simulator",
     "image": "/assets/placeholder.svg",
-    "stack": ["JavaScript", "WebAssembly", "Pyodide", "Docker"],
+    "stack": [
+      "JavaScript",
+      "WebAssembly",
+      "Pyodide",
+      "Docker"
+    ],
     "year": "2023",
     "link": "https://github.com/vpython/wmWVPRunner",
     "goal": "The VPython physics simulation library required a local Python installation — which meant every classroom demo started with a 20-minute setup session. Students who fell behind during installation missed the actual lesson.",
@@ -25,7 +50,11 @@
     "title": "Bluetooth Attendance",
     "descriptor": "Automated MAC address scanner",
     "image": "/assets/placeholder.svg",
-    "stack": ["Python", "Threading", "CSV"],
+    "stack": [
+      "Python",
+      "Threading",
+      "CSV"
+    ],
     "year": "2025",
     "link": "https://github.com/c4snipes/BluetoothAttendanceApplication",
     "goal": "Manual attendance consumed several minutes of every lab session — time that compounded across sections, instructors, and semesters with no shared record system.",
@@ -36,18 +65,27 @@
     "title": "Obesity Risk Prediction",
     "descriptor": "End-to-end ML classification pipeline",
     "image": "/assets/placeholder.svg",
-    "stack": ["Python", "scikit-learn", "Pandas"],
+    "stack": [
+      "Python",
+      "Keras",
+      "scikit-learn",
+      "Pandas"
+    ],
     "year": "2024",
     "link": "https://colab.research.google.com/drive/1KPU3XLnK4sVZgeRYdM17scwT8PfMw7gl?usp=sharing",
-    "goal": "Build a reproducible machine learning pipeline that classifies obesity risk from self-reported behavioral data — and demonstrate that structured feature engineering matters more than algorithm selection.",
-    "process": "Ran parallel Logistic Regression and Random Forest classifiers on 2,111 records after EDA revealed class imbalance and correlated dietary features. Engineering interaction features between activity level and caloric intake improved Random Forest recall by 8% — more than switching models would have. Validation used ROC curves and confusion matrices to communicate results in a health context, not just accuracy numbers.",
-    "result": "Classification accuracy competitive with published baselines. The pipeline is fully reproducible in a public Colab notebook."
+    "goal": "Build a reproducible machine learning pipeline that classifies obesity risk across six categories from self-reported behavioral data — and determine which variables actually drive risk versus which ones look predictive but aren't.",
+    "process": "Trained and compared three model architectures on 2,111 records across 16 features: a Keras neural network, KNN, and Random Forest. Chi-square analysis (χ²=448.9, p<0.001) confirmed that family history, dietary habits, and physical activity frequency were the dominant predictors — not the variables most commonly assumed. The neural network reached 96% classification accuracy and KNN reached 95%, with the gap narrowing after proper feature scaling. Validation used ROC curves and confusion matrices rather than accuracy alone, since a health classification context punishes certain error types more than others.",
+    "result": "96% classification accuracy on held-out test data. Pipeline is fully reproducible in a public Colab notebook, with documented feature engineering decisions reviewable by non-ML readers."
   },
   {
     "title": "American Gun Violence Analysis",
     "descriptor": "Statistical correlation study",
     "image": "/assets/placeholder.svg",
-    "stack": ["R", "Excel", "Statistics"],
+    "stack": [
+      "R",
+      "Excel",
+      "Statistics"
+    ],
     "year": "2024",
     "link": null,
     "goal": "Examine whether state-level socioeconomic factors — poverty rates, education levels, firearm ownership — correlate meaningfully with gun violence mortality rates, or whether the relationships are weaker than commonly assumed.",
@@ -58,7 +96,10 @@
     "title": "Budget Manager",
     "descriptor": "Rust CLI finance tracker",
     "image": "/assets/placeholder.svg",
-    "stack": ["Rust", "CLI"],
+    "stack": [
+      "Rust",
+      "CLI"
+    ],
     "year": "2025",
     "link": "https://github.com/c4snipes/budget_manager",
     "goal": "Build a personal finance tracker that runs entirely at the command line — no web services, no accounts — as a study in Rust's ownership model applied to real I/O and parsing problems.",
@@ -69,7 +110,11 @@
     "title": "Password Manager Testing",
     "descriptor": "Selenium E2E suite with CI integration",
     "image": "/assets/placeholder.svg",
-    "stack": ["Python", "Selenium", "CI/CD"],
+    "stack": [
+      "Python",
+      "Selenium",
+      "CI/CD"
+    ],
     "year": "2024",
     "link": "https://github.com/c4snipes/swen320_2024S_password_manager_EllerSnipes_automatictesting",
     "goal": "The collaborative password manager project had no automated tests. Manual QA before every merge was slow and inconsistently applied — especially for multi-user sharing scenarios that required coordinating two browser sessions simultaneously.",
@@ -80,7 +125,11 @@
     "title": "Portfolio Website",
     "descriptor": "This site",
     "image": "/assets/placeholder.svg",
-    "stack": ["React", "Vite", "CSS"],
+    "stack": [
+      "React",
+      "Vite",
+      "CSS"
+    ],
     "year": "2025",
     "link": "https://github.com/c4snipes/ColeSnipesPortfolio",
     "goal": "Build a portfolio that reads like a printed monograph rather than a SaaS landing page — one that communicates craft through typographic restraint instead of animation spectacle.",

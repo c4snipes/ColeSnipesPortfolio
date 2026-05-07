@@ -1,0 +1,402 @@
+[
+  {
+    "category": "Programming & Frameworks",
+    "items": [
+      {
+        "title": "Languages",
+        "subItems": [
+          "Python",
+          "Java",
+          "JavaScript",
+          "TypeScript",
+          "C",
+          "C++",
+          "PHP",
+          "R",
+          "Rust",
+          "Swift",
+          "Bash",
+          "Shell Scripting"
+        ]
+      },
+      {
+        "title": "Frontend",
+        "subItems": [
+          "HTML",
+          "CSS",
+          "Sass/SCSS",
+          "React",
+          "Svelte",
+          "SvelteKit",
+          "Next.js",
+          "Web Components"
+        ]
+      },
+      {
+        "title": "Backend",
+        "subItems": [
+          "Node.js",
+          "Spring Boot",
+          "Django",
+          "Flask"
+        ]
+      },
+      {
+        "title": "Libraries & Tooling",
+        "subItems": [
+          "Vite",
+          "Tailwind CSS",
+          "NumPy",
+          "Pandas",
+          "scikit-learn",
+          "PyTorch",
+          "Matplotlib",
+          "Seaborn",
+          "OpenCV",
+          "JUnit",
+          "PyTest",
+          "WebAssembly (WASM)",
+          "Package Management (npm/pnpm)"
+        ]
+      },
+      {
+        "title": "Core CS",
+        "subItems": [
+          "Object-Oriented Programming (OOP)",
+          "Functional Programming",
+          "Data Structures & Algorithms",
+          "Design Patterns",
+          "Event-Driven Architecture",
+          "Serverless Functions",
+          "API Development"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Data & Machine Learning",
+    "items": [
+      {
+        "title": "Data Preparation",
+        "subItems": [
+          "Data Cleaning & Preprocessing",
+          "Data Wrangling"
+        ]
+      },
+      {
+        "title": "Analysis",
+        "subItems": [
+          "Exploratory Data Analysis (EDA)",
+          "Statistical Analysis",
+          "Quantitative Analysis",
+          "Data Visualization",
+          "Data-Driven Decision Making"
+        ]
+      },
+      {
+        "title": "Pipelines & Features",
+        "subItems": [
+          "Feature Engineering",
+          "Data Pipelines",
+          "ML Pipeline"
+        ]
+      },
+      {
+        "title": "Modeling",
+        "subItems": [
+          "Supervised Learning",
+          "Unsupervised Learning",
+          "Regression",
+          "Classification",
+          "Predictive Analytics",
+          "Predictive Modeling",
+          "Neural Networks",
+          "Deep Learning",
+          "Natural Language Processing (NLP)"
+        ]
+      },
+      {
+        "title": "Evaluation & Delivery",
+        "subItems": [
+          "Model Evaluation & Validation",
+          "Hyperparameter Tuning",
+          "Model Deployment",
+          "A/B Testing"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "AI & LLM Tooling",
+    "items": [
+      {
+        "title": "Foundations",
+        "subItems": [
+          "Generative AI",
+          "Large Language Models (LLMs)",
+          "Prompt Engineering",
+          "Context Window Management",
+          "Fine-Tuning"
+        ]
+      },
+      {
+        "title": "Integration",
+        "subItems": [
+          "LLM API Integration (Claude, Gemini, OpenAI)",
+          "Tool Use / Function Calling",
+          "AI Integration"
+        ]
+      },
+      {
+        "title": "Retrieval & Agents",
+        "subItems": [
+          "Retrieval-Augmented Generation (RAG)",
+          "AI Agents",
+          "Multi-Agent Systems"
+        ]
+      },
+      {
+        "title": "Workflow",
+        "subItems": [
+          "AI-Powered Application Development",
+          "AI Workflow Automation",
+          "LangChain",
+          "MCP (Model Context Protocol)"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Web Development & Design",
+    "items": [
+      {
+        "title": "Application Development",
+        "subItems": [
+          "Full-Stack Development",
+          "Web Application Development",
+          "Single Page Applications (SPA)",
+          "Component-Driven Development",
+          "Front End Development",
+          "Back End Development"
+        ]
+      },
+      {
+        "title": "APIs & Auth",
+        "subItems": [
+          "REST API Development",
+          "RESTful API Design",
+          "GraphQL",
+          "Third-Party API Integration",
+          "Webhook Integration",
+          "Authentication & Authorization (JWT, OAuth2)"
+        ]
+      },
+      {
+        "title": "Rendering & Real-Time",
+        "subItems": [
+          "Server-Side Rendering (SSR)",
+          "Static Site Generation (SSG)",
+          "WebSockets / Real-Time Communication"
+        ]
+      },
+      {
+        "title": "Reliability & Performance",
+        "subItems": [
+          "State Management",
+          "Session Management",
+          "Cookie Management",
+          "CORS Handling",
+          "Rate Limiting",
+          "Form Validation",
+          "Error Handling & Logging",
+          "Performance Optimization"
+        ]
+      },
+      {
+        "title": "UX & Design",
+        "subItems": [
+          "Responsive Web Design",
+          "Mobile-First Design",
+          "UI/UX Development",
+          "User Interface (UI) Design",
+          "User Experience (UX)",
+          "Wireframing",
+          "Usability Testing",
+          "Cross-Browser Compatibility"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Tools & Platforms",
+    "items": [
+      {
+        "title": "Editors & IDE",
+        "subItems": [
+          "VS Code",
+          "Zed Editor",
+          "Integrated Development Environment (IDE)"
+        ]
+      },
+      {
+        "title": "Utilities",
+        "subItems": [
+          "Jupyter",
+          "Google Colab",
+          "Replit",
+          "ESLint / Prettier",
+          "dotenv",
+          "npm Scripts",
+          "Homebrew",
+          "Cron Jobs"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Infrastructure & Delivery",
+    "items": [
+      {
+        "title": "Version Control & CI",
+        "subItems": [
+          "Git",
+          "GitHub",
+          "GitHub Actions",
+          "Continuous Integration (CI)",
+          "Continuous Deployment (CD)",
+          "Collaboration Tools"
+        ]
+      },
+      {
+        "title": "Containers & OS",
+        "subItems": [
+          "Docker",
+          "Linux/Unix",
+          "macOS",
+          "Windows"
+        ]
+      },
+      {
+        "title": "Cloud & CLI",
+        "subItems": [
+          "Firebase CLI",
+          "Vercel CLI",
+          "SSH",
+          "Remote Development",
+          "Build Tools",
+          "Package Managers",
+          "Command Line Interface (CLI)"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Testing & Validation",
+    "items": [
+      {
+        "title": "Testing Types",
+        "subItems": [
+          "Unit Testing",
+          "Integration Testing",
+          "System Testing",
+          "Automated Testing",
+          "Test-Driven Development (TDD)",
+          "Regression Testing",
+          "Load Testing",
+          "Functional Testing",
+          "Performance Testing",
+          "Acceptance Testing",
+          "Smoke Testing"
+        ]
+      },
+      {
+        "title": "Tooling",
+        "subItems": [
+          "Playwright",
+          "API Testing",
+          "Selenium",
+          "Mocking & Stubbing",
+          "Code Coverage",
+          "Debugging & Profiling",
+          "Static Analysis",
+          "Linting"
+        ]
+      },
+      {
+        "title": "Quality & Process",
+        "subItems": [
+          "Software Validation",
+          "Quality Assurance (QA)",
+          "Test Automation",
+          "Manual Testing",
+          "Bug Tracking",
+          "Code Review",
+          "Open Source Development",
+          "Collaborative Development",
+          "Pair Programming"
+        ]
+      }
+    ]
+  },
+  {
+    "category": "General & Interpersonal Skills",
+    "items": [
+      {
+        "title": "Communication",
+        "subItems": [
+          "Communication Skills",
+          "Verbal & Written Communication",
+          "Stakeholder Communication",
+          "Client-Facing Communication",
+          "Technical Writing",
+          "Technical Presentation",
+          "Public Speaking",
+          "Academic Presentation"
+        ]
+      },
+      {
+        "title": "Collaboration",
+        "subItems": [
+          "Team Leadership",
+          "Cross-Functional Collaboration",
+          "Cross-Team Collaboration",
+          "Peer Mentoring",
+          "Client Relations",
+          "User Empathy",
+          "Agile / Scrum"
+        ]
+      },
+      {
+        "title": "Execution",
+        "subItems": [
+          "Project Management",
+          "Requirements Gathering",
+          "Documentation",
+          "Time Management",
+          "Deadline Management",
+          "Organizational Skills",
+          "Context Switching",
+          "Multitasking"
+        ]
+      },
+      {
+        "title": "Mindset",
+        "subItems": [
+          "Problem-Solving",
+          "Analytical Thinking",
+          "Critical Thinking",
+          "Creativity",
+          "Research & Analysis",
+          "Adaptive Learning",
+          "Independent Research",
+          "Resourcefulness",
+          "Detail-Oriented",
+          "Initiative",
+          "Ownership Mindset",
+          "Self-Motivated",
+          "Fast Learner"
+        ]
+      }
+    ]
+  }
+]

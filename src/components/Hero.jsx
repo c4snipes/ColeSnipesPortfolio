@@ -17,6 +17,16 @@ export default function Hero() {
           depends on trustworthy ingestion, modeling, and reporting.
           <span className="hero-location">Indianapolis — Available for work</span>
         </p>
+        <div className="hero-actions">
+          <a
+            className="hero-button"
+            href="/assets/Cole_Snipes_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Download resume (PDF)
+          </a>
+        </div>
       </div>
     </section>
   )

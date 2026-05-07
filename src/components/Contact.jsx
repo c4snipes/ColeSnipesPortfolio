@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 
 const EMAIL_ADDRESS = 'cole.snipes@icloud.com'
 const RATE_LIMIT_KEY = 'contactAttempts'
-const DEVICE_ID_KEY = 'contactDeviceId'
+const WEB3FORMS_KEY = 'be6b21e6-b3a1-443f-9e1e-d53eb9da659f'
 const MAX_ATTEMPTS = 10
 const WINDOW_MS = 60 * 60 * 1000
 
 export default function Contact() {
   const ref = useRef(null)
+  const [email, setEmail] = useState('')
   const [subject, setSubject] = useState('')
   const [message, setMessage] = useState('')
   const [status, setStatus] = useState(null)
   const [isSending, setIsSending] = useState(false)
-  const [formStartedAt, setFormStartedAt] = useState(() => Date.now())
 
   useEffect(() => {
     const el = ref.current
@@ -34,109 +34,76 @@ export default function Contact() {
     try {
       const raw = window.localStorage.getItem(RATE_LIMIT_KEY)
       attempts = raw ? JSON.parse(raw) : []
-      if (!Array.isArray(attempts)) {
-        attempts = []
-      }
+      if (!Array.isArray(attempts)) attempts = []
     } catch {
       return { allowed: false, error: 'Unable to access browser storage for rate limiting.' }
     }
 
     const now = Date.now()
-    const windowStart = now - WINDOW_MS
-    const recent = attempts.filter((timestamp) => typeof timestamp === 'number' && timestamp > windowStart)
+    const recent = attempts.filter((t) => typeof t === 'number' && t > now - WINDOW_MS)
 
     if (recent.length >= MAX_ATTEMPTS) {
-      const oldest = Math.min(...recent)
-      const retryMs = Math.max(0, oldest + WINDOW_MS - now)
-      return {
-        allowed: false,
-        retryMinutes: Math.ceil(retryMs / 60000),
-      }
+      const retryMs = Math.max(0, Math.min(...recent) + WINDOW_MS - now)
+      return { allowed: false, retryMinutes: Math.ceil(retryMs / 60000) }
     }
 
-    const updated = [...recent, now]
     try {
-      window.localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(updated))
+      window.localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify([...recent, now]))
     } catch {
       return { allowed: false, error: 'Unable to record rate limit in this browser.' }
     }
 
-    return { allowed: true, remaining: MAX_ATTEMPTS - updated.length }
-  }
-
-  const getDeviceId = () => {
-    if (typeof window === 'undefined') return null
-    try {
-      const existing = window.localStorage.getItem(DEVICE_ID_KEY)
-      if (existing) return existing
-      const generated = window.crypto?.randomUUID
-        ? window.crypto.randomUUID()
-        : `${Date.now()}-${Math.random().toString(16).slice(2)}`
-      window.localStorage.setItem(DEVICE_ID_KEY, generated)
-      return generated
-    } catch {
-      return null
-    }
+    return { allowed: true, remaining: MAX_ATTEMPTS - recent.length - 1 }
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     setStatus(null)
 
+    const trimmedEmail = email.trim()
     const trimmedSubject = subject.trim()
     const trimmedMessage = message.trim()
 
-    if (!trimmedSubject || !trimmedMessage) {
-      setStatus({ type: 'error', message: 'Subject and message are required.' })
+    if (!trimmedEmail || !trimmedSubject || !trimmedMessage) {
+      setStatus({ type: 'error', message: 'All fields are required.' })
       return
     }
 
     const attempt = recordAttempt()
     if (!attempt.allowed) {
-      if (attempt.error) {
-        setStatus({ type: 'error', message: attempt.error })
-        return
-      }
       setStatus({
         type: 'error',
-        message: `Rate limit reached. Try again in ${attempt.retryMinutes} minute${attempt.retryMinutes === 1 ? '' : 's'}.`,
+        message: attempt.error
+          ? attempt.error
+          : `Rate limit reached. Try again in ${attempt.retryMinutes} minute${attempt.retryMinutes === 1 ? '' : 's'}.`,
       })
       return
     }
-
-    const deviceId = getDeviceId()
-    const elapsedMs = Math.max(0, Date.now() - formStartedAt)
 
     setIsSending(true)
     setStatus({ type: 'sending', message: 'Sending message…' })
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
         body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          email: trimmedEmail,
           subject: trimmedSubject,
           message: trimmedMessage,
-          deviceId,
-          startedAt: formStartedAt,
-          elapsedMs,
-          honeypot: event.currentTarget?.website?.value || '',
-          page: window.location.href,
-          userAgent: navigator.userAgent,
+          from_name: 'ColeSnipes.dev',
+          botcheck: false,
         }),
       })
 
-      if (!response.ok) {
-        let errorMessage = 'Unable to send your message right now.'
-        try {
-          const data = await response.json()
-          if (data?.error) {
-            errorMessage = data.error
-          }
-        } catch {
-          // Keep the generic error message.
-        }
-        setStatus({ type: 'error', message: errorMessage })
+      const payload = await response.json().catch(() => ({}))
+
+      if (!response.ok || !payload?.success) {
+        setStatus({ type: 'error', message: payload?.message ?? 'Unable to send your message right now.' })
         return
       }
 
@@ -144,9 +111,9 @@ export default function Contact() {
         type: 'success',
         message: `Message sent. ${attempt.remaining} send${attempt.remaining === 1 ? '' : 's'} left this hour.`,
       })
+      setEmail('')
       setSubject('')
       setMessage('')
-      setFormStartedAt(Date.now())
     } catch {
       setStatus({ type: 'error', message: 'Unable to send your message right now.' })
     } finally {
@@ -158,20 +125,34 @@ export default function Contact() {
     <section className="contact" id="contact" aria-label="Contact">
       <div className="container">
         <div className="reveal" ref={ref}>
-          <span className="section-number">04 —</span>
+          <span className="section-number">07 —</span>
           <h2 className="section-title">Contact</h2>
           <p className="contact-lead">Let's work together.</p>
           <form className="contact-form" onSubmit={handleSubmit} aria-busy={isSending}>
-            <div className="contact-honeypot" aria-hidden="true">
-              <label htmlFor="contact-website">Website</label>
-              <input
-                id="contact-website"
-                name="website"
-                type="text"
-                tabIndex="-1"
-                autoComplete="off"
-              />
-            </div>
+            {/* Web3Forms honeypot — must be a hidden checkbox named botcheck */}
+            <input
+              type="checkbox"
+              name="botcheck"
+              style={{ display: 'none' }}
+              tabIndex="-1"
+              aria-hidden="true"
+              readOnly
+            />
+            <label className="contact-label" htmlFor="contact-email">
+              Your email
+            </label>
+            <input
+              id="contact-email"
+              className="contact-input"
+              type="email"
+              name="email"
+              autoComplete="email"
+              maxLength={254}
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              disabled={isSending}
+              required
+            />
             <label className="contact-label" htmlFor="contact-subject">
               Subject
             </label>
