@@ -18,7 +18,7 @@ This site highlights my projects, skills, and experience as a Computer Science s
 ## Tech Stack
 - **Frontend:** React 18 + Vite  
 - **Styling:** CSS custom properties, editorial grid, responsive layout  
-- **Serverless:** Vercel Functions + Wevb3Forms
+- **Serverless:** Vercel Functions + Web3Forms w/ public key provided by Web3Forms
 - **Deployment:** Vercel (recommended)  
 
 

@@ -1,3 +1,14 @@
+/**
+ * About.jsx
+ *
+ * Position statement section. Copy intentionally avoids biography format.
+ * See ANTI-VIBECODING-PORTFOLIO.md section 5.4 for the copy direction.
+ *
+ * The first-letter drop cap on .about-copy--lead is CSS-only (::first-letter).
+ * It only appears on the lead paragraph; applying it to every paragraph
+ * would break the typographic rhythm.
+ */
+
 import { useEffect, useRef } from 'react'
 
 export default function About() {
@@ -21,16 +32,21 @@ export default function About() {
           <span className="section-number">06 —</span>
           <h2 className="section-title">About</h2>
           <div className="about-inner">
+            {/* Lead paragraph — receives the drop cap via .about-copy--lead */}
             <p className="about-copy about-copy--lead">
-             Writing code that makes systems feel smaller than they are.
+              I build the part of the system that has to explain itself to people who should not have to think about what is underneath.
             </p>
             <p className="about-copy">
-              Most of my work lives in the gap between raw computation and the people who need
-              to use it: students, instructors, researchers. The interface is often the only
-              part they see. I care about what happens after the demo. 
+              Most of my projects have non-technical end users. A department chair mapping
+              accreditation standards. Students running physics simulations in a browser.
+              The interface is the whole product for them, not a layer on top of it.
             </p>
             <p className="about-copy">
-              I have just graduated from the University of Indianapolis, with a Computer Science degree. I am currently at looking for a job in an industry that values innovation and creativity. I am passionate about creating software that solves real-world problems and makes people's lives easier. I am willing to learn and grow as a developer and contribute to the development of my own tech stack. Thanks for stopping by! 
+              Graduated from the University of Indianapolis in May 2026 with a B.S. in Computer
+              Science, concentration in Software Engineering. My projects have run from
+              AI-powered accreditation tools to open source WebAssembly contributions. The
+              common thread is output that someone outside the team actually uses. Currently
+              available and looking for a role where that standard applies.
             </p>
           </div>
         </div>
