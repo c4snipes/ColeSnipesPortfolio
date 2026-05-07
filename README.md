@@ -18,7 +18,7 @@ This site highlights my projects, skills, and experience as a Computer Science s
 ## Tech Stack
 - **Frontend:** React 18 + Vite  
 - **Styling:** CSS custom properties, editorial grid, responsive layout  
-- **Serverless:** Vercel Functions + Resend email API  
+- **Serverless:** Vercel Functions + Wevb3Forms
 - **Deployment:** Vercel (recommended)  
 
 
@@ -28,10 +28,12 @@ This site highlights my projects, skills, and experience as a Computer Science s
 Projects live in `src/data/projects.json` and are rendered in the Work section.
 
 
+Disclaimer: For the Placeholder Images I used the website Placehold.co
+
 ---
 
 ## Contact
-- Email form sends directly from the site (Vercel serverless). Configure `RESEND_API_KEY`, `CONTACT_FROM`, and `CONTACT_TO`.
+- Email form sends directly from the site (Vercel serverless). 
 - Email: [cole.snipes@icloud.com](mailto:cole.snipes@icloud.com)  
 - LinkedIn: [linkedin.com/in/cole-snipes](https://www.linkedin.com/in/cole-snipes/)  
 - GitHub: [github.com/c4snipes](https://github.com/c4snipes)

@@ -70,7 +70,7 @@ export default function Work() {
     <section className="work" id="work" aria-label="Selected work">
       <div className="container">
         <header className="work-header">
-          <span className="section-number">02 —</span>
+          <span className="section-number">03 —</span>
           <h2 className="section-title">Work</h2>
         </header>
         <div className="project-list">

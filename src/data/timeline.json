@@ -1,0 +1,40 @@
+[
+  {
+    "year": "2022",
+    "endYear": "2026",
+    "title": "B.S. Computer Science — University of Indianapolis",
+    "detail": "Graduated May 2026. Concentration in Software Engineering. Four years of project work spanning full-stack development, machine learning, AI tooling, and cryptography."
+  },
+  {
+    "year": "2025",
+    "endYear": "2026",
+    "title": "KSPT Curricular Command Center",
+    "detail": "Built a SvelteKit 2 + Firebase + Gemini AI application that replaced a manual spreadsheet process for mapping DPT curriculum to 93 CAPTE accreditation standards. Delivered across five Agile sprints with a five-person team."
+  },
+  {
+    "year": "2026",
+    "title": "n8n-to-Python Transpiler",
+    "detail": "CLI tool that converts n8n visual automation workflows into standalone Python scripts via AST-based code generation, removing the n8n runtime dependency for production deployments."
+  },
+  {
+    "year": "2024",
+    "endYear": "2025",
+    "title": "Bluetooth Attendance",
+    "detail": "Automated attendance tracking using Bluetooth proximity detection. Multi-threaded Python backend logs full-classroom records in under 30 seconds without interrupting the session."
+  },
+  {
+    "year": "2024",
+    "title": "Obesity Risk Prediction",
+    "detail": "End-to-end ML pipeline on 2,111 records across 16 features. Trained and compared a Keras neural network (96% accuracy), KNN (95%), and Random Forest. Key predictors identified via chi-square analysis."
+  },
+  {
+    "year": "2024",
+    "title": "Password Manager — Selenium CI Suite",
+    "detail": "Wrote end-to-end Selenium tests covering create, share, and retrieve flows for a collaborative password manager. Integrated merge-blocking CI via GitHub Actions."
+  },
+  {
+    "year": "2023",
+    "title": "WebVPython WASM Runner",
+    "detail": "Open source contribution enabling VPython physics simulations to run fully in-browser via WebAssembly. Implemented screenshot capture using a secure postMessage inter-frame communication bridge."
+  }
+]
