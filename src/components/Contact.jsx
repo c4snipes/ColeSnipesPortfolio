@@ -1,17 +1,40 @@
+/**
+ * Contact.jsx
+ *
+ * Contact form backed by Web3Forms (https://web3forms.com).
+ * Submissions are sent directly from the browser — no serverless function needed.
+ * The access key is intentionally public; see Web3Forms FAQ on key exposure.
+ *
+ * Spam protection:
+ * - Web3Forms honeypot: hidden checkbox named "botcheck". If a bot fills it,
+ *   the submission is rejected server-side. Must be type="checkbox", not text.
+ * - Client-side rate limiting: tracks submission timestamps in localStorage,
+ *   blocks after MAX_ATTEMPTS within a rolling WINDOW_MS period.
+ *   This is a UX guard, not a security guarantee — server-side limits apply too.
+ *
+ * Email field is included so Web3Forms sets the reply-to address automatically,
+ * allowing direct reply from the inbox without copy-pasting.
+ *
+ * State:
+ * - email, subject, message — controlled inputs
+ * - status: { type: 'sending' | 'success' | 'error', message: string } | null
+ * - isSending — disables inputs and button during the fetch
+ */
+
 import { useEffect, useRef, useState } from 'react'
 
-const EMAIL_ADDRESS = 'cole.snipes@icloud.com'
+const EMAIL_ADDRESS  = 'cole.snipes@icloud.com'
 const RATE_LIMIT_KEY = 'contactAttempts'
-const WEB3FORMS_KEY = 'be6b21e6-b3a1-443f-9e1e-d53eb9da659f'
-const MAX_ATTEMPTS = 10
-const WINDOW_MS = 60 * 60 * 1000
+const WEB3FORMS_KEY  = 'be6b21e6-b3a1-443f-9e1e-d53eb9da659f'
+const MAX_ATTEMPTS   = 10
+const WINDOW_MS      = 60 * 60 * 1000 // 1 hour rolling window
 
 export default function Contact() {
   const ref = useRef(null)
-  const [email, setEmail] = useState('')
-  const [subject, setSubject] = useState('')
-  const [message, setMessage] = useState('')
-  const [status, setStatus] = useState(null)
+  const [email,     setEmail]     = useState('')
+  const [subject,   setSubject]   = useState('')
+  const [message,   setMessage]   = useState('')
+  const [status,    setStatus]    = useState(null)
   const [isSending, setIsSending] = useState(false)
 
   useEffect(() => {
@@ -25,6 +48,12 @@ export default function Contact() {
     return () => observer.disconnect()
   }, [])
 
+  /**
+   * Records the current attempt timestamp in localStorage and checks
+   * whether the user has exceeded MAX_ATTEMPTS within the rolling window.
+   *
+   * @returns {{ allowed: true, remaining: number } | { allowed: false, error?: string, retryMinutes?: number }}
+   */
   const recordAttempt = () => {
     if (typeof window === 'undefined') {
       return { allowed: false, error: 'Email sending is unavailable in this environment.' }
@@ -40,9 +69,11 @@ export default function Contact() {
     }
 
     const now = Date.now()
+    // Discard timestamps outside the rolling window
     const recent = attempts.filter((t) => typeof t === 'number' && t > now - WINDOW_MS)
 
     if (recent.length >= MAX_ATTEMPTS) {
+      // Calculate how long until the oldest attempt expires
       const retryMs = Math.max(0, Math.min(...recent) + WINDOW_MS - now)
       return { allowed: false, retryMinutes: Math.ceil(retryMs / 60000) }
     }
@@ -60,7 +91,7 @@ export default function Contact() {
     event.preventDefault()
     setStatus(null)
 
-    const trimmedEmail = email.trim()
+    const trimmedEmail   = email.trim()
     const trimmedSubject = subject.trim()
     const trimmedMessage = message.trim()
 
@@ -92,11 +123,11 @@ export default function Contact() {
         },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          email: trimmedEmail,
-          subject: trimmedSubject,
-          message: trimmedMessage,
-          from_name: 'ColeSnipes.dev',
-          botcheck: false,
+          email:      trimmedEmail,   // sets reply-to in delivered email
+          subject:    trimmedSubject,
+          message:    trimmedMessage,
+          from_name:  'ColeSnipes.dev',
+          botcheck:   false,          // honeypot — bots may set this to true
         }),
       })
 
@@ -129,7 +160,12 @@ export default function Contact() {
           <h2 className="section-title">Contact</h2>
           <p className="contact-lead">Let's work together.</p>
           <form className="contact-form" onSubmit={handleSubmit} aria-busy={isSending}>
-            {/* Web3Forms honeypot — must be a hidden checkbox named botcheck */}
+
+            {/*
+              Web3Forms honeypot — must be type="checkbox" named "botcheck",
+              hidden via inline style. Do NOT use display:none on the parent;
+              the field needs to exist in the DOM for bots to find it.
+            */}
             <input
               type="checkbox"
               name="botcheck"
@@ -138,9 +174,8 @@ export default function Contact() {
               aria-hidden="true"
               readOnly
             />
-            <label className="contact-label" htmlFor="contact-email">
-              Your email
-            </label>
+
+            <label className="contact-label" htmlFor="contact-email">Your email</label>
             <input
               id="contact-email"
               className="contact-input"
@@ -153,9 +188,8 @@ export default function Contact() {
               disabled={isSending}
               required
             />
-            <label className="contact-label" htmlFor="contact-subject">
-              Subject
-            </label>
+
+            <label className="contact-label" htmlFor="contact-subject">Subject</label>
             <input
               id="contact-subject"
               className="contact-input"
@@ -168,9 +202,8 @@ export default function Contact() {
               disabled={isSending}
               required
             />
-            <label className="contact-label" htmlFor="contact-message">
-              Message
-            </label>
+
+            <label className="contact-label" htmlFor="contact-message">Message</label>
             <textarea
               id="contact-message"
               className="contact-textarea"
@@ -182,12 +215,14 @@ export default function Contact() {
               disabled={isSending}
               required
             />
+
             <div className="contact-actions">
               <button className="contact-button" type="submit" disabled={isSending}>
                 {isSending ? 'Sending…' : 'Send message'}
               </button>
               <span className="contact-limit">10 sends per hour per browser.</span>
             </div>
+
             {status && (
               <p
                 className={`contact-status contact-status--${status.type}`}
@@ -197,6 +232,8 @@ export default function Contact() {
               </p>
             )}
           </form>
+
+          {/* Direct links below the form — no icons per design brief §5.5 */}
           <div className="contact-links">
             <a href={`mailto:${EMAIL_ADDRESS}`} className="contact-link">{EMAIL_ADDRESS}</a>
             <a href="https://github.com/c4snipes" target="_blank" rel="noopener noreferrer" className="contact-link">github.com/c4snipes</a>

@@ -1,9 +1,27 @@
+/**
+ * Timeline.jsx
+ *
+ * Chronological list of education and projects from src/data/timeline.json.
+ *
+ * Entry data shape:
+ * {
+ *   year:     string         — start year (always required)
+ *   endYear?: string         — optional end year; renders as "YYYY–YYYY" range when present
+ *   title:    string         — entry heading
+ *   detail:   string         — one to two sentence description
+ * }
+ *
+ * The endYear field is optional — single-year entries render unchanged.
+ * Multi-year ranges (e.g. a degree or long project) use "year–endYear" format.
+ */
+
 import { useEffect, useRef } from 'react'
 import timeline from '../data/timeline.json'
 
 export default function Timeline() {
   const ref = useRef(null)
 
+  // Single observer on the section container — the whole list reveals together
   useEffect(() => {
     const el = ref.current
     if (!el) return
@@ -31,6 +49,7 @@ export default function Timeline() {
           <ol className="timeline-list">
             {timeline.map((entry) => (
               <li className="timeline-item" key={`${entry.year}-${entry.title}`}>
+                {/* Render "YYYY–YYYY" for multi-year entries, plain "YYYY" otherwise */}
                 <span className="timeline-year">
                   {entry.endYear ? `${entry.year}–${entry.endYear}` : entry.year}
                 </span>
