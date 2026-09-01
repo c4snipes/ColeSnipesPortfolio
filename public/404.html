@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Not found — Cole Snipes</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" sizes="any" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Space+Mono&display=swap" rel="stylesheet" />
+  <!--
+    This page is served outside the React app, so it cannot import the bundled
+    stylesheet (Vite content-hashes that filename at build time). The tokens
+    below are copied from src/index.css rather than shared; if the palette moves,
+    move it here too. A <style> block is the right call here — the brief's ban on
+    inline styles targets JSX, where it hides the design system from search.
+  -->
+  <style>
+    :root {
+      --color-base:   #F5F0E8;
+      --color-ink:    #1A1612;
+      --color-muted:  #6B5F52;
+      --color-accent: #A93C24;
+      --color-border: #D4C9B5;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--color-base);
+      color: var(--color-ink);
+      font-family: 'Space Mono', 'Courier New', monospace;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+    main { max-width: 46ch; }
+    .num {
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      color: var(--color-accent);
+      display: block;
+      margin-bottom: 2rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      font-size: clamp(2.441rem, 6vw, 4.883rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+    }
+    hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0 1rem; }
+    p { color: var(--color-muted); font-size: 0.9rem; line-height: 1.6; }
+    .actions { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
+    a.button {
+      display: inline-block;
+      padding: 0.65rem 1.6rem;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 200ms, color 200ms;
+    }
+    a.button:hover, a.button:focus-visible { background: var(--color-accent); color: var(--color-base); }
+    :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="num">404 —</span>
+    <h1>Nothing here</h1>
+    <hr />
+    <p>That page does not exist. It may have been renamed, or the link may be incomplete.</p>
+    <div class="actions">
+      <a class="button" href="/">Back to the portfolio</a>
+      <a class="button" href="mailto:cole.snipes@icloud.com">Email me</a>
+    </div>
+  </main>
+</body>
+</html>

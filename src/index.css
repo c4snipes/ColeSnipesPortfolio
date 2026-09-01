@@ -1,16 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Space+Mono:wght@400;700&display=swap');
+/* Fonts are loaded by the <link> in index.html, which sits alongside the
+   preconnect hints. An @import here would request the identical stylesheet a
+   second time, and would do it only after this bundle had already downloaded
+   and parsed — a serial round trip on the critical path. */
 
-/* ── Design Tokens ── */
+/* ── Design Tokens ──
+   Contrast: every colour used for text clears WCAG 2.2 AA (4.5:1) on BOTH
+   --color-base and --color-surface, measured after the body::before noise veil
+   is composited over the page (that overlay costs roughly 0.2–0.3 of a ratio
+   point, enough to matter at the margin). Worst case per token, post-veil:
+     ink 15.0 · muted 5.2 · ghost 4.59 · accent 4.81 · accent-2 7.0
+   The previous ghost (#A89880, 2.40:1) and accent (#C84B2F, 3.64:1) both failed.
+   --color-border stays decorative hairline only at 1.4:1; anything that has to
+   read as a control boundary uses --color-border-strong (3.34:1, WCAG 1.4.11). */
 :root {
-  --color-base:      #F5F0E8;
-  --color-surface:   #EDE7D9;
-  --color-border:    #D4C9B5;
-  --color-ink:       #1A1612;
-  --color-muted:     #6B5F52;
-  --color-ghost:     #A89880;
-  --color-accent:    #C84B2F;
-  --color-accent-2:  #2E4A6B;
-  --color-selection: rgba(200, 75, 47, 0.15);
+  --color-base:          #F5F0E8;
+  --color-surface:       #EDE7D9;
+  --color-border:        #D4C9B5;
+  --color-border-strong: #8A7758;
+  --color-ink:           #1A1612;
+  --color-muted:         #6B5F52;
+  --color-ghost:         #736044;
+  --color-accent:        #A93C24;
+  --color-accent-2:      #2E4A6B;
+  --color-selection: rgba(169, 60, 36, 0.15);
 
   --font-mono: 'Space Mono', 'Courier New', monospace;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -86,8 +98,35 @@ a { color: inherit; text-decoration: none; }
 /* ── Focus ── */
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
 
-/* ── Reduced motion ── */
+/* ── Skip link ──
+   Off-screen until focused rather than display:none, which would make it
+   unfocusable and defeat the purpose. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--color-base);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.skip-link:focus { left: var(--space-sm); top: var(--space-sm); }
+
+/* <main> is focusable only as a skip-link target; it should never draw a ring. */
+main:focus { outline: none; }
+
+/* ── Reduced motion ──
+   scroll-behavior is deliberately reset here: it is not an animation or a
+   transition, so the duration overrides above do not touch it, and a smooth
+   anchor jump is exactly the sustained motion that triggers vestibular
+   symptoms (WCAG 2.3.3). */
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .reveal,
   .hero-name,
@@ -119,7 +158,11 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.1em;
   color: var(--color-muted);
   position: relative;
-  padding-bottom: 2px;
+  /* The top padding lifts the hit area past the 24px minimum (WCAG 2.5.8)
+     without moving anything: the extra height extends upward into empty space,
+     the shared baseline is unchanged, and the underline stays 2px under the
+     text because ::after is anchored to the padding box's bottom edge. */
+  padding: 0.55rem 0 2px;
 }
 .nav-links a::after {
   content: '';
@@ -304,7 +347,6 @@ a { color: inherit; text-decoration: none; }
 
 /* Shared label style: Space Mono caps */
 .project-section-label,
-.metric-detail,
 .tech-stack-item__title,
 .contact-label {
   font-family: var(--font-mono);
@@ -320,7 +362,6 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 4px;
 }
 .project-section-label::after { content: ''; flex: 1; height: 1px; background: var(--color-border); }
-.metric-detail { color: var(--color-ghost); }
 
 .project-section-text,
 .timeline-detail {
@@ -330,25 +371,6 @@ a { color: inherit; text-decoration: none; }
   max-width: 58ch;
 }
 .project-section-text { color: var(--color-ink); line-height: 1.7; }
-
-/* ── Metrics ── */
-.metrics { padding: var(--space-xl) var(--space-md) var(--space-lg); }
-.metrics-header { margin-bottom: var(--space-md); }
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--space-md);
-}
-.metric {
-  padding: var(--space-sm);
-  border: 1px solid var(--color-border);
-  background: var(--color-surface);
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-}
-.metric-value { font-family: var(--font-serif); font-size: var(--step-2); color: var(--color-ink); }
-.metric-label { font-family: var(--font-mono); font-size: var(--step--1); color: var(--color-muted); }
 
 /* ── Tech stack ── */
 .tech-stack { padding: var(--space-xl) var(--space-md) var(--space-lg); }
@@ -366,10 +388,19 @@ a { color: inherit; text-decoration: none; }
 .tech-stack-title { font-family: var(--font-serif); font-size: var(--step-1); font-weight: 300; color: var(--color-ink); margin-bottom: var(--space-xs); }
 .tech-stack-item { border-top: 1px solid var(--color-border); padding: var(--space-xs) 0; }
 .tech-stack-item:first-of-type { border-top: none; }
-.tech-stack-item__title { cursor: pointer; list-style: none; }
+/* Flex row rather than a floated marker, so the summary can take a min-height
+   for touch targets without the +/– drifting away from the label. */
+.tech-stack-item__title {
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
 .tech-stack-item__title::-webkit-details-marker { display: none; }
-.tech-stack-item__title::after  { content: '+'; float: right; color: var(--color-ghost); }
-.tech-stack-item[open] .tech-stack-item__title::after { content: '–'; }
+.tech-stack-item__marker::after { content: '+'; color: var(--color-ghost); }
+.tech-stack-item[open] .tech-stack-item__marker::after { content: '–'; }
 .tech-stack-subitems { margin-top: var(--space-xs); padding-left: 1.1rem; display: grid; gap: 0.35rem; }
 .tech-stack-subitem { font-family: var(--font-mono); font-size: var(--step--1); color: var(--color-muted); }
 
@@ -416,21 +447,25 @@ a { color: inherit; text-decoration: none; }
   padding-left: 16.667%;
   max-width: 560px;
 }
-.contact-honeypot { position: absolute; left: -9999px; top: 0; width: 1px; height: 1px; overflow: hidden; }
 .contact-input,
 .contact-textarea {
   font-family: var(--font-mono);
   font-size: var(--step--1);
   color: var(--color-ink);
   background: var(--color-base);
-  border: 1px solid var(--color-border);
+  /* A field boundary is a UI component, so it needs 3:1 against the page —
+     the decorative hairline colour used elsewhere only reaches 1.44:1. */
+  border: 1px solid var(--color-border-strong);
   padding: 0.75rem 0.9rem;
 }
 .contact-input:disabled,
 .contact-textarea:disabled { opacity: 0.7; cursor: not-allowed; }
 .contact-textarea { resize: vertical; min-height: 180px; }
 .contact-actions { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
-.contact-status { font-family: var(--font-mono); font-size: var(--step--2); margin-top: var(--space-xs); }
+/* The status paragraph is always in the DOM so the live region is registered
+   before it ever has text; :not(:empty) keeps it from reserving space when idle. */
+.contact-status { font-family: var(--font-mono); font-size: var(--step--2); }
+.contact-status:not(:empty) { margin-top: var(--space-xs); }
 .contact-status--error   { color: var(--color-accent); }
 .contact-status--success { color: var(--color-accent-2); }
 .contact-status--sending { color: var(--color-ghost); }
@@ -491,7 +526,7 @@ a { color: inherit; text-decoration: none; }
   font-size: 0.8rem;
   letter-spacing: 0.05em;
 }
-.error-boundary__button--ghost { color: var(--color-ink); border-color: var(--color-border); }
+.error-boundary__button--ghost { color: var(--color-ink); border-color: var(--color-border-strong); }
 .error-boundary__details { margin-top: var(--space-sm); max-width: 640px; text-align: left; width: 100%; }
 .error-boundary__stack {
   margin-top: var(--space-xs);
@@ -509,7 +544,6 @@ a { color: inherit; text-decoration: none; }
   .hero        { padding: var(--space-xl) var(--space-sm) var(--space-lg); }
   .hero-inner,
   .about-inner { padding-left: 0; }
-  .metrics     { padding: var(--space-lg) var(--space-sm) var(--space-md); }
   .tech-stack  { padding: var(--space-lg) var(--space-sm) var(--space-md); }
   .work        { padding: var(--space-xl) var(--space-sm); }
   .about       { padding: var(--space-xl) var(--space-sm); }
@@ -526,6 +560,56 @@ a { color: inherit; text-decoration: none; }
   .timeline-item { grid-template-columns: 1fr; gap: var(--space-xs); }
 }
 @media (max-width: 600px) {
-  .nav { padding: var(--space-sm); }
-  .nav-links { gap: var(--space-sm); }
+  /* Five labels plus the wordmark do not fit on one line at 320px, so let the
+     row wrap instead of overflowing behind the hero. */
+  .nav { padding: var(--space-sm); flex-wrap: wrap; row-gap: var(--space-xs); }
+  .nav-links { gap: var(--space-sm); flex-wrap: wrap; row-gap: 0; }
+}
+
+/* ── Touch targets ──
+   Brief §11.11 sets a 44px minimum, stricter than WCAG 2.5.8's 24px. Keyed to
+   pointer: coarse rather than a width breakpoint so it follows the input device,
+   not the viewport. The nav underline is a :hover affordance and never paints on
+   a touch device, so symmetric padding here costs nothing visually. */
+@media (pointer: coarse) {
+  .nav-links a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.7rem 0 calc(0.7rem + 2px);
+  }
+  .hero-icon-link { width: 2.75rem; height: 2.75rem; }
+  .contact-link { padding: 0.6rem 0; }
+  .tech-stack-item__title { min-height: 44px; }
+}
+
+/* ── Print ──
+   A recruiter saving the page as PDF is a real path. Without this, every
+   scroll-revealed section prints blank: .reveal defaults to opacity 0 and the
+   IntersectionObserver never fires for content outside the viewport. */
+@media print {
+  body::before { display: none; }
+  body { background: #fff; }
+  .reveal,
+  .hero-name,
+  .hero-subtitle,
+  .hero-actions { opacity: 1 !important; transform: none !important; animation: none !important; }
+  .nav, .skip-link, .contact-form { display: none; }
+  .hero { min-height: auto; padding: var(--space-md) 0; }
+  .hero-inner, .about-inner, .contact-links { padding-left: 0; }
+  .work, .about, .timeline, .contact, .tech-stack { padding: var(--space-md) 0; }
+  .about, .timeline { background: none; }
+  .project-entry, .timeline-item { break-inside: avoid; }
+  /* Expand the accordions — closed <details> would otherwise print as bare labels. */
+  .tech-stack-item:not([open]) .tech-stack-subitems { display: grid; }
+  .tech-stack-item__marker { display: none; }
+  /* Spell out destinations that a printed page cannot be clicked through to. */
+  .project-title a[href]::after,
+  .contact-link[href^="http"]::after {
+    content: ' (' attr(href) ')';
+    font-family: var(--font-mono);
+    font-size: 0.7em;
+    color: var(--color-muted);
+    word-break: break-all;
+  }
 }

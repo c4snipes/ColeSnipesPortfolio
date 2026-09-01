@@ -12,7 +12,7 @@
     "detail": "Built a SvelteKit 2 + Firebase + Gemini AI application that replaced a manual spreadsheet process for mapping DPT curriculum to 93 CAPTE accreditation standards. Delivered across five Agile sprints with a five-person team."
   },
   {
-    "year": "2026",
+    "year": "2025",
     "title": "n8n-to-Python Transpiler",
     "detail": "CLI tool that converts n8n visual automation workflows into standalone Python scripts via AST-based code generation, removing the n8n runtime dependency for production deployments."
   },

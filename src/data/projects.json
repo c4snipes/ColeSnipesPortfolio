@@ -2,7 +2,8 @@
   {
     "title": "KSPT Curricular Command Center",
     "descriptor": "Accreditation mapping tool",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/kspt.webp",
+    "imageAlt": "Screenshot of the KSPT Curricular Command Center: five curriculum-health metric cards above a searchable table of CAPTE accreditation standards.",
     "stack": [
       "SvelteKit 2",
       "Firebase",
@@ -18,7 +19,8 @@
   {
     "title": "n8n-to-Python Transpiler",
     "descriptor": "Workflow automation CLI",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/n8n-transpiler.webp",
+    "imageAlt": "Title plate reading “.json → .py” — n8n workflow exports transpiled to standalone Python through AST generation.",
     "stack": [
       "Python",
       "AST",
@@ -33,7 +35,8 @@
   {
     "title": "WebVPython WASM Runner",
     "descriptor": "Browser physics simulator",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/webvpython.webp",
+    "imageAlt": "Title plate reading “0” — zero local installs; CPython compiled to WebAssembly and sandboxed in an iframe.",
     "stack": [
       "JavaScript",
       "WebAssembly",
@@ -49,7 +52,8 @@
   {
     "title": "Bluetooth Attendance",
     "descriptor": "Automated MAC address scanner",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/bluetooth-attendance.webp",
+    "imageAlt": "Title plate reading “30s” — the time to record a full classroom of attendance.",
     "stack": [
       "Python",
       "Threading",
@@ -64,7 +68,8 @@
   {
     "title": "Obesity Risk Prediction",
     "descriptor": "End-to-end ML classification pipeline",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/obesity-risk.webp",
+    "imageAlt": "Title plate reading “96%” — classification accuracy on held-out test data.",
     "stack": [
       "Python",
       "Keras",
@@ -80,7 +85,8 @@
   {
     "title": "American Gun Violence Analysis",
     "descriptor": "Statistical correlation study",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/gun-violence.webp",
+    "imageAlt": "Title plate reading “R²” — regression computed per variable pair across state-level socioeconomic data.",
     "stack": [
       "R",
       "Excel",
@@ -95,7 +101,8 @@
   {
     "title": "Budget Manager",
     "descriptor": "Rust CLI finance tracker",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/budget-manager.webp",
+    "imageAlt": "Title plate reading “Result<T, E>” — record invariants enforced by Rust’s type system at compile time.",
     "stack": [
       "Rust",
       "CLI"
@@ -109,7 +116,8 @@
   {
     "title": "Password Manager Testing",
     "descriptor": "Selenium E2E suite with CI integration",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/password-manager-tests.webp",
+    "imageAlt": "Title plate reading “2” — two concurrent browser sessions synchronized for the sharing flow.",
     "stack": [
       "Python",
       "Selenium",
@@ -124,7 +132,8 @@
   {
     "title": "Portfolio Website",
     "descriptor": "This site",
-    "image": "/assets/placeholder.svg",
+    "image": "/assets/projects/portfolio.webp",
+    "imageAlt": "Screenshot of this portfolio’s hero: the name Cole Snipes set in a light serif on warm parchment.",
     "stack": [
       "React",
       "Vite",

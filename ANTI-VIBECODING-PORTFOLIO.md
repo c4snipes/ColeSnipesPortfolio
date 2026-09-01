@@ -78,22 +78,46 @@ Typography does 80% of the personality work. Every size, weight, and spacing dec
 
 ```css
 /* Background layers */
---color-base:     #F5F0E8;   /* Warm parchment — primary background */
---color-surface:  #EDE7D9;   /* Slightly deeper — card/section surfaces */
---color-border:   #D4C9B5;   /* Stone — dividers, rule lines */
+--color-base:          #F5F0E8;   /* Warm parchment — primary background */
+--color-surface:       #EDE7D9;   /* Slightly deeper — card/section surfaces */
+--color-border:        #D4C9B5;   /* Stone — decorative dividers and rules ONLY */
+--color-border-strong: #8A7758;   /* Control boundaries — form fields, buttons */
 
 /* Text */
 --color-ink:      #1A1612;   /* Near-black with warm undertone */
 --color-muted:    #6B5F52;   /* Warm mid-gray — secondary copy */
---color-ghost:    #A89880;   /* Captions, metadata, deemphasized labels */
+--color-ghost:    #736044;   /* Captions, metadata, deemphasized labels */
 
 /* Accent — used sparingly, never as fill color */
---color-accent:   #C84B2F;   /* Burnt sienna — more restrained than #FF4500 */
+--color-accent:   #A93C24;   /* Burnt sienna — more restrained than #FF4500 */
 --color-accent-2: #2E4A6B;   /* Slate blue — secondary accent for tags/code */
 
 /* Functional */
---color-selection: rgba(200, 75, 47, 0.15);  /* Accent tint for text selection */
+--color-selection: rgba(169, 60, 36, 0.15);  /* Accent tint for text selection */
 ```
+
+**Revised in v1.2 for contrast.** The original `--color-ghost` `#A89880` measured **2.48:1**
+on `--color-base` — roughly half the AA minimum — and carried the footer, every project year
+and descriptor, the hero availability line, and the accordion markers. The original
+`--color-accent` `#C84B2F` measured 4.11:1 on base and 3.78:1 on the surface-backed sections,
+so section numbers, the timeline years, and the contact form's error message all failed.
+This is the failure §11.11 flags against this brief's own palette.
+
+Ratios below are measured **after** the §3.3 grain overlay composites over the page — that
+veil costs roughly 0.2–0.3 of a ratio point, which is decisive at the margin.
+
+| Token | on `--color-base` | on `--color-surface` |
+|---|---|---|
+| `--color-ink` | 14.45:1 | 13.33:1 |
+| `--color-muted` | 5.12:1 | 4.72:1 |
+| `--color-ghost` | 4.98:1 | 4.59:1 |
+| `--color-accent` | 5.22:1 | 4.81:1 |
+| `--color-accent-2` | 7.38:1 | 6.81:1 |
+| `--color-border-strong` | 3.63:1 | 3.34:1 (non-text, needs 3:1) |
+| `--color-border` | 1.43:1 | 1.32:1 (decorative only — never a control edge) |
+
+Any new colour used for text must be checked against **both** backgrounds with the veil
+applied, not just against `--color-base`.
 
 ### 3.2 Usage Rules
 
@@ -461,4 +485,86 @@ They should not think: "another developer portfolio." If it looks like it could 
 
 ---
 
-*Document version: 1.0 — Update this brief whenever a design decision is locked in, so it remains the source of truth.*
+## 11. Vibecoding QA Checklist
+
+Run this against the live build in Phase 6, and periodically after. Anything checked off is a tell that the site was generated and shipped without a second pass.
+
+### 11.1 Visual defaults left untouched
+- [ ] Tailwind's stock palette showing through: `blue-500`, `indigo-600`, `violet-500` gradients, especially as button fills or hero backgrounds
+- [ ] Uniform `rounded-xl` or `rounded-2xl` on every card, button, and image with no variation in radius logic
+- [ ] Soft ambient `box-shadow` glow under every card (the "floating in a void" look)
+- [ ] shadcn/ui components used with zero customization, still recognizable as shadcn/ui
+- [ ] `backdrop-blur` sticky nav bar, especially paired with a semi-transparent white/black background
+- [ ] Icon-plus-heading feature grids (icon, bold title, one-line description, repeated 3-4 times) — the single most common AI-scaffolded section
+- [ ] Every heading using the same weight and size relationship as every other heading, so the page has no real hierarchy despite lots of headings
+
+### 11.2 Motion tells
+- [ ] `framer-motion` (or equivalent) fade+slide-up applied uniformly to every section with identical timing, so the whole page scrolls like a slideshow
+- [ ] Stat counters that count up on scroll for numbers that don't need drama (e.g., "3 projects")
+- [ ] Hover scale-and-shadow on literally every interactive element, same values throughout
+
+### 11.3 Code/structural tells (visible in DevTools or view-source)
+- [ ] Default `<title>` still reading the framework's scaffold name, unedited
+- [ ] Meta description missing or still the framework boilerplate
+- [ ] Favicon is the framework's default icon
+- [ ] Console warnings from unused boilerplate (dev warnings, unhandled config, etc.)
+- [ ] Class names that are pure utility soup with no semantic structure underneath, nested five deep
+- [ ] No custom CSS variables at all — every value is a raw utility class, so there's no evidence of an actual design system, just accretion
+
+### 11.4 Copy tells
+- [ ] Opens with "Welcome to my portfolio" or "I'm passionate about..."
+- [ ] Bullet-pointed skill lists with no sentences connecting them to real work
+- [ ] Project descriptions that list technologies used but never say what the project does or why it exists
+- [ ] Testimonial or "trusted by" sections with no real names, logos, or quotes — clearly scaffolded and never replaced
+
+### 11.5 Structural tells
+- [ ] A "Features" or "Services" section on a personal portfolio (that's SaaS-landing-page language, not applicable to one person's work)
+- [ ] Fake social proof: star ratings, "100+ happy clients," logo strips of companies you didn't work with
+- [ ] Chat widget bubble in the bottom right with no actual chat behind it
+
+### 11.6 Dependency and bundle tells
+- [ ] `package.json` with a dozen unused UI libraries (multiple icon packs, two animation libraries, a component kit that's never imported) from generate-then-abandon iterations
+- [ ] Total JS bundle well past the 50KB target (Section 7.2), usually from importing an entire icon library instead of tree-shaken individual icons
+- [ ] Fonts imported for five weights of three different typefaces when the page only uses two
+- [ ] `node_modules` full of packages installed for a feature that got cut, never removed
+
+### 11.7 Form and interaction tells
+- [ ] A contact form with no working backend, just a `console.log(formData)` or an `alert("Message sent!")` on submit
+- [ ] Newsletter signup field on a personal portfolio, with no actual mailing list behind it
+- [ ] Search bar on a five-page personal site
+- [ ] Multi-step forms or wizards for something that could be one field
+
+### 11.8 Content-structure tells
+- [ ] Placeholder Latin text (Lorem Ipsum) left in a footer or about section, sometimes half-replaced
+- [ ] Project count inflated with tutorials, course projects, or forked repos presented at the same weight as real work
+- [ ] "Coming soon" sections that have been coming soon since the first deploy
+- [ ] Generic stock photography for team/hero images on a one-person site
+
+### 11.9 SEO and metadata tells
+- [ ] No Open Graph tags, so link previews show a blank card or the framework default
+- [ ] `sitemap.xml` and `robots.txt` either missing or still the scaffolded defaults, sometimes blocking all crawlers by accident
+- [ ] Structured data (JSON-LD) either absent or copy-pasted from a template with the wrong `@type`, wrong name, wrong URLs
+
+### 11.10 Rendering and performance tells
+- [ ] Layout shift on load because fonts and images aren't preloaded, so text visibly reflows
+- [ ] Unoptimized full-resolution PNG screenshots used as project thumbnails, sometimes several MB each
+- [ ] No lazy loading below the fold, so every image loads on first paint
+- [ ] Lighthouse score noticeably worse on mobile than desktop, meaning it was only ever tested on a wide viewport
+
+### 11.11 Accessibility tells
+- [ ] Color contrast failures used decoratively without checking numbers (see the `--color-ghost` issue already flagged against this brief's own palette)
+- [ ] Missing or generic `alt` text (`alt="image"`, `alt="project screenshot"`) on every image
+- [ ] No visible focus states, so keyboard navigation is invisible
+- [ ] Click targets under 44px on mobile, especially nav links crammed into a horizontal strip
+
+### 11.12 Deployment tells
+- [ ] Vercel/Netlify preview URL still referenced somewhere (an old share link, a hardcoded API endpoint) instead of the production domain
+- [ ] No custom 404 page, so broken links hit the host's default error page
+- [ ] HTTP instead of HTTPS somewhere in hardcoded asset URLs
+- [ ] Console errors on load from a misconfigured env variable or an API key that was never rotated out of a demo
+
+---
+
+*Document version: 1.2 — Update this brief whenever a design decision is locked in, so it remains the source of truth.*
+
+*1.2 — §3.1 palette revised for WCAG AA; `--color-border-strong` added for control boundaries.*

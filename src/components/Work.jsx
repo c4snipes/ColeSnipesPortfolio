@@ -13,7 +13,8 @@
  * {
  *   title:      string   — display name
  *   descriptor: string   — one-line label (e.g. "Accreditation mapping tool")
- *   image:      string   — path relative to /public
+ *   image:      string   — path relative to /public, authored at 1200×800
+ *   imageAlt:   string   — alt text for that specific image; "" if decorative
  *   stack:      string[] — technology names, joined with " · "
  *   year:       string   — display year (single or range handled in data)
  *   link:       string | null — external URL; title rendered as plain text if null
@@ -25,6 +26,18 @@
 
 import { useEffect, useRef } from 'react'
 import projects from '../data/projects.json'
+
+/**
+ * Every project image is authored at 1200×800 (see public/assets/projects/).
+ * Two are real screenshots of running software; the rest are typographic plates
+ * carrying that project's headline figure, because a CLI tool or a notebook has
+ * no interface to photograph and a fabricated one would be a lie.
+ *
+ * These are declared rather than measured so the browser can reserve the box
+ * before the file arrives.
+ */
+const IMAGE_WIDTH  = 1200
+const IMAGE_HEIGHT = 800
 
 /**
  * ProjectCard
@@ -67,8 +80,17 @@ function ProjectCard({ project, index }) {
           <div className="project-image-wrap">
             <img
               src={project.image}
-              alt={`${project.title} screenshot`}
+              /* width/height reserve the aspect ratio before the file loads, so the
+                 text beside it does not jump when the image arrives. */
+              width={IMAGE_WIDTH}
+              height={IMAGE_HEIGHT}
+              /* Alt text is authored per image in projects.json — the plates and
+                 the screenshots need to be described differently. Falling back to
+                 "" marks an undescribed image decorative rather than announcing a
+                 filename. */
+              alt={project.imageAlt ?? ''}
               loading="lazy"
+              decoding="async"
               className="project-image"
             />
           </div>

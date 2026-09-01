@@ -29,7 +29,7 @@ export default function About() {
     <section className="about" id="about" aria-label="About">
       <div className="container">
         <div className="reveal" ref={ref}>
-          <span className="section-number">06 —</span>
+          <span className="section-number">05 —</span>
           <h2 className="section-title">About</h2>
           <div className="about-inner">
             {/* Lead paragraph — receives the drop cap via .about-copy--lead */}

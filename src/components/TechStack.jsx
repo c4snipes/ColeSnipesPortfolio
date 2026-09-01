@@ -63,7 +63,14 @@ export default function TechStack() {
                       className="tech-stack-item"
                       key={`${group.category}-${item.title}`}
                     >
-                      <summary className="tech-stack-item__title">{item.title}</summary>
+                      {/* The +/– indicator is a real aria-hidden element rather
+                          than CSS ::after content, because generated content is
+                          folded into the summary's accessible name — screen
+                          readers were announcing "Frontend +". */}
+                      <summary className="tech-stack-item__title">
+                        {item.title}
+                        <span className="tech-stack-item__marker" aria-hidden="true" />
+                      </summary>
                       <ul className="tech-stack-subitems">
                         {item.subItems.map((subItem) => (
                           <li

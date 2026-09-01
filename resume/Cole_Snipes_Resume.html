@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Cole Snipes — Resume</title>
+<style>
+  @page { size: Letter; margin: 0.45in 0.55in; }
+
+  /* ATS-safe: single column, no layout tables, no text in images, standard
+     section headings, real selectable text, common font stack. */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Calibri, Carlito, Helvetica, Arial, sans-serif;
+    font-size: 9.4pt;
+    line-height: 1.26;
+    color: #111;
+  }
+
+  header { text-align: center; margin-bottom: 7pt; }
+  h1 {
+    font-size: 19pt;
+    font-weight: 700;
+    letter-spacing: 0.5pt;
+    line-height: 1.1;
+    margin-bottom: 2pt;
+  }
+  .contact { font-size: 8.8pt; color: #222; }
+  .contact a { color: #111; text-decoration: none; }
+  .sep { color: #888; padding: 0 4pt; }
+
+  h2 {
+    font-size: 9.4pt;
+    font-weight: 700;
+    letter-spacing: 0.9pt;
+    text-transform: uppercase;
+    border-bottom: 0.8pt solid #111;
+    padding-bottom: 1pt;
+    margin: 7pt 0 3.5pt;
+  }
+  section:first-of-type h2 { margin-top: 5pt; }
+
+  p.summary { text-align: justify; }
+
+  /* Two-column head rows: title left, date right. Flex, not a table, so an ATS
+     parser reads it as one continuous line of text. */
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .row .left { font-weight: 700; }
+  .row .right { font-weight: 400; white-space: nowrap; color: #222; }
+  .subrow { color: #333; margin-bottom: 1pt; }
+
+  .entry { margin-bottom: 4.5pt; }
+  .entry:last-child { margin-bottom: 0; }
+  .stack { font-style: italic; color: #333; font-weight: 400; }
+
+  ul { margin: 1.5pt 0 0 13pt; }
+  li { margin-bottom: 1pt; }
+  li::marker { color: #444; }
+
+  .skills div { margin-bottom: 1.8pt; }
+  .skills div:last-child { margin-bottom: 0; }
+  .skills .k { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Cole Snipes</h1>
+  <div class="contact">
+    cole.snipes@icloud.com<span class="sep">|</span>Indianapolis, IN<span class="sep">|</span><a href="https://colesnipes.dev">colesnipes.dev</a><span class="sep">|</span><a href="https://www.linkedin.com/in/cole-snipes/">linkedin.com/in/cole-snipes</a><span class="sep">|</span><a href="https://github.com/c4snipes">github.com/c4snipes</a>
+  </div>
+</header>
+
+<section>
+  <h2>Summary</h2>
+  <p class="summary">
+    Full-stack software engineer and data analyst with a B.S. in Computer Science (May 2026).
+    Builds AI-powered web applications, REST APIs, and machine learning pipelines end to end.
+    Delivered a capstone application now used by a university physical therapy program, across
+    five Agile sprints with a five-person team. Seeking a full-stack or data-focused engineering role.
+  </p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="row">
+    <span class="left">University of Indianapolis</span>
+    <span class="right">Graduated May 2026</span>
+  </div>
+  <div class="subrow">B.S. Computer Science, concentration in Software Engineering &middot; Indianapolis, IN</div>
+</section>
+
+<section>
+  <h2>Technical Skills</h2>
+  <div class="skills">
+    <div><span class="k">Languages:</span> Python, JavaScript, TypeScript, Java, Rust, R, SQL, HTML/CSS</div>
+    <div><span class="k">Frontend:</span> React, Svelte &amp; SvelteKit, Next.js, Vite, Tailwind CSS, WebAssembly</div>
+    <div><span class="k">Backend &amp; Data:</span> Node.js, Flask, Django, REST APIs, GraphQL, Firebase (Firestore, Auth, Cloud Functions), SQL/NoSQL</div>
+    <div><span class="k">ML &amp; AI:</span> pandas, NumPy, scikit-learn, Keras, LLM API integration (Gemini, Claude, OpenAI), RAG, prompt engineering</div>
+    <div><span class="k">Tools &amp; Practices:</span> Git, GitHub Actions, Docker, CI/CD, Playwright, Selenium, Jupyter, Linux, Agile/Scrum, code review</div>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+
+  <div class="entry">
+    <div class="row">
+      <span class="left">Curriculum Mapping Application &mdash; Krannert School of Physical Therapy</span>
+      <span class="right">2025&ndash;2026</span>
+    </div>
+    <div class="subrow stack">SvelteKit 2, Svelte 5, Firebase, Gemini AI</div>
+    <ul>
+      <li>Replaced a manual, spreadsheet-based CAPTE process with a web application that maps courses and learning objectives against 93 accreditation standards in one interface.</li>
+      <li>Enforced role-based access control for two roles (admin, viewer) at the Firebase Rules layer, not just the UI, so policy could not drift between layers.</li>
+      <li>Integrated Gemini AI to surface curriculum alignment gaps, cutting administrator cross-referencing time from hours to minutes per review cycle.</li>
+      <li>Delivered across five Agile sprints with a five-person team, validating requirements with the department chair.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row">
+      <span class="left">Predictive Analysis of Obesity Levels</span>
+      <span class="right">2024</span>
+    </div>
+    <div class="subrow stack">Python, Keras, scikit-learn, pandas</div>
+    <ul>
+      <li>Built an end-to-end ML pipeline (cleaning, EDA, feature engineering, training, evaluation) over 2,111 records and 16 features across six obesity classes.</li>
+      <li>Compared a neural network (96% accuracy), KNN (95%), and random forest; validated with ROC curves and confusion matrices rather than accuracy alone.</li>
+      <li>Identified family history, diet, and physical activity as dominant predictors via chi-square analysis (&chi;&sup2;=448.9, p&lt;0.001).</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row">
+      <span class="left">WebVPython WASM Runner &mdash; Glowscript (open source)</span>
+      <span class="right">2023</span>
+    </div>
+    <div class="subrow stack">JavaScript, WebAssembly, Pyodide, Docker</div>
+    <ul>
+      <li>Extended an open-source WASM runner so Python physics simulations run entirely in-browser, removing the local install that gated every classroom demo.</li>
+      <li>Engineered a secure cross-origin postMessage bridge and modified canvas rendering to enable screenshot export.</li>
+    </ul>
+  </div>
+
+  <div class="entry">
+    <div class="row">
+      <span class="left">n8n-to-Python Workflow Transpiler</span>
+      <span class="right">2025</span>
+    </div>
+    <div class="subrow stack">Python, AST, CLI</div>
+    <ul>
+      <li>Built a CLI that converts n8n visual automation workflows into standalone Python via AST-based code generation, removing the n8n runtime dependency for production deployments.</li>
+      <li>Chose AST generation over string templating so nested conditionals and dynamic field references survive translation.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <div class="entry">
+    <div class="row">
+      <span class="left">Cart Attendant &mdash; Meijer, Indianapolis, IN</span>
+      <span class="right">January 2024 &ndash; Present</span>
+    </div>
+    <ul>
+      <li>Maintained cart availability and floor safety across a high-volume store through peak hours with minimal supervision.</li>
+      <li>Coordinated with associates on spill response and customer assistance; recognized for reliability.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Awards</h2>
+  <ul>
+    <li>Richard Lugar Academic Scholarship</li>
+    <li>Presented statistical research to Summer Research Institute faculty; selected for the Scholar Showcase exhibition.</li>
+  </ul>
+</section>
+
+</body>
+</html>
